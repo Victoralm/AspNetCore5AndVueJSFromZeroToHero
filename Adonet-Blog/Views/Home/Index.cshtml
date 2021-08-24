@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Person
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,6 +9,5 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<h3>@ViewData["message1"]</h3>
-<h3>@ViewBag.message2</h3>
-<h3>@TempData["message3"]</h3>
+<h4>Name: @Model.Name</h4>
+<h4>Surname: @Model.Surname</h4>

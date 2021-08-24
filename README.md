@@ -62,3 +62,45 @@ No arquivo view:
 <h3>@TempData["message3"]</h3>
 ```
 
+## Criando um novo arquivo Model
+
+No Visual Studio, clicar com o direito na pasta `Model` e criar uma nova classe.
+Ex:
+
+```csharp
+namespace Adonet_Blog.Models
+{
+    public class Person
+    {
+        public string Name { get; set; }
+        public string Surname { get; set; }
+    }
+}
+```
+
+Instanciar a classe recém criada dentro do método IActionResult desejado do
+arquivo de controller desejado. E passá-la como parametro de
+`return View(<nome-da-instancia>)`. Ex:
+
+```csharp
+public IActionResult Index()
+    {
+        Person person = new Person {
+            Name = "Victor",
+            Surname = "Almeida"
+        };
+
+        return View(person);
+    }
+```
+
+Declarar o model a ser usado no arquivo de view e acessar as propriedades.
+Ex:
+
+```html
+@model Person
+...
+<h4>Name: @Model.Name</h4>
+<h4>Surname: @Model.Surname</h4>
+```
+

@@ -20,11 +20,12 @@ namespace Adonet_Blog.Controllers
 
         public IActionResult Index()
         {
-            ViewData["message1"] = "ViewData message";
-            ViewBag.message2 = "ViewBag message";
-            TempData["message3"] = "TempData message";
+            Person person = new Person { 
+                Name = "Victor",
+                Surname = "Almeida"
+            };
 
-            return View();
+            return View(person);
         }
 
         public IActionResult Privacy()
