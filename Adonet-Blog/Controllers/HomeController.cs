@@ -1,6 +1,9 @@
-﻿using Adonet_Blog.Models;
+﻿using Adonet_Blog.Entities;
+using Adonet_Blog.Models;
+using Adonet_Blog.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -10,28 +13,27 @@ namespace Adonet_Blog.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        PostService _postService;
+
+        /// <summary>
+        /// Injetando um ILogger (de tipo HomeController) e um IServiceProvider como dependência
+        /// </summary>
+        /// <param name="logger"></param>
+        /// <param name="serviceProvider"></param>
+        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider)
         {
             _logger = logger;
+
+            // Inicializando _postService com a injeção de dependência
+            this._postService = new PostService(serviceProvider);
         }
 
         public IActionResult Index()
         {
-            List<Person> persons = new List<Person>
-            {
-                new Person()
-                {
-                    Name = "Victor",
-                    Surname = "Almeida"
-                },
-                new Person()
-                {
-                    Name = "Caio",
-                    Surname = "Argolo"
-                }
-            };
+            List<Post> posts = new List<Post>();
+            posts = this._postService.GetAllPosts();
 
-            return View(persons);
+            return View(posts);
         }
 
         public IActionResult Privacy()

@@ -27,6 +27,7 @@ namespace Adonet_Blog.Services
         {
             this._config = serviceProvider.GetRequiredService<IConfiguration>();
             string connectionString = _config.GetConnectionString("Default").ToString();
+            this._conn = new SqlConnection(connectionString);
 
             // Opens the connection with the Db if not opened already
             if (this._conn.State != ConnectionState.Open)
@@ -35,15 +36,15 @@ namespace Adonet_Blog.Services
             }
         }
 
-        public List<Post> GetAll()
+        public List<Post> GetAllPosts()
         {
             List<Post> posts = new List<Post>();
             // SQL query
-            SqlCommand sqlCommand = new SqlCommand("select * from Post", this._conn);
+            this._command = new SqlCommand("select * from Post", this._conn);
             // Defines the command type
-            sqlCommand.CommandType = CommandType.Text;
+            this._command.CommandType = CommandType.Text;
             // Closes the connection
-            IDataReader dataReader = sqlCommand.ExecuteReader(CommandBehavior.CloseConnection);
+            IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
 
             // getting the data
             while(dataReader.Read())
