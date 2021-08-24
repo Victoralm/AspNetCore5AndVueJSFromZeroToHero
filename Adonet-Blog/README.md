@@ -6,7 +6,7 @@ Descrições gerais do projeto
 
 No Visual Studio, gerar uma solução `ASP .Net Core MVC`:
 
-![ASP.Net Core MVC](img/ASPNetCore_MVC_ProjectCreation.jpg)
+![ASP.Net Core MVC](../img/ASPNetCore_MVC_ProjectCreation.jpg)
 
 Via linha de comando `dotnet`, gerar uma solução `ASP .Net Core MVC`:
 
