@@ -1,0 +1,14 @@
+﻿@model BlogModel
+
+<div class="container">
+    <div class="card text-center mb-5 mt-2" style="width: 60%; margin: auto 20%;">
+        <img src="~/img/Blog_01.jpg" class="card-img-top" alt="..." />
+        <div class="card-body">
+            <h5 class="card-title">@Model.post.Title</h5>
+            @*<p><span style="font-weight: bold;">UserId</span>: @post.UserId</p>*@
+            <small>@Model.post.Publishing_Date</small>
+            <p class="card-text">@Model.post.Content</p>
+            @*<p><span style="font-weight: bold;">Modified_Date</span>: @post.Modified_Date</p>*@
+        </div>
+    </div>
+</div>

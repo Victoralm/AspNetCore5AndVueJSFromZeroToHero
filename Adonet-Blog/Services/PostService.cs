@@ -52,7 +52,7 @@ namespace Adonet_Blog.Services
                 Post post = new Post();
                 post.PostId = dataReader["PostId"] is DBNull ? 0 : int.Parse(dataReader["PostId"].ToString());
                 post.UserId = dataReader["UserId"] is DBNull ? 0 : int.Parse(dataReader["UserId"].ToString());
-                post.Title = dataReader["Title"] is DBNull ? "" : dataReader["UserId"].ToString();
+                post.Title = dataReader["Title"] is DBNull ? "" : dataReader["Title"].ToString();
                 post.Content = dataReader["Content"] is DBNull ? "" : dataReader["Content"].ToString();
 
                 if (dataReader["Publishing_Date"] != DBNull.Value)
@@ -69,6 +69,38 @@ namespace Adonet_Blog.Services
             }
 
             return posts;
+        }
+
+        public Post GetPost(int id)
+        {
+            Post post = new Post();
+            // SQL query
+            this._command = new SqlCommand($"select * from Post where PostId = {id}", this._conn);
+            // Defines the command type
+            this._command.CommandType = CommandType.Text;
+            // Closes the connection
+            IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // getting the data
+            while (dataReader.Read())
+            {
+                post.PostId = dataReader["PostId"] is DBNull ? 0 : int.Parse(dataReader["PostId"].ToString());
+                post.UserId = dataReader["UserId"] is DBNull ? 0 : int.Parse(dataReader["UserId"].ToString());
+                post.Title = dataReader["Title"] is DBNull ? string.Empty : dataReader["Title"].ToString();
+                post.Content = dataReader["Content"] is DBNull ? string.Empty : dataReader["Content"].ToString();
+
+                if (dataReader["Publishing_Date"] != DBNull.Value)
+                {
+                    post.Publishing_Date = DateTime.Parse(dataReader["Publishing_Date"].ToString());
+                }
+
+                if (dataReader["Modified_Date"] != DBNull.Value)
+                {
+                    post.Modified_Date = DateTime.Parse(dataReader["Modified_Date"].ToString());
+                }
+            }
+
+            return post;
         }
     }
 }

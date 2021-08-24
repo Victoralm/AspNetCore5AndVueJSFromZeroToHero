@@ -45,6 +45,16 @@ namespace Adonet_Blog.Controllers
             return View(model);
         }
 
+        public IActionResult PostDetail(int id)
+        {
+            Post myPost = this._postService.GetPost(id);
+            BlogModel model = new BlogModel
+            {
+                post = myPost
+            };
+            return View(model);
+        }
+
         public IActionResult Privacy()
         {
             return View();
