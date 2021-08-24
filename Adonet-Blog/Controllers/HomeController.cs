@@ -20,12 +20,21 @@ namespace Adonet_Blog.Controllers
 
         public IActionResult Index()
         {
-            Person person = new Person { 
-                Name = "Victor",
-                Surname = "Almeida"
+            List<Person> persons = new List<Person>
+            {
+                new Person()
+                {
+                    Name = "Victor",
+                    Surname = "Almeida"
+                },
+                new Person()
+                {
+                    Name = "Caio",
+                    Surname = "Argolo"
+                }
             };
 
-            return View(person);
+            return View(persons);
         }
 
         public IActionResult Privacy()

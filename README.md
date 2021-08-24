@@ -78,20 +78,20 @@ namespace Adonet_Blog.Models
 }
 ```
 
-Instanciar a classe recém criada dentro do método IActionResult desejado do
-arquivo de controller desejado. E passá-la como parametro de
+Instanciar a classe recém criada dentro do método `IActionResult` desejado do
+arquivo de controller desejado. E passá-la como parâmetro de
 `return View(<nome-da-instancia>)`. Ex:
 
 ```csharp
 public IActionResult Index()
-    {
-        Person person = new Person {
-            Name = "Victor",
-            Surname = "Almeida"
-        };
+{
+    Person person = new Person {
+        Name = "Victor",
+        Surname = "Almeida"
+    };
 
-        return View(person);
-    }
+    return View(person);
+}
 ```
 
 Declarar o model a ser usado no arquivo de view e acessar as propriedades.
@@ -102,5 +102,47 @@ Ex:
 ...
 <h4>Name: @Model.Name</h4>
 <h4>Surname: @Model.Surname</h4>
+```
+
+### Acessando propriedades de uma lista
+
+Instanciar uma lista da classe recém criada dentro do método `IActionResult` desejado do
+arquivo de controller desejado. E passá-la como parâmetro de
+`return View(<nome-da-instancia>)`. Ex:
+
+```csharp
+public IActionResult Index()
+{
+    List<Person> persons = new List<Person>
+    {
+        new Person()
+        {
+            Name = "Victor",
+            Surname = "Almeida"
+        },
+        new Person()
+        {
+            Name = "Caio",
+            Surname = "Argolo"
+        }
+    };
+
+    return View(persons);
+}
+```
+
+Declarar o model a ser usado no arquivo de view e acessar as propriedades.
+Ex:
+
+```html
+@model List<Person>
+...
+@foreach (var person in Model)
+{
+    <div>
+        <h4>Name: @person.Name</h4>
+        <h4>Name: @person.Surname</h4>
+    </div>
+}
 ```
 
