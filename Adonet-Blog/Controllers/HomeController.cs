@@ -30,10 +30,19 @@ namespace Adonet_Blog.Controllers
 
         public IActionResult Index()
         {
-            List<Post> posts = new List<Post>();
-            posts = this._postService.GetAllPosts();
+            #region Instanciando e inicializando
+            //BlogModel model = new BlogModel();
+            //model.postList = this._postService.GetAllPosts();
+            #endregion
 
-            return View(posts);
+            #region Iniciando na instanciação
+            BlogModel model = new BlogModel
+            {
+                postList = this._postService.GetAllPosts()
+            };
+            #endregion
+
+            return View(model);
         }
 
         public IActionResult Privacy()

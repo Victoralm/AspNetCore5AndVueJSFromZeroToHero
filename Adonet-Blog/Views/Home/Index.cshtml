@@ -1,5 +1,4 @@
-﻿@using Adonet_Blog.Entities;
-@model List<Post>
+﻿@model BlogModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -10,9 +9,9 @@
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-@if (Model.Count > 0)
+@if (Model.postList.Count > 0)
 {
-    @foreach (var post in Model)
+    @foreach (var post in Model.postList)
     {
         <div class="card text-center mb-5 mt-2" style="width: 60%; margin: auto 20%;">
             <img src="~/img/Blog_01.jpg" class="card-img-top" alt="..." />
