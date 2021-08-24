@@ -18,7 +18,7 @@
             <div class="card-body">
                 <h5 class="card-title">@post.Title</h5>
                 @*<p><span style="font-weight: bold;">UserId</span>: @post.UserId</p>*@
-                <small>@post.Publishing_Date</small>
+            <small>@post.Publishing_Date</small>
                 <p class="card-text">@(post.Content.Length > 150 ? $"{post.Content.Substring(0, 150)} ..." : post.Content)</p>
                 @*<p><span style="font-weight: bold;">Modified_Date</span>: @post.Modified_Date</p>*@
                 @*<a href="/home/PostDetail/@post.PostId" class="btn btn-primary">More...</a>*@

@@ -6,7 +6,7 @@
         <div class="card-body">
             <h5 class="card-title">@Model.post.Title</h5>
             @*<p><span style="font-weight: bold;">UserId</span>: @post.UserId</p>*@
-            <small>@Model.post.Publishing_Date</small>
+        <small>@Model.post.Publishing_Date --- @Model.post.Writer.Username</small>
             <p class="card-text">@Model.post.Content</p>
             @*<p><span style="font-weight: bold;">Modified_Date</span>: @post.Modified_Date</p>*@
         </div>
