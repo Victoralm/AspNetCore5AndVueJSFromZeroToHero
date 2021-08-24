@@ -1,11 +1,8 @@
 ﻿using Adonet_Blog.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Adonet_Blog.Controllers
 {
@@ -38,6 +35,18 @@ namespace Adonet_Blog.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        // Acessado como: https://localhost:44303/Home/AboutUs
+        public IActionResult AboutUs()
+        {
+            return View();
+        }
+        
+        // With custom layout template
+        public IActionResult AboutUs2()
         {
             return View();
         }

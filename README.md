@@ -146,3 +146,15 @@ Ex:
 }
 ```
 
+## [Layout](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/layout?view=aspnetcore-5.0)
+
+Default é definido no arquivo `Views/Shared/_Layout.cshtml`. Para views com
+custom layouts usar o decorator `Layout`, como em:
+
+```html
+@{
+    Layout = null;
+}
+```
+
+Exemplo de arquivo view usando um custom layout: Adonet-Blog/Views/Home/AboutUs2.cshtml
