@@ -160,3 +160,9 @@ Exemplo de arquivo view usando um custom layout: Adonet-Blog/Views/Home/AboutUs2
 Notar que os arquivos criados no diretório `Models` são automagicamente
 importados no arquivo `Adonet-Blog\Views\_ViewImports.cshtml`. De forma a
 facilitar sua utilização nos decorators dos arquivos de View.
+
+## Armazenando usuário em um cookie
+
+- [Session and state management in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/app-state?view=aspnetcore-5.0)
+- [Use cookie authentication without ASP.NET Core Identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/cookie?view=aspnetcore-5.0)
+- [Work with SameSite cookies in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/samesite?view=aspnetcore-5.0)
