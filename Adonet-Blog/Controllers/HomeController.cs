@@ -2,6 +2,7 @@
 using Adonet_Blog.Models;
 using Adonet_Blog.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -16,16 +17,16 @@ namespace Adonet_Blog.Controllers
         PostService _postService;
 
         /// <summary>
-        /// Injetando um ILogger (de tipo HomeController) e um IServiceProvider como dependência
+        /// Injetando um ILogger (de tipo HomeController) e um IConfiguration como dependência
         /// </summary>
         /// <param name="logger"></param>
-        /// <param name="serviceProvider"></param>
-        public HomeController(ILogger<HomeController> logger, IServiceProvider serviceProvider)
+        /// <param name="config"></param>
+        public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
             _logger = logger;
 
             // Inicializando _postService com a injeção de dependência
-            this._postService = new PostService(serviceProvider);
+            this._postService = new PostService(config);
         }
 
         public IActionResult Index()

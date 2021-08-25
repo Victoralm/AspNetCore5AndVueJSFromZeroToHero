@@ -17,23 +17,15 @@ namespace Adonet_Blog.Services
     {
         private SqlConnection _conn;
         SqlCommand _command;
-        private IConfiguration _config;
 
         /// <summary>
-        /// Injecting IServiceProvider as dependency
+        /// Injecting IConfiguration as dependency
         /// </summary>
-        /// <param name="serviceProvider"></param>
-        public PostService(IServiceProvider serviceProvider)
+        /// <param name="config"></param>
+        public PostService(IConfiguration config)
         {
-            this._config = serviceProvider.GetRequiredService<IConfiguration>();
-            string connectionString = _config.GetConnectionString("Default").ToString();
-            this._conn = new SqlConnection(connectionString);
-
-            // Opens the connection with the Db if not opened already
-            if (this._conn.State != ConnectionState.Open)
-            {
-                this._conn.Open();
-            }
+            ConnectionService connServ = new ConnectionService(config);
+            this._conn = connServ.DbConnection();
         }
 
         public List<Post> GetAllPosts()
