@@ -38,9 +38,9 @@ namespace Adonet_Blog.Controllers
         [HttpPost]
         public IActionResult Login(User formUser)
         {
-            BlogModel model = new BlogModel
+            LoginModel model = new LoginModel
             {
-                user = new User(),
+                User = new User(),
             };
 
             User myUser = this._userServ.Login(formUser);
@@ -50,6 +50,7 @@ namespace Adonet_Blog.Controllers
                 CookieOptions userid = new CookieOptions();
                 userid.Expires = DateTime.Now.AddDays(5);
                 Response.Cookies.Append("userid", myUser.UserId.ToString(), userid);
+
                 CookieOptions username = new CookieOptions
                 {
                     Expires = DateTime.Now.AddDays(5),
@@ -59,8 +60,18 @@ namespace Adonet_Blog.Controllers
 
                 return RedirectToAction("Index");
             }
+            else
+            {
+                model = new LoginModel
+                {
+                    User = new User(),
+                    Success = false,
+                    Message = "Please check your username and password",
+                };
+                return View("Login");
+            }
 
-            return View();
+            
         }
     }
 }
