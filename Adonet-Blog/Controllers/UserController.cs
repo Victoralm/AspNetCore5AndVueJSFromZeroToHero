@@ -26,6 +26,16 @@ namespace Adonet_Blog.Controllers
 
         public IActionResult Index()
         {
+            #region Checking the cookie
+            string cookieUsername = Request.Cookies["username"];
+            string cookieUserId = Request.Cookies["userid"];
+
+            if (string.IsNullOrEmpty(cookieUserId) || string.IsNullOrEmpty(cookieUsername))
+            {
+                return RedirectToAction("Login");
+            }
+            #endregion
+
             return View();
         }
 
@@ -50,6 +60,7 @@ namespace Adonet_Blog.Controllers
 
             User myUser = this._userServ.Login(formUser);
 
+            // Setting the cookie
             if (myUser.UserId > 0 && myUser.Username != string.Empty && myUser.Password != string.Empty)
             {
                 CookieOptions userid = new CookieOptions();
