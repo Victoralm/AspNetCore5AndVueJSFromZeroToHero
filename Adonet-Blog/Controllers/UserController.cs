@@ -60,9 +60,9 @@ namespace Adonet_Blog.Controllers
 
             User myUser = this._userServ.Login(formUser);
 
-            // Setting the cookie
             if (myUser.UserId > 0 && myUser.Username != string.Empty && myUser.Password != string.Empty)
             {
+                #region Setting the cookie
                 CookieOptions userid = new CookieOptions();
                 userid.Expires = DateTime.Now.AddDays(5);
                 Response.Cookies.Append("userid", myUser.UserId.ToString(), userid);
@@ -72,6 +72,7 @@ namespace Adonet_Blog.Controllers
                     Expires = DateTime.Now.AddDays(5),
                 };
                 Response.Cookies.Append("username", myUser.Username, username);
+                #endregion
 
 
                 return RedirectToAction("Index");
