@@ -32,7 +32,12 @@ namespace Adonet_Blog.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            return View();
+            LoginModel model = new LoginModel
+            {
+                User = new User(),
+                Success = true,
+            };
+            return View(model);
         }
         
         [HttpPost]
@@ -68,7 +73,7 @@ namespace Adonet_Blog.Controllers
                     Success = false,
                     Message = "Please check your username and password",
                 };
-                return View("Login");
+                return View("Login", model);
             }
 
             
