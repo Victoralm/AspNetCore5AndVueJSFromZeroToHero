@@ -33,13 +33,13 @@ namespace Adonet_Blog.Services
         {
             User user = new User();
             // SQL query
-            this._command = new SqlCommand($"select * from [user] where UserId = {id}", this._conn);
+            this._command = new SqlCommand($"select * from [User] where UserId = {id}", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
-            // Closes the connection
+            // Getting the data and closing the connection
             IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // getting the data
+            // Storing the data
             while (dataReader.Read())
             {
                 user.UserId = dataReader["UserId"] is DBNull ? 0 : int.Parse(dataReader["UserId"].ToString());
@@ -48,6 +48,30 @@ namespace Adonet_Blog.Services
             }
 
             return user;
+        }
+
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+            // SQL query
+            this._command = new SqlCommand("select * from [User]", this._conn);
+            // Defines the command type
+            this._command.CommandType = CommandType.Text;
+            // Getting the data and closing the connection
+            IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Storing the data
+            while (dataReader.Read())
+            {
+                User user = new User();
+                user.UserId = dataReader["UserId"] is DBNull ? 0 : int.Parse(dataReader["UserId"].ToString());
+                user.Username = dataReader["Username"] is DBNull ? string.Empty : dataReader["Username"].ToString();
+                user.Password = dataReader["Password"] is DBNull ? string.Empty : dataReader["Password"].ToString();
+
+                users.Add(user);
+            }
+
+            return users;
         }
     }
 }

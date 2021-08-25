@@ -35,10 +35,10 @@ namespace Adonet_Blog.Services
             this._command = new SqlCommand("select * from Post", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
-            // Closes the connection
+            // Getting the data and closing the connection
             IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // getting the data
+            // Storing the data
             while(dataReader.Read())
             {
                 Post post = new Post();
@@ -70,10 +70,10 @@ namespace Adonet_Blog.Services
             this._command = new SqlCommand($"select Post.*, [User].Username from Post right join [User] ON [User].UserId = Post.UserId where Post.PostId = {id}", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
-            // Closes the connection
+            // Getting the data and closing the connection
             IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // getting the data
+            // Storing the data
             while (dataReader.Read())
             {
                 post.PostId = dataReader["PostId"] is DBNull ? 0 : int.Parse(dataReader["PostId"].ToString());
