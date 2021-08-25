@@ -32,7 +32,7 @@ namespace Adonet_Blog.Services
         {
             List<Post> posts = new List<Post>();
             // SQL query
-            this._command = new SqlCommand("select * from Post", this._conn);
+            this._command = new SqlCommand("select * from [Post]", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
             // Getting the data and closing the connection
@@ -67,7 +67,7 @@ namespace Adonet_Blog.Services
         {
             Post post = new Post();
             // SQL query
-            this._command = new SqlCommand($"select Post.*, [User].Username from Post right join [User] ON [User].UserId = Post.UserId where Post.PostId = {id}", this._conn);
+            this._command = new SqlCommand($"select [Post].*, [User].[Username] from [Post] right join [User] ON [User].[UserId] = [Post].[UserId] where [Post].[PostId] = {id}", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
             // Getting the data and closing the connection
@@ -108,7 +108,7 @@ namespace Adonet_Blog.Services
         {
             List<Post> posts = new List<Post>();
             // SQL query
-            this._command = new SqlCommand($"select * from Post where [UserId] = {userId}", this._conn);
+            this._command = new SqlCommand($"select [Post].*, [User].[Username] from Post right join [User] ON [User].[UserId] = [Post].[UserId] where [Post].[UserId] = {userId}", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
             // Getting the data and closing the connection
@@ -132,6 +132,14 @@ namespace Adonet_Blog.Services
                 {
                     post.Modified_Date = DateTime.Parse(dataReader["Modified_Date"].ToString());
                 }
+
+                User myUser = new User
+                {
+                    UserId = post.PostId,
+                    Username = dataReader["Username"] is DBNull ? "This post may have been deleted." : dataReader["Username"].ToString(),
+                };
+
+                post.Writer = myUser;
 
                 posts.Add(post);
             }

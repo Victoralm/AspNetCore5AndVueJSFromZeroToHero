@@ -33,7 +33,7 @@ namespace Adonet_Blog.Services
         {
             User user = new User();
             // SQL query
-            this._command = new SqlCommand($"select * from [User] where UserId = {id}", this._conn);
+            this._command = new SqlCommand($"select * from [User] where [UserId] = {id}", this._conn);
             // Defines the command type
             this._command.CommandType = CommandType.Text;
             // Getting the data and closing the connection
@@ -90,7 +90,7 @@ namespace Adonet_Blog.Services
             //// Getting the data and closing the connection
             //IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            string mySqlQuery = "select * from [User] where Username = @username and Password = @password";
+            string mySqlQuery = "select * from [User] where [Username] = @username and [Password] = @password";
             this._command = new SqlCommand(mySqlQuery, this._conn);
             this._command.Parameters.AddWithValue("@username", username);
             this._command.Parameters.AddWithValue("@password", password);
