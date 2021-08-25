@@ -14,6 +14,7 @@ namespace Adonet_Blog.Controllers
     public class UserController : Controller
     {
         private UserService _userServ;
+        private PostService _postServ;
 
         /// <summary>
         /// Injecting IConfiguration as class dependency
@@ -22,6 +23,7 @@ namespace Adonet_Blog.Controllers
         public UserController(IConfiguration config)
         {
             this._userServ = new UserService(config);
+            this._postServ = new PostService(config);
         }
 
         public IActionResult Index()
@@ -35,8 +37,15 @@ namespace Adonet_Blog.Controllers
                 return RedirectToAction("Login");
             }
             #endregion
-
-            return View();
+            else
+            {
+                List<Post> posts = this._postServ.GetPostsByUser(int.Parse(cookieUserId));
+                BlogModel model = new BlogModel
+                {
+                    postList = posts,
+                };
+                return View(model);
+            }
         }
 
         [HttpGet]
