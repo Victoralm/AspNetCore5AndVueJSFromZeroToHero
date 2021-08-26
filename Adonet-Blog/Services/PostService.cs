@@ -160,6 +160,26 @@ namespace Adonet_Blog.Services
             this._command.Parameters.AddWithValue("@Content", post.Content);
             this._command.Parameters.AddWithValue("@Publishing_Date", post.Publishing_Date);
             this._command.Parameters.AddWithValue("@Modified_Date", post.Modified_Date);
+
+            // Getting the querry result
+            int success = this._command.ExecuteNonQuery();
+
+            result = success != 0 ? true : false;
+
+            return result;
+        }
+
+        public bool Update(Post post)
+        {
+            bool result = false;
+
+            // SQL query
+            this._command = new SqlCommand("update [Post] set [Title]=@Title, [Content]=@Content, [Modified_Date]=@Modified_Date where [Post].[PostId] = @PostId", this._conn);
+            this._command.Parameters.AddWithValue("@Title", post.Title);
+            this._command.Parameters.AddWithValue("@Content", post.Content);
+            this._command.Parameters.AddWithValue("@Modified_Date", post.Modified_Date);
+            this._command.Parameters.AddWithValue("@PostId", post.PostId);
+
             // Getting the querry result
             int success = this._command.ExecuteNonQuery();
 

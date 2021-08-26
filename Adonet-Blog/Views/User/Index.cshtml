@@ -18,10 +18,10 @@
             {
                 <tr>
                     <td>@post.PostId</td>
-                    <td>@post.Title</td>
+                    <td><a asp-controller="Home" asp-action="PostDetail" asp-route-id="@post.PostId">@post.Title</a></td>
                     <td>@post.Writer.Username</td>
                     <td>
-                        <a class="btn btn-info">Edit</a>
+                        <a class="btn btn-info" asp-controller="User" asp-action="Update" asp-route-id="@post.PostId">Edit</a>
                         <a class="btn btn-danger">Delete</a>
                     </td>
                 </tr>

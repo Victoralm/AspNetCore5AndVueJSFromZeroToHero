@@ -125,5 +125,43 @@ namespace Adonet_Blog.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public IActionResult Update(int id)
+        {
+            Post myPost = this._postServ.GetPost(id);
+
+            // Protecting from error on the id from the browser address
+            if (myPost.PostId == 0)
+            {
+                return RedirectToAction("Index");
+            }
+
+            BlogModel model = new BlogModel
+            {
+                post = myPost,
+            };
+
+            return View(model);
+        }
+        
+        [HttpPost]
+        public IActionResult Update(Post post)
+        {
+            post.Modified_Date = DateTime.Now;
+
+            bool success = this._postServ.Update(post);
+            //bool success = false;
+
+            if (success)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Error = "Error: The Post couldn't be updated...";
+                return View();
+            }
+        }
     }
 }

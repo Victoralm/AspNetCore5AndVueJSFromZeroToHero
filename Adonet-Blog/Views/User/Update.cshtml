@@ -9,7 +9,8 @@
         </div>
     }
 
-    <form asp-controller="User" asp-action="Create" method="post">
+    <form asp-controller="User" asp-action="Update" method="post">
+        <input type="hidden" asp-for="@Model.post.PostId" />
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Title</label>
             <input type="text" class="form-control" id="postTitle" asp-for="@Model.post.Title" placeholder="The Post Title" aria-describedby="postTitleHelp" required />
@@ -17,10 +18,10 @@
         </div>
         <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Content</label>
-            <textarea class="form-control" id="postContent" asp-for="@Model.post.Content" placeholder="The Post Content" describedby="postTitleHelp" required ></textarea>
+            <textarea class="form-control" id="postContent" asp-for="@Model.post.Content" placeholder="The Post Content" describedby="postTitleHelp" required></textarea>
             <div id="postTitleHelp" class="form-text">Insert the text to be shown as the Post Content.</div>
         </div>
-        <input class="btn btn-success" type="submit" value="Create" />
+        <input class="btn btn-success" type="submit" value="Save" />
     </form>
 
 </div>
