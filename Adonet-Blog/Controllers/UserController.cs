@@ -107,7 +107,7 @@ namespace Adonet_Blog.Controllers
         }
         
         [HttpPost]
-        public IActionResult Create()
+        public IActionResult Create(int i)
         {
             BlogModel model = new BlogModel();
 
