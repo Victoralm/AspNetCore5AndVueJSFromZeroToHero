@@ -17,15 +17,25 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>
+        // Class instance
         new Vue({
             // Element with "app" id (in this case, the div)
             el: "#app",
             data: {
                 msg: "First VueJs interpolation.",
+                description: "Some description text.",
             },
             methods: {
                 hello: function() {
-                    return "Message from \"hello\" method.";
+                    // Returning a string
+                    // return "Message from \"hello\" method.";
+
+                    // Returning an instance attribute
+                    // return this.msg;
+
+                    // Concatenating instance attributes
+                    // return this.msg + this.description;
+                    return `${this.msg} ${this.description}`;
                 },
             },
         });
