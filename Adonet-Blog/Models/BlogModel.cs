@@ -12,5 +12,13 @@ namespace Adonet_Blog.Models
         public Post post { get; set; }
         public List<User> userList { get; set; }
         public User user { get; set; }
+
+        public BlogModel()
+        {
+            postList = new List<Post>();
+            post = new Post();
+            userList = new List<User>();
+            user = new User();
+        }
     }
 }

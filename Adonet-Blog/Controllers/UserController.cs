@@ -96,8 +96,22 @@ namespace Adonet_Blog.Controllers
                 };
                 return View("Login", model);
             }
+        }
 
-            
+        [HttpGet]
+        public IActionResult Create()
+        {
+            BlogModel model = new BlogModel();
+
+            return View(model);
+        }
+        
+        [HttpPost]
+        public IActionResult Create()
+        {
+            BlogModel model = new BlogModel();
+
+            return View(model);
         }
     }
 }
