@@ -1,6 +1,24 @@
 # [VueJs](https://vuejs.org/)
 
-## [Interpolation](https://vuejs.org/v2/guide/syntax.html#Text)
+Pronunciation: "View Js"
+
+### [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/ljjemllljcmogpfapbkkighbhhppjdbg/related?hl=pt-BR) Browser Extension
+
+[Reference](https://v3.vuejs.org/guide/installation.html#vue-devtools)
+
+![VueJsDevtools_BrowserExtension_UsageExample](../img/VueJsDevtools_BrowserExtension_UsageExample.jpg)
+
+**Usage**:
+1. Open the page Inspector and select the `Vue` table
+2. Click to select the `Root`, so the `data` attributes will be shown
+3. Find the `data` attribute you wish to change
+4. Make the change to the `data` attribute on the `Console` commandline
+   1. The `data` attributes can be accessed/changed as follows:
+   ```js
+    $vm.$data.link2 = '<a href="https://twitter.com">Twitter</a>'
+   ```
+
+## [Interpolation](https://v3.vuejs.org/guide/template-syntax.html#interpolations)
 
 Used to create dinamic fields with pure Js.
 
@@ -24,7 +42,7 @@ Used to create dinamic fields with pure Js.
 
 ```
 
-## [V-Bind](https://vuejs.org/v2/api/#v-bind)
+## [V-Bind](https://v3.vuejs.org/api/directives.html#v-bind)
 
 Used to set html tags attributes, like the value of the `href` for a link or the
 value of the `src` of an image for example.
@@ -40,7 +58,7 @@ value of the `src` of an image for example.
 </script>
 ```
 
-## [V-Once](https://vuejs.org/v2/api/#v-once)
+## [V-Once](https://v3.vuejs.org/api/directives.html#v-once)
 
 Prevent alterations of an attribute value within an HTML tag marked with v-once.
 
@@ -67,7 +85,7 @@ Prevent alterations of an attribute value within an HTML tag marked with v-once.
 </script>
 ```
 
-## [V-HTML](https://vuejs.org/v2/api/#v-html)
+## [V-HTML](https://v3.vuejs.org/api/directives.html#v-html)
 
 Used to pass fully HTML tags dinamically. For example, send an interpolated
 attribute to be used as a link that will be placed inside a HTML tag.
@@ -77,7 +95,11 @@ attribute to be used as a link that will be placed inside a HTML tag.
 
 <script>
     ...
-    link2: '<a href="https://google.com">Google</a>',
+    data: {
+        link2: '<a href="https://google.com">Google</a>',
     ...
 </script>
 ```
+
+## [V-ON](https://v3.vuejs.org/api/directives.html#v-on)
+
