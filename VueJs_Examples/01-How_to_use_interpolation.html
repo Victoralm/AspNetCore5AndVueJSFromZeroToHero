@@ -9,9 +9,14 @@
 <body>
 
     <div id="app">
+
+        <!-- Using v-once -->
         <span v-once><b>Message from attribute</b>: {{ msg }} <a v-bind:href="link">Google</a></span>
-        <br>
-        <span><b>Message from method</b>: {{ hello() }}</span>
+
+        <p><b>Message from method</b>: {{ hello() }}</p>
+
+        <!-- Using v-html -->
+        <p v-html="link2"></p>
     </div>
 
 
@@ -27,6 +32,9 @@
 
                 // Using v-bind
                 link: "https://google.com",
+
+                // Using v-html
+                link2: '<a href="https://google.com">Google</a>',
             },
             methods: {
                 hello: function() {
