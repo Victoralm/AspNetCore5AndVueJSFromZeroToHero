@@ -2,5 +2,9 @@
 
 Course Material
 
+> My course notes and comments on the code are currently a mess, in the sense
+> that I'm mixing `en` with `ptBr` texts... I should, probably, rewrite it all
+> in English by the end of the course.
+
 -   [Adonet-Blog](Adonet-Blog): Simple blog posts reader with .Net Core MVC
 -   [VueJs Examples](VueJs_Examples): Examples of VueJs usage

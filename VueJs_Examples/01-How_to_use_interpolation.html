@@ -9,7 +9,7 @@
 <body>
 
     <div id="app">
-        <span><b>Message from attribute</b>: {{ msg }}</span>
+        <span><b>Message from attribute</b>: {{ msg }} <a v-bind:href="link">Google</a></span>
         <br>
         <span><b>Message from method</b>: {{ hello() }}</span>
     </div>
@@ -24,6 +24,9 @@
             data: {
                 msg: "First VueJs interpolation.",
                 description: "Some description text.",
+
+                // Using v-bind
+                link: "https://google.com",
             },
             methods: {
                 hello: function() {
