@@ -187,5 +187,26 @@ namespace Adonet_Blog.Services
 
             return result;
         }
+
+        public bool Delete(int id)
+        {
+            bool result = false;
+
+            // SQL query
+            this._command = new SqlCommand("delete [Post] where [Post].[PostId] = @PostId", this._conn);
+            this._command.Parameters.AddWithValue("@PostId", id);
+
+            // Getting the querry result
+            int success = this._command.ExecuteNonQuery();
+
+            result = success != 0 ? true : false;
+
+            return result;
+        }
+
+        public bool Delete(Post post)
+        {
+            return Delete(post.PostId);
+        }
     }
 }

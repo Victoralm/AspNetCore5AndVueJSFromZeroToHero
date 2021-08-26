@@ -1,0 +1,20 @@
+﻿<div class="container" mt-5>
+
+    <div class="row">
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <div class="alert alert-danger">
+                <div>@ViewBag.Error</div>
+            </div>
+        }
+
+        @if (!string.IsNullOrEmpty(ViewBag.Success))
+        {
+            <div class="alert alert-success">
+                <div>@ViewBag.Success</div>
+                <a class="btn btn-info" asp-controller="User" asp-action="Index">Back</a>
+            </div>
+        }
+    </div>
+
+</div>

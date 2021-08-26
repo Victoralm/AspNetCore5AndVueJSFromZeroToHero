@@ -1,0 +1,35 @@
+﻿@model BlogModel
+
+
+<div class="container" mt-5>
+
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <div>@ViewBag.Error</div>
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(ViewBag.Success))
+    {
+        <div class="alert alert-success">
+            <div>@ViewBag.Success</div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-12">Are you sure to delete post @Model.post.Title ?</div>
+        <br />
+        <h2>Delete with get method</h2>
+        <a class="btn btn-danger col-1" asp-controller="User" asp-action="Deleteit" asp-route-id="@Model.post.PostId">Yes</a>
+        <a class="btn btn-info col-1" style="margin-left: 5px;" asp-controller="User" asp-action="Index">No</a>
+        <hr />
+        <h2>Delete with post method</h2>
+        <form asp-controller="User" asp-action="Delete" method="post">
+            <input type="hidden" asp-for="@Model.post.PostId" />
+            <input class="btn btn-danger col-1" type="submit" value="Yes" />
+            <a class="btn btn-info col-1 ml-5" asp-controller="User" asp-action="Index">No</a>
+        </form>
+    </div>
+
+</div>
