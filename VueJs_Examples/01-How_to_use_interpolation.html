@@ -9,7 +9,7 @@
 <body>
 
     <div id="app">
-        <span><b>Message from attribute</b>: {{ msg }} <a v-bind:href="link">Google</a></span>
+        <span v-once><b>Message from attribute</b>: {{ msg }} <a v-bind:href="link">Google</a></span>
         <br>
         <span><b>Message from method</b>: {{ hello() }}</span>
     </div>
@@ -38,6 +38,10 @@
 
                     // Concatenating instance attributes
                     // return this.msg + this.description;
+                    // return `${this.msg} ${this.description}`;
+
+                    // Suspending alterations with v-once
+                    this.msg = "Hello";
                     return `${this.msg} ${this.description}`;
                 },
             },
