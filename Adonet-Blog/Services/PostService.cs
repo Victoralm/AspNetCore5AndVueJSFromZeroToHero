@@ -208,5 +208,49 @@ namespace Adonet_Blog.Services
         {
             return Delete(post.PostId);
         }
+
+        public List<Post> Search(string term)
+        {
+            List<Post> posts = new List<Post>();
+            // SQL query
+            this._command = new SqlCommand(@$"select [Post].*, [User].[Username] from [Post] left join [User] ON [User].[UserId] = [Post].[UserId]
+                where [Post].[Title] like '%" + term + "%' or [Post].[Content] like '%" + term + "%'", this._conn);
+            // Defines the command type
+            this._command.CommandType = CommandType.Text;
+            // Getting the data and closing the connection
+            IDataReader dataReader = this._command.ExecuteReader(CommandBehavior.CloseConnection);
+
+            // Storing the data
+            while (dataReader.Read())
+            {
+                Post post = new Post();
+                post.PostId = dataReader["PostId"] is DBNull ? 0 : int.Parse(dataReader["PostId"].ToString());
+                post.UserId = dataReader["UserId"] is DBNull ? 0 : int.Parse(dataReader["UserId"].ToString());
+                post.Title = dataReader["Title"] is DBNull ? "" : dataReader["Title"].ToString();
+                post.Content = dataReader["Content"] is DBNull ? "" : dataReader["Content"].ToString();
+
+                if (dataReader["Publishing_Date"] != DBNull.Value)
+                {
+                    post.Publishing_Date = DateTime.Parse(dataReader["Publishing_Date"].ToString());
+                }
+
+                if (dataReader["Modified_Date"] != DBNull.Value)
+                {
+                    post.Modified_Date = DateTime.Parse(dataReader["Modified_Date"].ToString());
+                }
+
+                User myUser = new User
+                {
+                    UserId = post.PostId,
+                    Username = dataReader["Username"] is DBNull ? "This post may have been deleted." : dataReader["Username"].ToString(),
+                };
+
+                post.Writer = myUser;
+
+                posts.Add(post);
+            }
+
+            return posts;
+        }
     }
 }
