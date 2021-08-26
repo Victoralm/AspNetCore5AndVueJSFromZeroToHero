@@ -2,4 +2,4 @@
 
 Course Material
 
--   Adonet-Blog: Simple blog posts reader with .Net Core MVC
+-   [Adonet-Blog](Adonet-Blog): Simple blog posts reader with .Net Core MVC
