@@ -148,5 +148,24 @@ namespace Adonet_Blog.Services
 
             return posts;
         }
+
+        public bool Create(Post post)
+        {
+            bool result = false;
+
+            // SQL query
+            this._command = new SqlCommand("insert into  [Post] (UserId, Title, Content, Publishing_Date, Modified_Date) values (@UserId, @Title, @Content, @Publishing_Date, @Modified_Date)", this._conn);
+            this._command.Parameters.AddWithValue("@UserId", post.UserId);
+            this._command.Parameters.AddWithValue("@Title", post.Title);
+            this._command.Parameters.AddWithValue("@Content", post.Content);
+            this._command.Parameters.AddWithValue("@Publishing_Date", post.Publishing_Date);
+            this._command.Parameters.AddWithValue("@Modified_Date", post.Modified_Date);
+            // Getting the querry result
+            int success = this._command.ExecuteNonQuery();
+
+            result = success != 0 ? true : false;
+
+            return result;
+        }
     }
 }

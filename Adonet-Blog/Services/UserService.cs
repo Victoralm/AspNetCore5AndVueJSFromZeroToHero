@@ -17,6 +17,7 @@ namespace Adonet_Blog.Services
     {
         private SqlConnection _conn;
         SqlCommand _command;
+        PostService _postServ;
 
         /// <summary>
         /// Injecting IConfiguration as dependency
@@ -26,6 +27,7 @@ namespace Adonet_Blog.Services
         {
             ConnectionService connServ = new ConnectionService(config);
             this._conn = connServ.DbConnection();
+            //this._postServ = new PostService(config);
         }
 
 

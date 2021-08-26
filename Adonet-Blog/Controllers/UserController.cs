@@ -107,11 +107,23 @@ namespace Adonet_Blog.Controllers
         }
         
         [HttpPost]
-        public IActionResult Create(int i)
+        public IActionResult Create(Post post)
         {
-            BlogModel model = new BlogModel();
+            post.Publishing_Date = DateTime.Now;
+            post.Modified_Date = DateTime.Now;
+            post.UserId = int.Parse(Request.Cookies["userid"]);
 
-            return View(model);
+            bool success = this._postServ.Create(post);
+            //bool success = false;
+            if (success)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Error = "Error: The Post couldn't be saved...";
+                return View();
+            }
         }
     }
 }

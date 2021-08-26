@@ -2,23 +2,12 @@
 
 <div class="container" mt-5>
 
-    @*<form asp-controller="User" asp-action="Create" method="post">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-3">Title</div>
-                <div class="col-9">
-                    <input type="text" name="Title" asp-for="@Model.post.Title" placeholder="The Post Title" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-3">Content</div>
-                <div class="col-9">
-                    <input type="text" name="Content" asp-for="@Model.post.Content" placeholder="The Post Content" />
-                </div>
-            </div>
+    @if (!string.IsNullOrEmpty(ViewBag.Error))
+    {
+        <div class="alert alert-danger">
+            <div>@ViewBag.Error</div>
         </div>
-    </form>*@
+    }
 
     <form asp-controller="User" asp-action="Create" method="post">
         <div class="mb-3">
