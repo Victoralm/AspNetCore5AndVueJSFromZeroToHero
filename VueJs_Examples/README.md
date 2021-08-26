@@ -103,3 +103,31 @@ attribute to be used as a link that will be placed inside a HTML tag.
 
 ## [V-ON](https://v3.vuejs.org/api/directives.html#v-on)
 
+Used to capture event, for example `on click` event.
+
+Prototype:
+> `v-on:<event_name>="<method_to_be_called>"`
+
+Short version:
+> `@<event_name>="<method_to_be_called>"`
+
+```html
+<button v-on:click="DoThis">Click me</button>
+<script>
+    ...
+        data: {
+            number: 0,
+        },
+        methods: {
+            DoThis: function() {
+                this.number++;
+                console.log(`Number value: ${this.number}`);
+            },
+            ...
+    });
+</script>
+```
+
+Can use parenteses if arguments are required:
+> `v-on:<event_name>="<method_to_be_called>(<argument>)"`
+> > `@<event_name>="<method_to_be_called>(<argument>)"`
