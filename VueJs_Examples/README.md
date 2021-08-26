@@ -130,4 +130,4 @@ Short version:
 
 Can use parenteses if arguments are required:
 > `v-on:<event_name>="<method_to_be_called>(<argument>)"`
-> > `@<event_name>="<method_to_be_called>(<argument>)"`
+> `@<event_name>="<method_to_be_called>(<argument>)"`
