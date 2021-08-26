@@ -224,5 +224,18 @@ namespace Adonet_Blog.Controllers
 
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            if (Request.Cookies.Count > 0)
+            {
+                foreach (var item in Request.Cookies.Keys)
+                {
+                    Response.Cookies.Delete(item);
+                }
+            }
+
+            return Redirect("/");
+        }
     }
 }
