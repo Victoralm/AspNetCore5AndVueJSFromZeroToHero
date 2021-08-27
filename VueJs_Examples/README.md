@@ -159,3 +159,11 @@ its call.
 ```html
 
 ```
+
+## [Computed vs Watched Property](https://v3.vuejs.org/guide/computed.html#computed-vs-watched-property)
+
+Event handler on value change
+
+```html
+
+```
