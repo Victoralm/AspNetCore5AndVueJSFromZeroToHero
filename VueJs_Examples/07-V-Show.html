@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container mt-2" id="app">
+        <!-- v-show example -->
+        <button class="btn btn-outline-secondary mb-2" @click="Toggle">Toggle</button>
+        <p class="text-sm text-secondary" v-show="lorem">
+            Mauris felis lacus, facilisis ac dictum laoreet, interdum sit amet tortor. Sed quis nibh sit amet tellus efficitur iaculis placerat a erat. Aliquam fringilla dui sit amet quam molestie pretium vitae luctus nisi. Pellentesque quis eros in tellus tincidunt viverra. Duis velit velit, ullamcorper sit amet felis in, condimentum facilisis tortor. Vivamus auctor, odio non eleifend consequat, ante magna pretium risus, at varius ex magna eu arcu. Suspendisse lorem ex, ultricies at feugiat eget, iaculis vitae nibh. Integer vel cursus erat. Vivamus elementum ullamcorper neque, ac tempor sapien accumsan non. Curabitur consectetur semper felis, non accumsan libero fringilla quis. Vestibulum elementum auctor sapien, vitae lobortis magna suscipit id. Donec quis mi in ligula sollicitudin congue sit amet sit amet augue. Nulla varius lorem id mauris porta, nec tincidunt eros porta.
+        </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                lorem: false,
+            },
+            methods: {
+                Toggle: function() {
+                    this.lorem = !this.lorem;
+                    console.log(`Lorem value: ${this.lorem}`);
+                },
+            },
+            watch: {
+                //
+            },
+            computed: {
+                //
+            },
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>

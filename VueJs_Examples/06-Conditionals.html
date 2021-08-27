@@ -31,7 +31,6 @@
             <!-- Shown if "display" value is true -->
             <input type="text" class="form-control" id="numberValue" value="First Text"
             v-bind:value="number" />
-            <!-- <label for="numberValue">Number value:</label> -->
             <div class="input-group-apend">
                 <button class="btn btn-outline-secondary" type="button"
                 @click="Increment">Increment</button>
@@ -46,7 +45,6 @@
         equals to 10</p>
         <p class="text-sm text-success" v-else-if="number > 10">Number is greater than 10</p>
         <p class="text-sm text-secondary" v-else>Number is equals to 0</p>
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>

@@ -175,3 +175,11 @@ Event handler on value change
 ```html
 
 ```
+
+## [V-Show](https://vuejs.org/v2/api/#v-show)
+
+The diference between the toggle with `if/else` and the `v-show` is that:
+
+- `if/else`: remove / replace the HTML tag from the DOM
+- `v-show`: toggle the "display: none" style, keeping the HTML tag on the DOM
+
