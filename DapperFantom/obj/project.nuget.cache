@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "SFKpfWUUrls7f64ripMVPtydsa6a/UWEy4I+KWEWWzEqPJLePHRG5yg93ub9LU88Dy4mu1tIyIBOWDtI7VN/ww==",
+  "dgSpecHash": "4qzAzxW4kJwaqbfeBXmcI3y4YzcVjDPlHM9QD37NhCYIyOEFg6naJuv9CJ9T0VwZx67EVGL8XZd0bgRuIj4QGw==",
   "success": true,
   "projectFilePath": "H:\\Documentos\\Udemy\\AspNetCore5AndVueJSFromZeroToHero\\DapperFantom\\DapperFantom.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Shimir\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\Shimir\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
     "C:\\Users\\Shimir\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\5.0.9\\microsoft.aspnetcore.mvc.razor.extensions.5.0.9.nupkg.sha512",
     "C:\\Users\\Shimir\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\5.0.9\\microsoft.aspnetcore.mvc.razor.runtimecompilation.5.0.9.nupkg.sha512",
     "C:\\Users\\Shimir\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\5.0.9\\microsoft.aspnetcore.razor.language.5.0.9.nupkg.sha512",
