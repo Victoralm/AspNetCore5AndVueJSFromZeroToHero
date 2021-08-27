@@ -150,3 +150,12 @@ attribute that can be used elsewhere.
     ...
  </script>
 ```
+
+## [Computed Properties](https://v3.vuejs.org/guide/computed.html#computed-properties)
+
+Prevent the twice execution problem of the methods, but can't have parents on
+its call.
+
+```html
+
+```
