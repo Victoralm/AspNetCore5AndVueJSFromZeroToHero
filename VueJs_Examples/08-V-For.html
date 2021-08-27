@@ -16,6 +16,23 @@
             <li v-for="language in languages">{{language}}</li>
         </ul>
         <p class="text-secondary">{{languages[1]}}</p>
+
+        <!-- v-for example -->
+        <ul>
+            <li v-for="person in persons">
+                {{person.name}} - Age: {{person.age}}
+            </li>
+        </ul>
+
+        <!-- v-for example -->
+        <ul>
+            <li v-for="(person, index) in persons">
+                {{index}}
+                <ul>
+                    <li v-for="(item, key, index) in person">{{index}} - {{key}} : {{item}}</li>
+                </ul>
+            </li>
+        </ul>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -23,7 +40,29 @@
         new Vue({
             el: "#app",
             data: {
-                languages: ["NoDamnWay", "Javascript", "Typescript", "CSharp", "Python"]
+                languages: ["NoDamnWay", "Javascript", "Typescript", "CSharp", "Python"],
+                persons: [
+                    {
+                        name: "Victor",
+                        age: 39,
+                    },
+                    {
+                        name: "Volkan",
+                        age: 35,
+                    },
+                    {
+                        name: "Kate",
+                        age: 25,
+                    },
+                    {
+                        name: "David",
+                        age: 33,
+                    },
+                    {
+                        name: "George",
+                        age: 44,
+                    },
+                ],
             },
             methods: {
                 //
