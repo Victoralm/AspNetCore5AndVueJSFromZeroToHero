@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container mt-2" id="app">
+        <!-- If example -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <button class="btn btn-outline-secondary" type="button"
+                @click="DisplayToggle">Display Toggle</button>
+            </div>
+            <!-- Shown if "display" value is true -->
+            <input type="text" class="form-control" value="First Text"
+            v-if="display" />
+            <!-- Shown if "display" value is false -->
+            <input type="text" class="form-control" value="Second Text" v-if="!display" />
+        </div>
+
+        <!-- If example -->
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <label class="input-group-text" for="numberValue">Number value:</label>
+            </div>
+            <!-- Shown if "display" value is true -->
+            <input type="text" class="form-control" id="numberValue" value="First Text"
+            v-bind:value="number" />
+            <!-- <label for="numberValue">Number value:</label> -->
+            <div class="input-group-apend">
+                <button class="btn btn-outline-secondary" type="button"
+                @click="Increment">Increment</button>
+                <button class="btn btn-outline-secondary" type="button"
+                @click="Decrement">Decrement</button>
+            </div>
+            <br/>
+        </div>
+        <p class="text-sm text-danger bg-dark" v-if="number < 0">Number is less than 0</p>
+        <p class="text-sm text-warning bg-dark" v-else-if="number > 0 && number < 10">Number is less than 10</p>
+        <p class="text-sm text-primary" v-else-if="number == 10">Number is
+        equals to 10</p>
+        <p class="text-sm text-success" v-else-if="number > 10">Number is greater than 10</p>
+        <p class="text-sm text-secondary" v-else>Number is equals to 0</p>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                display: false,
+                number: 0,
+            },
+            methods: {
+                DisplayToggle: function() {
+                    this.display = !this.display;
+                    console.log(`Display value: ${this.display}`);
+                },
+                Increment: function() {
+                    this.number++;
+                    console.log(`Increment number value: ${this.number}`);
+                },
+                Decrement: function() {
+                    this.number--;
+                    console.log(`Decrement number value: ${this.number}`);
+                },
+            },
+            watch: {
+                //
+            },
+            computed: {
+                //
+            },
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>
