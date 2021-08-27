@@ -131,3 +131,22 @@ Short version:
 Can use parenteses if arguments are required:
 > `v-on:<event_name>="<method_to_be_called>(<argument>)"`
 > `@<event_name>="<method_to_be_called>(<argument>)"`
+
+## [V-Model](https://vuejs.org/v2/api/#v-model)
+
+Used to get the value of some HTML tag and set it as the value of an instance
+attribute that can be used elsewhere.
+
+```html
+...
+ <input type="text" v-model="value" />
+...
+ <span>{{value}}</span>
+ ...
+ <script>
+    ...
+    data: {
+        value: "",
+    ...
+ </script>
+```
