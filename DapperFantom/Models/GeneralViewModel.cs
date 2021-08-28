@@ -9,8 +9,20 @@ namespace DapperFantom.Models
     public class GeneralViewModel
     {
         public Category Category { get; set; }
-        public Article Article { get; set; }
         public List<Category> CategorieList { get; set; }
+        public City City { get; set; }
+        public List<City> CityList { get; set; }
+        public Article Article { get; set; }
         public List<Article> ArticleList { get; set; }
+
+        public GeneralViewModel()
+        {
+            Category = new Category();
+            CategorieList = new List<Category>();
+            City = new City();
+            CityList = new List<City>();
+            Article = new Article();
+            ArticleList = new List<Article>();
+        }
     }
 }
