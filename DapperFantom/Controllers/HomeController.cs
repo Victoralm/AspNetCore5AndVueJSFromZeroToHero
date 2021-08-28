@@ -1,4 +1,6 @@
-﻿using DapperFantom.Models;
+﻿using DapperFantom.Entities;
+using DapperFantom.Models;
+using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +14,24 @@ namespace DapperFantom.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private CategoryService _categoryService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, CategoryService categoryService)
         {
             _logger = logger;
+            this._categoryService = categoryService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<Category> categList = this._categoryService.GetAllCategDapper();
+
+            GeneralViewModel model = new GeneralViewModel
+            {
+                CategorieList = categList,
+            };
+
+            return View(model);
         }
 
         public IActionResult Privacy()
