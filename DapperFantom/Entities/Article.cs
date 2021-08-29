@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,15 +11,22 @@ namespace DapperFantom.Entities
     /// </summary>
     public class Article
     {
+        [Dapper.Contrib.Extensions.Key]
         public int ArticleId { get; set; }
         public string Guid { get; set; }
+        [Required(ErrorMessage = "Please select a category")]
         public int CategoryId { get; set; }
+        [Required(ErrorMessage = "Please enter your name and surname")]
         public string NameSurname { get; set; }
+        [Required(ErrorMessage = "Please enter the Title for the Article")]
         public string Title { get; set; }
         public string Image { get; set; }
+        [Required(ErrorMessage = "Please select a city")]
         public int CityId { get; set; }
+        [Required(ErrorMessage = "Please enter your Email address")]
         public string Email { get; set; }
         public string Phone { get; set; }
+        [Required(ErrorMessage = "Please enter the Title for the Article")]
         public string Content { get; set; }
         public DateTime PublishedDate { get; set; }
         public DateTime CreatedDate { get; set; }
