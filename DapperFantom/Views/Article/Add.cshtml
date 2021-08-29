@@ -30,27 +30,12 @@
                         </div>
 
                         <div class="row">
-                            <div class="mt-10 col-lg-7">
+                            <div class="mt-10 col-lg-6">
                                 <input type="text" name="Email" placeholder="Your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'" required="" class="single-input">
                             </div>
 
-                            <div class="mt-10 col-lg-5">
+                            <div class="mt-10 col-lg-4">
                                 <input type="text" name="Phone" placeholder="Your phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your phone number'" class="single-input">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="mt-10 col-lg-8">
-                                <input type="text" name="Title" placeholder="Your article Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Title'" required="" class="single-input">
-                            </div>
-                            <div class="mt-10 col-lg-2">
-                                <select name="CategoryId" class="mr-sm-2" id="CategoryIdInlineFormCustomSelect">
-                                    <option selected>Choose your Category</option>
-                                    @foreach (var categ in Model.CategorieList)
-                                    {
-                                        <option value="@categ.CategoryId">@categ.CategoryName</option>
-                                    }
-                                </select>
                             </div>
 
                             <div class="mt-10 col-lg-2">
@@ -58,14 +43,49 @@
                                     <option selected>Choose your City</option>
                                     @foreach (var city in Model.CityList)
                                     {
-                                        <option value="@city.CityId">@city.CityName</option>
-                                    }
+                        <option value="@city.CityId">@city.CityName</option>}
                                 </select>
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="mt-10 col-lg-9">
+                                <input type="text" name="Title" placeholder="Your article Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Title'" required="" class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-3">
+                                <select name="CategoryId" class="mr-sm-2" id="CategoryIdInlineFormCustomSelect">
+                                    <option selected>Choose your Category</option>
+                                    @foreach (var categ in Model.CategorieList)
+                                    {
+                        <option value="@categ.CategoryId">@categ.CategoryName</option>}
+                                </select>
+                            </div>
+
+                        </div>
+
                         <div class="mt-10">
                             <textarea name="Content" class="single-textarea" placeholder="Your article Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Content'" required=""></textarea>
+                        </div>
+
+                        <div class="mt-10" onclick="$('#image').click();">
+                            Upload Images <br/>
+                            <label class="btn btn-default">
+                                <div class="fileUpload">
+                                    <span>Select an image</span>
+                                    <input type="file" class="uploadFile" name="file" />
+                                </div>
+                            </label>
+                        </div>
+
+                        <div class="mt-10">
+                            <div class="row">
+                                <div class="mt-10 col-lg-10">
+
+                                </div>
+                                <div class="mt-10 col-lg-2">
+                                    <button type="submit" class="genric-btn success circle arrow">Post<span class="lnr lnr-arrow-right"></span></button>
+                                </div>
+                            </div>
                         </div>
 
                     </form>
@@ -74,4 +94,7 @@
         </div>
     </section>
     <!--================Contact Area =================-->
+@section Scripts{ 
+
+}
     
