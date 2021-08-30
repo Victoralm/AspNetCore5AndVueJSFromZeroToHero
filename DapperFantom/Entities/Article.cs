@@ -14,19 +14,26 @@ namespace DapperFantom.Entities
         [Dapper.Contrib.Extensions.Key]
         public int ArticleId { get; set; }
         public string Guid { get; set; }
+
         [Required(ErrorMessage = "Please select a category")]
         public int CategoryId { get; set; }
+
         [Required(ErrorMessage = "Please enter your name and surname")]
         public string NameSurname { get; set; }
+
         [Required(ErrorMessage = "Please enter the Title for the Article")]
         public string Title { get; set; }
         public string Image { get; set; }
+
         [Required(ErrorMessage = "Please select a city")]
         public int CityId { get; set; }
+
         [Required(ErrorMessage = "Please enter your Email address")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Please enter a correct email")]
         public string Email { get; set; }
         public string Phone { get; set; }
-        [Required(ErrorMessage = "Please enter the Title for the Article")]
+
+        [Required(ErrorMessage = "Please enter the Content for the Article")]
         public string Content { get; set; }
         public DateTime PublishedDate { get; set; }
         public DateTime CreatedDate { get; set; }
