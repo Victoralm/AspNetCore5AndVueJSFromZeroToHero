@@ -1,6 +1,8 @@
 ﻿using DapperFantom.Entities;
+using DapperFantom.Helper;
 using DapperFantom.Models;
 using DapperFantom.Services;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,15 +17,17 @@ namespace DapperFantom.Controllers
     {
         private CategoryService _categoryService;
         private CityService _cityService;
+        private IWebHostEnvironment _hosting;
 
         public object GeneralModel { get; private set; }
 
         public ArticleController(IServiceProvider serviceProvider)
         {
-            // Does de correct dependency injection of the desired service class
+            // Does de correct dependency injection of the desired class
             // An alternative to injecting as a parameter on the constructor
             this._categoryService = serviceProvider.GetRequiredService<CategoryService>();
             this._cityService = serviceProvider.GetRequiredService<CityService>();
+            this._hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
         }
         public IActionResult Index()
         {
@@ -56,6 +60,15 @@ namespace DapperFantom.Controllers
                 model.CreatedDate = DateTime.Now;
                 model.ModifiedDate = DateTime.Now;
                 model.PublishedDate = DateTime.Now;
+                if(file.Length > 0)
+                {
+                    UploadHelper uploadHelper = new UploadHelper(this._hosting);
+                    string filename = await uploadHelper.Upload(file);
+                    if(!string.IsNullOrEmpty(filename))
+                    {
+                        model.Image = filename;
+                    }
+                }
             }
             else
             {
