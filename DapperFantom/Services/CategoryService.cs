@@ -28,7 +28,7 @@ namespace DapperFantom.Services
             List<Category> categories = new List<Category>();
 
             // SQL query
-            SqlCommand command = new SqlCommand("select * from Categories", this._adoNetConnection);
+            SqlCommand command = new SqlCommand("select * from [Categories]", this._adoNetConnection);
             // Defines the command type
             command.CommandType = CommandType.Text;
 
@@ -58,7 +58,7 @@ namespace DapperFantom.Services
 
             try
             {
-                categories = this._dapperConnection.Query<Category>(@"select * from Categories").ToList();
+                categories = this._dapperConnection.Query<Category>(@"select * from [Categories]").ToList();
             }
             catch (Exception ex)
             {

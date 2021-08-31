@@ -27,7 +27,7 @@ namespace DapperFantom.Services
 
             try
             {
-                citList = this._dapperConnection.Query<Citiy>(@"select * from Cities").ToList();
+                citList = this._dapperConnection.Query<Citiy>(@"select * from [Cities]").ToList();
             }
             catch (Exception ex)
             {

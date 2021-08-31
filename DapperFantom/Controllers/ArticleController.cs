@@ -53,6 +53,7 @@ namespace DapperFantom.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Save(Article model, IFormFile file)
         {
             if(ModelState.IsValid)
@@ -72,10 +73,15 @@ namespace DapperFantom.Controllers
                     }
                 }
 
+                // Stores the ID of the artivle
                 int result = this._articleService.Add(model);
 
                 if (result > 0)
-                    return RedirectToAction("Add");
+                {
+                    //return RedirectToAction("Add");
+                    Article article = this._articleService.GetArticleById(result);
+                    return RedirectToAction("Detail", new { id = article.ArticleId });
+                }
                 else
                 {
                     string message = "Something went wrong, please check it...";
@@ -90,6 +96,13 @@ namespace DapperFantom.Controllers
                     .Select(e => e.ErrorMessage));
             }
             return View();
+        }
+
+        public IActionResult Detail(int id)
+        {
+            Article article = this._articleService.GetArticleById(id);
+
+            return View(article);
         }
     }
 }

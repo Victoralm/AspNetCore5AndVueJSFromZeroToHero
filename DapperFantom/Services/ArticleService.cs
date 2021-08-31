@@ -1,4 +1,5 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -30,6 +31,22 @@ namespace DapperFantom.Services
                 return int.Parse(result.ToString());
             }
             return 0;
+        }
+
+        public Article GetArticleById(int id)
+        {
+            Article article = new Article();
+
+            try
+            {
+                article = this._dapperConnection.Query<Article>($"select * from [Articles] where [Articles].[ArticleId] = {id}").FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return article;
         }
     }
 }
