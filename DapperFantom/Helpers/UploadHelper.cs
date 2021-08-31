@@ -7,7 +7,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace DapperFantom.Helper
+namespace DapperFantom.Helpers
 {
     public class UploadHelper
     {

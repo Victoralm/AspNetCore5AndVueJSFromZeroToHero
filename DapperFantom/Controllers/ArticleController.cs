@@ -1,5 +1,5 @@
 ﻿using DapperFantom.Entities;
-using DapperFantom.Helper;
+using DapperFantom.Helpers;
 using DapperFantom.Models;
 using DapperFantom.Services;
 using Microsoft.AspNetCore.Hosting;
