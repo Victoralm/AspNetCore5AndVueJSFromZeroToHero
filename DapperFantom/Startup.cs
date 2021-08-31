@@ -28,6 +28,7 @@ namespace DapperFantom
             services.AddScoped<CategoryService>();
             services.AddScoped<CityService>();
             services.AddScoped<ArticleService>();
+            services.AddScoped<AdminService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
