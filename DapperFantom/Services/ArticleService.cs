@@ -48,5 +48,23 @@ namespace DapperFantom.Services
 
             return article;
         }
+        
+        public Article GetArticleByGuid(string guid)
+        {
+            Article article = new Article();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@guid", guid);
+                article = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Articles].[Guid] = @guid", par).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return article;
+        }
     }
 }

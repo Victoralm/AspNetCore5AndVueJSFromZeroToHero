@@ -80,7 +80,7 @@ namespace DapperFantom.Controllers
                 {
                     //return RedirectToAction("Add");
                     Article article = this._articleService.GetArticleById(result);
-                    return RedirectToAction("Detail", new { id = article.ArticleId });
+                    return RedirectToAction("Detail", new { id = article.Guid });
                 }
                 else
                 {
@@ -98,9 +98,11 @@ namespace DapperFantom.Controllers
             return View();
         }
 
-        public IActionResult Detail(int id)
+
+        public IActionResult Detail(string id)
         {
-            Article article = this._articleService.GetArticleById(id);
+            //Article article = this._articleService.GetArticleById(id);
+            Article article = this._articleService.GetArticleByGuid(id);
 
             GeneralViewModel model = new GeneralViewModel
             {
