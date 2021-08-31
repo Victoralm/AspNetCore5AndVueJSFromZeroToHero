@@ -8,7 +8,7 @@ namespace DapperFantom.Entities
     /// <summary>
     /// POCO class representing the City Db table
     /// </summary>
-    public class City
+    public class Citiy
     {
         public int CityId { get; set; }
         public string CityName { get; set; }

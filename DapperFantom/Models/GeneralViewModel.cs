@@ -10,8 +10,8 @@ namespace DapperFantom.Models
     {
         public Category Category { get; set; }
         public List<Category> CategorieList { get; set; }
-        public City City { get; set; }
-        public List<City> CityList { get; set; }
+        public Citiy City { get; set; }
+        public List<Citiy> CityList { get; set; }
         public Article Article { get; set; }
         public List<Article> ArticleList { get; set; }
 
@@ -19,8 +19,8 @@ namespace DapperFantom.Models
         {
             Category = new Category();
             CategorieList = new List<Category>();
-            City = new City();
-            CityList = new List<City>();
+            City = new Citiy();
+            CityList = new List<Citiy>();
             Article = new Article();
             ArticleList = new List<Article>();
         }

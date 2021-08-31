@@ -22,6 +22,7 @@ namespace DapperFantom.Services
 
         public int Add(Article article)
         {
+            // The Dapper table plural nomenclatures are a little bit annoying...
             var result = this._dapperConnection.Insert(article);
 
             if(result > 0)

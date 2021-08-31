@@ -17,6 +17,7 @@ namespace DapperFantom.Controllers
     {
         private CategoryService _categoryService;
         private CityService _cityService;
+        private ArticleService _articleService;
         private IWebHostEnvironment _hosting;
 
         public object GeneralModel { get; private set; }
@@ -27,6 +28,7 @@ namespace DapperFantom.Controllers
             // An alternative to injecting as a parameter on the constructor
             this._categoryService = serviceProvider.GetRequiredService<CategoryService>();
             this._cityService = serviceProvider.GetRequiredService<CityService>();
+            this._articleService = serviceProvider.GetRequiredService<ArticleService>();
             this._hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
         }
         public IActionResult Index()
@@ -38,7 +40,7 @@ namespace DapperFantom.Controllers
         public IActionResult Add()
         {
             List<Category> categList = this._categoryService.GetAllCategDapper();
-            List<City> citList = this._cityService.GetAllCitiesDapper();
+            List<Citiy> citList = this._cityService.GetAllCitiesDapper();
 
             GeneralViewModel model = new GeneralViewModel
             {
@@ -69,6 +71,17 @@ namespace DapperFantom.Controllers
                         model.Image = filename;
                     }
                 }
+
+                int result = this._articleService.Add(model);
+
+                if (result > 0)
+                    return RedirectToAction("Add");
+                else
+                {
+                    string message = "Something went wrong, please check it...";
+                    return View(message);
+                }
+                    
             }
             else
             {

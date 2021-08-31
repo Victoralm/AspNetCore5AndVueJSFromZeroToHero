@@ -21,13 +21,13 @@ namespace DapperFantom.Services
             this._dapperConnection = this._connectionService.ForDapper();
         }
 
-        public List<City> GetAllCitiesDapper()
+        public List<Citiy> GetAllCitiesDapper()
         {
-            List<City> citList = new List<City>();
+            List<Citiy> citList = new List<Citiy>();
 
             try
             {
-                citList = this._dapperConnection.Query<City>(@"select * from City").ToList();
+                citList = this._dapperConnection.Query<Citiy>(@"select * from Cities").ToList();
             }
             catch (Exception ex)
             {

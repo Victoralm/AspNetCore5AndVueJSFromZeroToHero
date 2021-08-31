@@ -27,6 +27,7 @@ namespace DapperFantom
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddScoped<CategoryService>();
             services.AddScoped<CityService>();
+            services.AddScoped<ArticleService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
