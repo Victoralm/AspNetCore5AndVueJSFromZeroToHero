@@ -1,1 +1,20 @@
 ﻿@model Admin
+
+<div class="container mt-5">
+    <div class="row">
+        <form method="post">
+            @*<input type="text" asp-for="@Model.Username" name="Username" required />
+            <hr />
+            <input type="password" asp-for="@Model.Password" name="Password" required />*@
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Username</span>
+                <input type="text" class="form-control" asp-for="@Model.Username" name="Username" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" required />
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+                <input type="password" class="form-control" asp-for="@Model.Password" name="Password" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1" required />
+            </div>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>
+</div>
