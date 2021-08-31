@@ -102,7 +102,12 @@ namespace DapperFantom.Controllers
         {
             Article article = this._articleService.GetArticleById(id);
 
-            return View(article);
+            GeneralViewModel model = new GeneralViewModel
+            {
+                Article = article,
+            };
+
+            return View(model);
         }
     }
 }
