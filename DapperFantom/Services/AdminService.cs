@@ -29,7 +29,7 @@ namespace DapperFantom.Services
                 var par = new DynamicParameters();
                 par.Add("@Username", adm.Username);
                 par.Add("@Password", adm.Password);
-                admin = this._dapperConnection.Query<Admin>($@"select id as [AdminId],[Username],[Password] from [Admins] where [Username]=@Username and [Password]=@Password", par).FirstOrDefault();
+                admin = this._dapperConnection.Query<Admin>($@"select [AdminId],[Username],[Password] from [Admins] where [Username]=@Username and [Password]=@Password", par).FirstOrDefault();
             }
             catch (Exception ex)
             {
