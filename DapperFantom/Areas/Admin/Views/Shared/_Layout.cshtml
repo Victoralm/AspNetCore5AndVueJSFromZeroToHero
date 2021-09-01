@@ -1,4 +1,6 @@
-﻿
+﻿@{ 
+    var controller = ViewContext.RouteData.Values["Controller"];
+}
 
 
 <!doctype html>
@@ -25,27 +27,23 @@
 </head>
 <body>
 
+    <div class="container">
+        <div class="row">
 
-    <partial name="_header" />
+            @if (controller.ToString() != "Login")
+            {
+                <partial name="_header" />
+            }
+            
 
-    @RenderBody()
-    @*</main>
-            </div>
-
-            <footer class="border-top footer text-muted">
-                <div class="container">
-                    &copy; 2021 - DapperFantom - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                </div>
-            </footer>
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            @await RenderSectionAsync("Scripts", required: false)
-        </body>
-        </html>*@
+            @RenderBody()
 
 
-    <partial name="_footer" />
+            <partial name="_footer" />
+
+        </div>
+    </div>
+    
 
 
     <!-- Optional JavaScript -->
