@@ -44,7 +44,7 @@ namespace DapperFantom.Areas.Admin.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Add(Entities.Admin adm)
         {
-            
+            return View();
         }
     }
 }
