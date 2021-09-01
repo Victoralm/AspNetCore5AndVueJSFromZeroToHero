@@ -45,7 +45,7 @@ namespace DapperFantom.Services
 
             try
             {
-                userList = this._dapperConnection.Query<Admin>($"select * from [Admins]").ToList();
+                userList = this._dapperConnection.Query<Admin>(@"select * from [Admins]").ToList();
             }
             catch (Exception ex)
             {

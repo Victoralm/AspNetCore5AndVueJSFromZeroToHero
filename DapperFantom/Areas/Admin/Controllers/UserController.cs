@@ -1,4 +1,5 @@
-﻿using DapperFantom.Models;
+﻿using DapperFantom.Areas.Admin.Models;
+using DapperFantom.Models;
 using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace DapperFantom.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    [AdminAuthModel] // Dependency injection for the class
     public class UserController : Controller
     {
         private AdminService _adminService;
@@ -30,6 +33,18 @@ namespace DapperFantom.Areas.Admin.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Add(Entities.Admin adm)
+        {
+            
         }
     }
 }
