@@ -90,6 +90,34 @@ namespace DapperFantom.Services
             }
         }
 
+        public bool UpdateCategoryAlt(Category categ)
+        {
+            try
+            {
+                bool result = this._dapperConnection.Update(categ);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public bool DeleteCategory(Category category)
+        {
+            try
+            {
+                bool result = this._dapperConnection.Delete(category);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
         public int AddCategory(Category category)
         {
             try

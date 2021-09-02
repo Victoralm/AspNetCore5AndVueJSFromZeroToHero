@@ -2,6 +2,7 @@
 using DapperFantom.Entities;
 using DapperFantom.Models;
 using DapperFantom.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -72,6 +73,30 @@ namespace DapperFantom.Areas.Admin.Controllers
             Entities.Category result = this._categoryService.UpdateCategory(categ);
 
             if (result == null)
+            {
+                ViewBag.Error = "Something went wrong please try it again...";
+                return View(categ);
+            }
+
+            return RedirectToAction("Index", "Category");
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Entities.Category categ = this._categoryService.GetCategoryById(id);
+
+            return View(categ);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Delete(int id, IFormFile file)
+        {
+            Entities.Category categ = this._categoryService.GetCategoryById(id);
+
+            bool result = this._categoryService.DeleteCategory(categ);
+
+            if (!result)
             {
                 ViewBag.Error = "Something went wrong please try it again...";
                 return View(categ);

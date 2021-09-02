@@ -1,6 +1,7 @@
 ﻿using DapperFantom.Areas.Admin.Models;
 using DapperFantom.Models;
 using DapperFantom.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -88,14 +89,16 @@ namespace DapperFantom.Areas.Admin.Controllers
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public IActionResult Delete(Entities.Admin adm)
+        public IActionResult Delete(int id, IFormFile file)
         {
-            bool result = this._adminService.DeleteUser(adm);
+            Entities.Admin admin = this._adminService.GetUserById(id);
+
+            bool result = this._adminService.DeleteUser(admin);
 
             if (!result)
             {
                 ViewBag.Error = "Something went wrong please try it again...";
-                return View(adm);
+                return View(admin);
             }
 
             return RedirectToAction("Index", "User");
