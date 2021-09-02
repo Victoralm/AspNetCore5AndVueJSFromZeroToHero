@@ -9,9 +9,9 @@ namespace DapperFantom.Models
     public class UserViewModel
     {
         public Category Category { get; set; }
-        public List<Category> CategorieList { get; set; }
-        public Citiy City { get; set; }
-        public List<Citiy> CityList { get; set; }
+        public List<Category> CategoryList { get; set; }
+        public City City { get; set; }
+        public List<City> CityList { get; set; }
         public Article Article { get; set; }
         public List<Article> ArticleList { get; set; }
         public Admin User { get; set; }
@@ -20,9 +20,9 @@ namespace DapperFantom.Models
         public UserViewModel()
         {
             Category = new Category();
-            CategorieList = new List<Category>();
-            City = new Citiy();
-            CityList = new List<Citiy>();
+            CategoryList = new List<Category>();
+            City = new City();
+            CityList = new List<City>();
             Article = new Article();
             ArticleList = new List<Article>();
             User = new Admin();

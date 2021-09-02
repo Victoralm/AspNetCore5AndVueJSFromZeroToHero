@@ -19,6 +19,8 @@ namespace DapperFantom.Areas.Admin.Controllers
     public class ArticleController : Controller
     {
         private ArticleService _articleService;
+        private CategoryService _categoryService;
+        private CityService _cityService;
         private IWebHostEnvironment _hosting;
 
         public ArticleController(IServiceProvider serviceProvider)
@@ -26,12 +28,14 @@ namespace DapperFantom.Areas.Admin.Controllers
             // Does de correct dependency injection of the desired class
             // An alternative to injecting as a parameter on the constructor
             this._articleService = serviceProvider.GetRequiredService<ArticleService>();
+            this._categoryService = serviceProvider.GetRequiredService<CategoryService>();
+            this._cityService = serviceProvider.GetRequiredService<CityService>();
             this._hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
         }
 
         public IActionResult Index()
         {
-            List<Article> articleLst = this._articleService.GetAllArticles();
+            List<Article> articleLst = this._articleService.GetAllArticlesAlt();
 
             UserViewModel model = new UserViewModel
             {
@@ -44,7 +48,7 @@ namespace DapperFantom.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Entities.Article article = this._articleService.GetArticleById(id);
+            Entities.Article article = this._articleService.GetArticleByIdAlt(id);
 
             return View(article);
         }
@@ -65,6 +69,22 @@ namespace DapperFantom.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index", "Article");
+        }
+
+        public IActionResult Edit(int id)
+        {
+            Article article = this._articleService.GetArticleByIdAlt(id);
+            List<Category> categories = this._categoryService.GetAllCategAlt();
+            List<City> cities = this._cityService.GetAllCitiesAlt();
+
+            var model = new UserViewModel
+            {
+                Article = article,
+                CategoryList = categories,
+                CityList = cities,
+            };
+
+            return View(model);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             UserViewModel model = new UserViewModel
             {
-                CategorieList = categoryLst,
+                CategoryList = categoryLst,
             };
 
             return View(model);

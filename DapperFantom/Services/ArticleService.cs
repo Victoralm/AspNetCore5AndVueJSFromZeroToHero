@@ -48,6 +48,22 @@ namespace DapperFantom.Services
             return articleLst;
         }
 
+        public List<Article> GetAllArticlesAlt()
+        {
+            List<Article> articleLst = new List<Article>();
+
+            try
+            {
+                articleLst = this._dapperConnection.GetAll<Article>().ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return articleLst;
+        }
+
         public Article GetArticleById(int id)
         {
             Article article = new Article();
@@ -55,6 +71,22 @@ namespace DapperFantom.Services
             try
             {
                 article = this._dapperConnection.Query<Article>($"select * from [Articles] where [Articles].[ArticleId] = {id}").FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return article;
+        }
+
+        public Article GetArticleByIdAlt(int id)
+        {
+            Article article = new Article();
+
+            try
+            {
+                article = this._dapperConnection.Get<Article>(id);
             }
             catch (Exception ex)
             {

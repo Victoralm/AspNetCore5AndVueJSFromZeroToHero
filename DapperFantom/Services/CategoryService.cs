@@ -155,5 +155,21 @@ namespace DapperFantom.Services
 
             return categories;
         }
+
+        public List<Category> GetAllCategAlt()
+        {
+            List<Category> categories = new List<Category>();
+
+            try
+            {
+                categories = this._dapperConnection.GetAll<Category>().ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return categories;
+        }
     }
 }

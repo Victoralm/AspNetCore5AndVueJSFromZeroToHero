@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -21,13 +22,29 @@ namespace DapperFantom.Services
             this._dapperConnection = this._connectionService.ForDapper();
         }
 
-        public List<Citiy> GetAllCitiesDapper()
+        public List<City> GetAllCitiesDapper()
         {
-            List<Citiy> citList = new List<Citiy>();
+            List<City> citList = new List<City>();
 
             try
             {
-                citList = this._dapperConnection.Query<Citiy>(@"select * from [Citys]").ToList();
+                citList = this._dapperConnection.Query<City>(@"select * from [Citys]").ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return citList;
+        }
+
+        public List<City> GetAllCitiesAlt()
+        {
+            List<City> citList = new List<City>();
+
+            try
+            {
+                citList = this._dapperConnection.GetAll<City>().ToList();
             }
             catch (Exception ex)
             {
