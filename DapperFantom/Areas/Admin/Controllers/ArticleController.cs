@@ -71,6 +71,7 @@ namespace DapperFantom.Areas.Admin.Controllers
             return RedirectToAction("Index", "Article");
         }
 
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             Article article = this._articleService.GetArticleByIdAlt(id);
@@ -85,6 +86,22 @@ namespace DapperFantom.Areas.Admin.Controllers
             };
 
             return View(model);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, UserViewModel model)
+        {
+            Article article = model.Article;
+
+            bool result = this._articleService.UpdateArticle(article);
+
+            if (!result)
+            {
+                ViewBag.Error = "Something went wrong please try it again...";
+                return View(model);
+            }
+
+            return RedirectToAction("Index", "Article");
         }
     }
 }

@@ -6,7 +6,16 @@
 
             <h4 class="mb-3">Edit the Article</h4>
 
-            <form method="post">
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert mb-3">
+                    <div class="alert-danger">
+                        @ViewBag.Error
+                    </div>
+                </div>
+            }
+
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
                 <input type="hidden" asp-for="@Model.Article.ArticleId" value="@Model.Article.ArticleId" />
 
                 <div class="col-md-12">
@@ -33,19 +42,19 @@
                                 <h6>Status</h6>
                                 <div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleStatus" id="ArticleStatus0" value="0" asp-for="@Model.Article.Status">
+                                        <input class="form-check-input" type="radio" id="ArticleStatus0" value="0" asp-for="@Model.Article.Status">
                                         <label class="form-check-label" for="ArticleStatus0">
                                             Pending
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleStatus" id="ArticleStatus1" value="1" asp-for="@Model.Article.Status">
+                                        <input class="form-check-input" type="radio" id="ArticleStatus1" value="1" asp-for="@Model.Article.Status">
                                         <label class="form-check-label" for="ArticleStatus1">
                                             Published
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleStatus" id="ArticleStatus2" value="2" asp-for="@Model.Article.Status">
+                                        <input class="form-check-input" type="radio" id="ArticleStatus2" value="2" asp-for="@Model.Article.Status">
                                         <label class="form-check-label" for="ArticleStatus2">
                                             Rejected
                                         </label>
@@ -63,15 +72,15 @@
                                 <h6>Slider</h6>
                                 <div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleSlider" id="ArticleSlider0" value="0" asp-for="@Model.Article.Slider">
+                                        <input class="form-check-input" type="radio" id="ArticleSlider0" value="0" asp-for="@Model.Article.Slider">
                                         <label class="form-check-label" for="ArticleSlider0">
-                                            Pending
+                                            No
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleSlider" id="ArticleSlider1" value="1" asp-for="@Model.Article.Slider">
+                                        <input class="form-check-input" type="radio" id="ArticleSlider1" value="1" asp-for="@Model.Article.Slider">
                                         <label class="form-check-label" for="ArticleSlider1">
-                                            Published
+                                            Yes
                                         </label>
                                     </div>
                                 </div>
@@ -80,13 +89,13 @@
                                 <h6>Show in Homepage?</h6>
                                 <div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleHomeView" id="ArticleHomeView0" value="0" asp-for="@Model.Article.HomeView">
+                                        <input class="form-check-input" type="radio" id="ArticleHomeView0" value="0" asp-for="@Model.Article.HomeView">
                                         <label class="form-check-label" for="ArticleHomeView0">
                                             No
                                         </label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="ArticleHomeView" id="ArticleHomeView1" value="1" asp-for="@Model.Article.HomeView">
+                                        <input class="form-check-input" type="radio" id="ArticleHomeView1" value="1" asp-for="@Model.Article.HomeView">
                                         <label class="form-check-label" for="ArticleHomeView1">
                                             Yes
                                         </label>
@@ -114,31 +123,31 @@
                 </div>
 
                 <div class="form-floating mt-10">
-                    <input type="text" asp-for="@Model.Article.NameSurname" name="NameSurname" value="@Model.Article.NameSurname" required="" class="form-control single-input" readonly />
+                    <input type="text" asp-for="@Model.Article.NameSurname" value="@Model.Article.NameSurname" required="" class="form-control single-input" />
                     <label asp-for="@Model.Article.NameSurname">Writer</label>
                     <span asp-validation-for="@Model.Article.NameSurname" class="text-danger"></span>
                 </div>
 
                 <div class="row">
                     <div class="form-floating mt-10 col-lg-6">
-                        <input type="text" asp-for="@Model.Article.Email" name="Email" placeholder="Your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'" required="" class="form-control single-input" />
+                        <input type="text" asp-for="@Model.Article.Email" value="@Model.Article.Email" placeholder="Your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'" required="" class="form-control single-input" />
                         <label asp-for="@Model.Article.Email"></label>
                         <span asp-validation-for="@Model.Article.Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-floating mt-10 col-lg-4">
-                        <input type="text" asp-for="@Model.Article.Phone" name="Phone" placeholder="Your phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your phone number'" class="form-control single-input" />
+                        <input type="text" asp-for="@Model.Article.Phone" value="@Model.Article.Phone" placeholder="Your phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your phone number'" class="form-control single-input" />
                         <label asp-for="@Model.Article.Phone"></label>
                     </div>
 
                     <div class="form-floating mt-10 col-lg-2">
                         @*<select asp-for="@Model.Article.CityId" name="CityId" class="mr-sm-2 form-select required" id="CityId" required="required">
-            <option value="" selected disabled hidden>Choose your City</option>
-            @foreach (var city in Model.CityList)
-            {
-                <option value="@city.CityId">@city.CityName</option>
-            }
-        </select>*@
+                        <option value="" selected disabled hidden>Choose your City</option>
+                        @foreach (var city in Model.CityList)
+                        {
+                            <option value="@city.CityId">@city.CityName</option>
+                        }
+                    </select>*@
                         @*<span asp-validation-for="@Model.Article.CityId" class="text-danger"></span>*@
 
                         <select class="form-control mr-sm-2 form-select required" asp-items="@(new SelectList(Model.CityList, "CityId", "CityName"))" asp-for="@Model.Article.CityId"></select>
@@ -148,37 +157,37 @@
 
                 <div class="row">
                     <div class="form-floating mt-10 col-lg-9">
-                        <input type="text" asp-for="@Model.Article.Title" name="Title" placeholder="Your article Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Title'" required="" class="form-control single-input" />
+                        <input type="text" asp-for="@Model.Article.Title" value="@Model.Article.Title" placeholder="Your article Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Title'" required="" class="form-control single-input" />
                         <label asp-for="@Model.Article.Title"></label>
                         <span asp-validation-for="@Model.Article.Title" class="text-danger"></span>
                     </div>
                     <div class="form-floating mt-10 col-lg-3">
                         @*<select asp-for="@Model.Article.CategoryId" name="CategoryId" class="mr-sm-2 form-select required" id="CategoryId" required="required">
-                        <option value="" selected disabled hidden>Choose your Category</option>
-                        @foreach (var categ in Model.CategoryList)
-                        {
-                            <option value="@categ.CategoryId">@categ.CategoryName</option>
-                        }
-                        </select>*@
+                    <option value="" selected disabled hidden>Choose your Category</option>
+                    @foreach (var categ in Model.CategoryList)
+                    {
+                        <option value="@categ.CategoryId">@categ.CategoryName</option>
+                    }
+                    </select>*@
                         <select class="form-control mr-sm-2 form-select required" asp-items="@(new SelectList(Model.CategoryList, "CategoryId", "CategoryName"))" asp-for="@Model.Article.CategoryId"></select>
                         <label asp-for="@Model.Article.CategoryId" style="padding-left: 20px;">Category</label>
                     </div>
                 </div>
 
                 <div class="form-floating mt-10">
-                    <textarea name="Content" asp-for="@Model.Article.Content" class="form-control" placeholder="Your article Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Content'" required=""></textarea>
+                    <textarea asp-for="@Model.Article.Content" value="@Model.Article.Content" class="form-control" placeholder="Your article Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Content'" required=""></textarea>
                     <label asp-for="@Model.Article.Content"></label>
                 </div>
 
                 @*<div class="mt-10" onclick="$('#image').click();">
-                    Upload Images <br />
-                    <label class="btn btn-default">
-                        <div class="fileUpload">
-                            <span>Select an image</span>
-                            <input type="file" class="uploadFile" name="file" />
-                        </div>
-                    </label>
-                </div>*@
+                Upload Images <br />
+                <label class="btn btn-default">
+                    <div class="fileUpload">
+                        <span>Select an image</span>
+                        <input type="file" class="uploadFile" name="file" />
+                    </div>
+                </label>
+            </div>*@
 
                 <div class="mt-10">
                     <div class="row">
@@ -186,7 +195,7 @@
 
                         </div>
                         <div class="mt-10 col-lg-2">
-                            <button type="submit" class="genric-btn success circle arrow">Save<span class="lnr lnr-arrow-right"></span></button>
+                            <button type="submit" class="genric-btn success circle arrow">Save</button>
                         </div>
                     </div>
                 </div>

@@ -115,6 +115,30 @@ namespace DapperFantom.Services
             return article;
         }
 
+        public bool UpdateArticle(Article article)
+        {
+            // https://localhost:44377/Admin/Article
+            Article origArt = GetArticleByIdAlt(article.ArticleId);
+
+            article.ModifiedDate = DateTime.Now;
+            article.Seen = 1;
+            article.Guid = origArt.Guid;
+            article.Image = origArt.Image;
+            article.PublishedDate = origArt.PublishedDate;
+            article.CreatedDate = origArt.CreatedDate;
+
+            try
+            {
+                bool result = this._dapperConnection.Update<Article>(article);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
         public bool DeleteArticle(Article article)
         {
             try
