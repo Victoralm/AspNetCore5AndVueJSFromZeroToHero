@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using DapperFantom.Entities;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -50,6 +51,13 @@ namespace DapperFantom.Services
             }
 
             return categories;
+        }
+
+        public int AddCategory(Category categ)
+        {
+            var result = this._dapperConnection.Insert(categ);
+
+            return Convert.ToInt32(result);
         }
 
         public List<Category> GetAllCategDapper()
