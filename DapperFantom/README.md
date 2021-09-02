@@ -18,4 +18,8 @@ Represents the webpages to be shown on the browser.
 Stores the methods that make the necessary operations on the Db.
 
 - [Helpers](Helpers):
-  Auxiliary classes that execute operations that don't fit into the previous categories (layers).
+  Auxiliary classes that execute operations that don't fit into the previous
+  categories (layers).
+
+- [Areas](Areas):
+  Works as micro MVC projects inside the main project.
