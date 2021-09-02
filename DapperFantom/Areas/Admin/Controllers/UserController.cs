@@ -56,5 +56,49 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "User");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Entities.Admin admin = this._adminService.GetUserById(id);
+
+            return View(admin);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Entities.Admin adm)
+        {
+            Entities.Admin result = this._adminService.UpdateUser(adm);
+
+            if (result == null)
+            {
+                ViewBag.Error = "Something went wrong please try it again...";
+                return View(adm);
+            }
+
+            return RedirectToAction("Index", "User");
+        }
+        
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            Entities.Admin admin = this._adminService.GetUserById(id);
+
+            return View(admin);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Delete(Entities.Admin adm)
+        {
+            bool result = this._adminService.DeleteUser(adm);
+
+            if (!result)
+            {
+                ViewBag.Error = "Something went wrong please try it again...";
+                return View(adm);
+            }
+
+            return RedirectToAction("Index", "User");
+        }
     }
 }

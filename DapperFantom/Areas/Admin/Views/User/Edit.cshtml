@@ -1,0 +1,40 @@
+﻿@model Admin
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+
+            <h4 class="mb-3">Edit the User</h4>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert mb-3">
+                    <div class="alert-danger">
+                        @ViewBag.Error
+                    </div>
+                </div>
+            }
+
+            <form method="post">
+                <input type="hidden" asp-for="@Model.AdminId" value="@Model.AdminId" />
+                <div class="col-8 mb-3">
+                    <div class="form-floating">
+                        <input type="text" asp-for="@Model.Username" name="Username"  value="@Model.Username" id="validationCustomUsername" required="" class="form-control single-input" />
+                        <label asp-for="@Model.Username"></label>
+                        <span asp-validation-for="@Model.Username" class="row text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="col-8 mb-3">
+                    <div class="form-floating">
+                        <input type="password" asp-for="@Model.Password" name="Password"  value="@Model.Password" id="validationCustomPassword" required="" class="form-control single-input" />
+                        <label asp-for="@Model.Password"></label>
+                        <span asp-validation-for="@Model.Password" class="row text-danger"></span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">Save User</button>
+            </form>
+
+        </div>
+    </div>
+</div>

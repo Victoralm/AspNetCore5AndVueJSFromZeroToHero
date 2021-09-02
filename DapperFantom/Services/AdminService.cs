@@ -62,5 +62,59 @@ namespace DapperFantom.Services
 
             return Convert.ToInt32(result);
         }
+
+        public Admin GetUserById(int id)
+        {
+            Admin admin = new Admin();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@AdminId", id);
+                admin = this._dapperConnection.Query<Admin>($@"select * from [Admins] where [AdminId]=@AdminId", par).FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return admin;
+        }
+
+        public Admin UpdateUser(Admin adm)
+        {
+            
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@id", adm.AdminId);
+                par.Add("@Username", adm.Username);
+                par.Add("@Password", adm.Password);
+                this._dapperConnection.Execute($@"update [Admins] set [Username]=@Username, [Password]=@Password where [AdminId]=@id", par);
+                return adm;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new Admin();
+            }
+        }
+
+        public bool DeleteUser(Admin adm)
+        {
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@id", adm.AdminId);
+                this._dapperConnection.Execute($@"delete from [Admins] where [AdminId]=@id", par);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }
