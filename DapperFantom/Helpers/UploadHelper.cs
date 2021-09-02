@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace DapperFantom.Helpers
 {
@@ -43,6 +44,27 @@ namespace DapperFantom.Helpers
                 {
                     Console.WriteLine(ex.Message);
                 }
+            }
+
+            return result;
+        }
+
+        public bool Delete(string filename)
+        {
+            bool result = false;
+
+            try
+            {
+                var filePath = Path.Combine($"{this._environment.WebRootPath}/img/articles/{filename}");
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
             return result;

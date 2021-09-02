@@ -63,7 +63,8 @@ namespace DapperFantom.Services
 
             return article;
         }
-        
+
+
         public Article GetArticleByGuid(string guid)
         {
             Article article = new Article();
@@ -80,6 +81,20 @@ namespace DapperFantom.Services
             }
 
             return article;
+        }
+
+        public bool DeleteArticle(Article article)
+        {
+            try
+            {
+                bool result = this._dapperConnection.Delete(article);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
     }
 }

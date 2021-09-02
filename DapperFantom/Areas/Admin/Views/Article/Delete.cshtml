@@ -1,0 +1,77 @@
+﻿@model Article
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+
+            <h4 class="mb-3">Are you sure to delete the Article <b>@Model.Title</b>?</h4>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert mb-3">
+                    <div class="alert-danger">
+                        @ViewBag.Error
+                    </div>
+                </div>
+            }
+
+        <form method="post">
+            <div class="col-8 mb-3">
+                <div class="form-floating">
+                    <input type="text" asp-for="@Model.Title" name="ArticleTitle" value="@Model.Title" id="validationCustomArticleTitle" required="" class="form-control single-input" disabled />
+                    <label asp-for="@Model.Title"></label>
+                    <span asp-validation-for="@Model.Title" class="row text-danger"></span>
+                </div>
+            </div>
+
+            @*<div class="col-8 mb-3">
+            <div class="form-floating">
+                <input type="text" asp-for="@Model.Slug" name="Slug" value="@Model.Slug" id="validationCustomSlug" required="" class="form-control single-input" />
+                <label asp-for="@Model.Slug"></label>
+                <span asp-validation-for="@Model.Slug" class="row text-danger"></span>
+            </div>
+        </div>*@
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Name Surname</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr id="@Model.ArticleId">
+                        <td>@Model.ArticleId</td>
+                        <td>
+                            <a href="~/img/articles/@Model.Image" target="_blank">
+                                <img src="~/img/articles/@Model.Image" height="50" />
+                            </a>
+                        </td>
+                        <td>@Model.NameSurname</td>
+                        <td>@Model.Title</td>
+                        <td>@Model.CreatedDate.ToShortDateString()</td>
+                        <td>@Model.Status</td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            <button class="btn btn-success" asp-controller="Article" asp-action="Index">Back to Article List</button>
+                            <button type="submit" class="btn btn-danger" asp-controller="Article" asp-action="Delete">Delete Article</button>
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+            
+        </form>
+
+        </div>
+    </div>
+</div>

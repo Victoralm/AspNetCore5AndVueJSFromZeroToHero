@@ -67,7 +67,7 @@ namespace DapperFantom.Controllers
                 {
                     UploadHelper uploadHelper = new UploadHelper(this._hosting);
                     string filename = await uploadHelper.Upload(file);
-                    if(!string.IsNullOrEmpty(filename))
+                    if (!string.IsNullOrEmpty(filename))
                     {
                         model.Image = filename;
                     }
