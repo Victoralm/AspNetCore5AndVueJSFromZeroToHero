@@ -29,7 +29,7 @@ namespace DapperFantom.Services
             List<Category> categories = new List<Category>();
 
             // SQL query
-            SqlCommand command = new SqlCommand("select * from [Categories]", this._adoNetConnection);
+            SqlCommand command = new SqlCommand("select * from [Categorys]", this._adoNetConnection);
             // Defines the command type
             command.CommandType = CommandType.Text;
 
@@ -53,11 +53,26 @@ namespace DapperFantom.Services
             return categories;
         }
 
-        public int AddCategory(Category categ)
+        public int AddCategory(Category category)
         {
-            var result = this._dapperConnection.Insert(categ);
+            try
+            {
+                // The Dapper table plural nomenclatures are a little bit annoying!!!
+                var result = this._dapperConnection.Insert(category);
 
-            return Convert.ToInt32(result);
+                //var par = new DynamicParameters();
+                //par.Add("@CategoryName", categ.CategoryName);
+                //par.Add("@Slug", categ.Slug);
+                //var result = this._dapperConnection.Query<Category>("insert into [Categories] ([CategoryName], [Slug]) values (@CategoryName, @Slug"), par);
+
+                return Convert.ToInt32(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+
+                return 0;
+            }
         }
 
         public List<Category> GetAllCategDapper()
@@ -66,7 +81,7 @@ namespace DapperFantom.Services
 
             try
             {
-                categories = this._dapperConnection.Query<Category>(@"select * from [Categories]").ToList();
+                categories = this._dapperConnection.Query<Category>(@"select * from [Categorys]").ToList();
             }
             catch (Exception ex)
             {
