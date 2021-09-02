@@ -28,7 +28,7 @@ namespace DapperFantom.Controllers
 
             GeneralViewModel model = new GeneralViewModel
             {
-                CategorieList = categList,
+                CategoryList = categList,
             };
 
             return View(model);

@@ -43,5 +43,6 @@ namespace DapperFantom.Entities
         public int HomeView { get; set; }
         public int Hit { get; set; }
         public int CommentCount { get; set; }
+        public byte Slider { get; set; }
     }
 }

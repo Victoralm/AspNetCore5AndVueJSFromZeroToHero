@@ -1,0 +1,198 @@
+﻿@model UserViewModel
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+
+            <h4 class="mb-3">Edit the Article</h4>
+
+            <form method="post">
+                <input type="hidden" asp-for="@Model.Article.ArticleId" value="@Model.Article.ArticleId" />
+
+                <div class="col-md-12">
+                    <div asp-validation-summary="All" class="text-danger">
+
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <div class="row">
+
+                        <div class="col-4">
+                            <h6>Article Image</h6>
+                            @if (!string.IsNullOrEmpty(Model.Article.Image))
+                            {
+                                <a href="~/img/articles/@Model.Article.Image" target="_blank">
+                                    <img src="~/img/articles/@Model.Article.Image" class="img-fluid" alt="Model.Article.Image">
+                                </a>
+                            }
+                        </div>
+
+                        <div class="col-2">
+                            <div class="row">
+                                <h6>Status</h6>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleStatus" id="ArticleStatus0" value="0" asp-for="@Model.Article.Status">
+                                        <label class="form-check-label" for="ArticleStatus0">
+                                            Pending
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleStatus" id="ArticleStatus1" value="1" asp-for="@Model.Article.Status">
+                                        <label class="form-check-label" for="ArticleStatus1">
+                                            Published
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleStatus" id="ArticleStatus2" value="2" asp-for="@Model.Article.Status">
+                                        <label class="form-check-label" for="ArticleStatus2">
+                                            Rejected
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <h6>Comments</h6>
+                                <span>@Model.Article.CommentCount Comments</span>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="row">
+                                <h6>Slider</h6>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleSlider" id="ArticleSlider0" value="0" asp-for="@Model.Article.Slider">
+                                        <label class="form-check-label" for="ArticleSlider0">
+                                            Pending
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleSlider" id="ArticleSlider1" value="1" asp-for="@Model.Article.Slider">
+                                        <label class="form-check-label" for="ArticleSlider1">
+                                            Published
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <h6>Show in Homepage?</h6>
+                                <div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleHomeView" id="ArticleHomeView0" value="0" asp-for="@Model.Article.HomeView">
+                                        <label class="form-check-label" for="ArticleHomeView0">
+                                            No
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="ArticleHomeView" id="ArticleHomeView1" value="1" asp-for="@Model.Article.HomeView">
+                                        <label class="form-check-label" for="ArticleHomeView1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2">
+                            <div class="row">
+                                <h6>Published Date</h6>
+                                <span>@Model.Article.PublishedDate.ToShortDateString()</span>
+                            </div>
+                            <div class="row mt-3">
+                                <h6>Created Date</h6>
+                                <span>@Model.Article.CreatedDate.ToShortDateString()</span>
+                            </div>
+                            <div class="row mt-3">
+                                <h6>Seen</h6>
+                                <span>@(Model.Article.Seen == 0 ? "You're the first person viewing this post" : $"This post has been seen {Model.Article.Seen} times")</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-floating mt-10">
+                    <input type="text" asp-for="@Model.Article.NameSurname" name="NameSurname" value="@Model.Article.NameSurname" required="" class="form-control single-input" readonly />
+                    <label asp-for="@Model.Article.NameSurname">Writer</label>
+                    <span asp-validation-for="@Model.Article.NameSurname" class="text-danger"></span>
+                </div>
+
+                <div class="row">
+                    <div class="form-floating mt-10 col-lg-6">
+                        <input type="text" asp-for="@Model.Article.Email" name="Email" placeholder="Your email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your email address'" required="" class="form-control single-input" />
+                        <label asp-for="@Model.Article.Email"></label>
+                        <span asp-validation-for="@Model.Article.Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-floating mt-10 col-lg-4">
+                        <input type="text" asp-for="@Model.Article.Phone" name="Phone" placeholder="Your phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your phone number'" class="form-control single-input" />
+                        <label asp-for="@Model.Article.Phone"></label>
+                    </div>
+
+                    <div class="form-floating mt-10 col-lg-2">
+                        @*<select asp-for="@Model.Article.CityId" name="CityId" class="mr-sm-2 form-select required" id="CityId" required="required">
+            <option value="" selected disabled hidden>Choose your City</option>
+            @foreach (var city in Model.CityList)
+            {
+                <option value="@city.CityId">@city.CityName</option>
+            }
+        </select>*@
+                        @*<span asp-validation-for="@Model.Article.CityId" class="text-danger"></span>*@
+
+                        <select class="form-control mr-sm-2 form-select required" asp-items="@(new SelectList(Model.CityList, "CityId", "CityName"))" asp-for="@Model.Article.CityId"></select>
+                        <label asp-for="@Model.Article.CityId" style="padding-left: 20px;">City</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-floating mt-10 col-lg-9">
+                        <input type="text" asp-for="@Model.Article.Title" name="Title" placeholder="Your article Title" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Title'" required="" class="form-control single-input" />
+                        <label asp-for="@Model.Article.Title"></label>
+                        <span asp-validation-for="@Model.Article.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating mt-10 col-lg-3">
+                        @*<select asp-for="@Model.Article.CategoryId" name="CategoryId" class="mr-sm-2 form-select required" id="CategoryId" required="required">
+                        <option value="" selected disabled hidden>Choose your Category</option>
+                        @foreach (var categ in Model.CategoryList)
+                        {
+                            <option value="@categ.CategoryId">@categ.CategoryName</option>
+                        }
+                        </select>*@
+                        <select class="form-control mr-sm-2 form-select required" asp-items="@(new SelectList(Model.CategoryList, "CategoryId", "CategoryName"))" asp-for="@Model.Article.CategoryId"></select>
+                        <label asp-for="@Model.Article.CategoryId" style="padding-left: 20px;">Category</label>
+                    </div>
+                </div>
+
+                <div class="form-floating mt-10">
+                    <textarea name="Content" asp-for="@Model.Article.Content" class="form-control" placeholder="Your article Content" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your article Content'" required=""></textarea>
+                    <label asp-for="@Model.Article.Content"></label>
+                </div>
+
+                @*<div class="mt-10" onclick="$('#image').click();">
+                    Upload Images <br />
+                    <label class="btn btn-default">
+                        <div class="fileUpload">
+                            <span>Select an image</span>
+                            <input type="file" class="uploadFile" name="file" />
+                        </div>
+                    </label>
+                </div>*@
+
+                <div class="mt-10">
+                    <div class="row">
+                        <div class="mt-10 col-lg-10">
+
+                        </div>
+                        <div class="mt-10 col-lg-2">
+                            <button type="submit" class="genric-btn success circle arrow">Save<span class="lnr lnr-arrow-right"></span></button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

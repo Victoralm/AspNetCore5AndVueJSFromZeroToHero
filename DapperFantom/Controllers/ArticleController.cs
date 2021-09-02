@@ -40,11 +40,11 @@ namespace DapperFantom.Controllers
         public IActionResult Add()
         {
             List<Category> categList = this._categoryService.GetAllCategDapper();
-            List<Citiy> citList = this._cityService.GetAllCitiesDapper();
+            List<City> citList = this._cityService.GetAllCitiesDapper();
 
             GeneralViewModel model = new GeneralViewModel
             {
-                CategorieList = categList,
+                CategoryList = categList,
                 CityList = citList,
                 Article = new Article(),
             };
