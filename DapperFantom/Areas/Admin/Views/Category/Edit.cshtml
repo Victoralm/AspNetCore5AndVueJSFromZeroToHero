@@ -1,0 +1,40 @@
+﻿@model Category
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+
+            <h4 class="mb-3">Update the Category</h4>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert mb-3">
+                    <div class="alert-danger">
+                        @ViewBag.Error
+                    </div>
+                </div>
+            }
+
+        <form method="post">
+            <input type="hidden" asp-for="@Model.CategoryId" value="@Model.CategoryId" />
+            <div class="col-8 mb-3">
+                <div class="form-floating">
+                    <input type="text" asp-for="@Model.CategoryName" name="CategoryName" value="@Model.CategoryName" id="validationCustomCategoryName" required="" class="form-control single-input" />
+                    <label asp-for="@Model.CategoryName"></label>
+                    <span asp-validation-for="@Model.CategoryName" class="row text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-8 mb-3">
+                <div class="form-floating">
+                    <input type="text" asp-for="@Model.Slug" name="Slug" value="@Model.Slug" id="validationCustomSlug" required="" class="form-control single-input" />
+                    <label asp-for="@Model.Slug"></label>
+                    <span asp-validation-for="@Model.Slug" class="row text-danger"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success">Save Category</button>
+        </form>
+
+        </div>
+    </div>
+</div>

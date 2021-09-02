@@ -57,5 +57,27 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Category");
         }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            Entities.Category categ = this._categoryService.GetCategoryById(id);
+
+            return View(categ);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(Entities.Category categ)
+        {
+            Entities.Category result = this._categoryService.UpdateCategory(categ);
+
+            if (result == null)
+            {
+                ViewBag.Error = "Something went wrong please try it again...";
+                return View(categ);
+            }
+
+            return RedirectToAction("Index", "Category");
+        }
     }
 }

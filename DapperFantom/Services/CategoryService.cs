@@ -53,6 +53,43 @@ namespace DapperFantom.Services
             return categories;
         }
 
+        public Category GetCategoryById(int id)
+        {
+            Category categ = new Category();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@CategoryId", id);
+                categ = this._dapperConnection.Query<Category>($@"select * from [Categorys] where [CategoryId]=@CategoryId", par).FirstOrDefault();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return categ;
+        }
+
+        public Category UpdateCategory(Category categ)
+        {
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@id", categ.CategoryId);
+                par.Add("@CategoryName", categ.CategoryName);
+                par.Add("@Slug", categ.Slug);
+                this._dapperConnection.Execute($@"update [Categorys] set [CategoryName]=@CategoryName, [Slug]=@Slug where [CategoryId]=@id", par);
+                return categ;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new Category();
+            }
+        }
+
         public int AddCategory(Category category)
         {
             try
