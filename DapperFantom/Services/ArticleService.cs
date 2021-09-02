@@ -33,6 +33,21 @@ namespace DapperFantom.Services
             return 0;
         }
 
+        public List<Article> GetAllArticles()
+        {
+            List<Article> articleLst = new List<Article>();
+            try
+            {
+                articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles]").ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return articleLst;
+        }
+
         public Article GetArticleById(int id)
         {
             Article article = new Article();
