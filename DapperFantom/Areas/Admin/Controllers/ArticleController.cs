@@ -103,5 +103,19 @@ namespace DapperFantom.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Article");
         }
+
+        [HttpGet]
+        public IActionResult Status(int id)
+        {
+            List<Article> articleLst = this._articleService.GetArticlesByStatus(id);
+
+            ViewBag.Title = "Pending Articles";
+            if(id == 1)
+                ViewBag.Title = "Approved Articles";
+            if (id == 2)
+                ViewBag.Title = "Rejected Articles";
+
+            return View(articleLst);
+        }
     }
 }

@@ -1,0 +1,60 @@
+﻿@model List<Article>
+
+<div class="container">
+    <div class="col-12">
+        <div class="row">
+
+            <h4 class="mb-3">@ViewBag.Title</h4>
+
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Image</th>
+                        <th>Name Surname</th>
+                        <th>Title</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var article in Model)
+                    {
+                        <tr id="@article.ArticleId">
+                            <td>@article.ArticleId</td>
+                            <td>
+                                <a href="~/img/articles/@article.Image" target="_blank">
+                                    <img src="~/img/articles/@article.Image" height="50" />
+                                </a>
+                            </td>
+                            <td>@article.NameSurname</td>
+                            <td>@article.Title</td>
+                            <td>@article.CreatedDate.ToShortDateString()</td>
+                            <td>@article.Status</td>
+                            <td>
+                                <div class="button-group-area">
+                                    <a asp-controller="Article" asp-action="Edit" asp-route-id="@article.ArticleId" class="btn btn-info">Edit</a>
+                                    <a asp-controller="Article" asp-action="Delete" asp-route-id="@article.ArticleId" class="btn btn-danger">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <a asp-controller="Article" asp-action="Add" class="btn btn-success">Add Article</a>
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+        </div>
+    </div>
+</div>
