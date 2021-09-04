@@ -54,7 +54,7 @@ namespace DapperFantom.Services
 
             try
             {
-                articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Status] = 1 and [HomeView] = 1").ToList();
+                articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Status] = 1 or [Slider] = 1 and [HomeView] = 1").ToList();
             }
             catch (Exception ex)
             {

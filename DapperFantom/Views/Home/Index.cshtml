@@ -12,70 +12,33 @@
 <!--================Post Slider Area =================-->
 <section class="post_slider_area">
     <div class="post_slider_inner owl-carousel">
-        <div class="item">
-            <div class="post_s_item">
-                <div class="post_img">
-                    <img src="img/post-slider/post-s-1.jpg" alt="">
-                </div>
-                <div class="post_text">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
+        @foreach (var article in Model.ArticleList.Where(sld => sld.Slider == 1))
+        {
+            //if (article.Slider == 1)
+            //{
+                <div class="item">
+                    <div class="post_s_item">
+                        <div class="post_img">
+                            <img src="~/img/articles/@article.Image" alt="@article.Image">
+                        </div>
+                        <div class="post_text">
+                            <a class="cat" href="#">
+                            @foreach (var category in Model.CategoryList.Where(cat => cat.CategoryId == article.CategoryId))
+                            {
+                                @category.CategoryName
+                            }
+                            </a>
+                            <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
+                            <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
+                            <div class="date">
+                                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate.ToShortDateString()</a>
+                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="post_s_item">
-                <div class="post_img">
-                    <img src="img/post-slider/post-s-2.jpg" alt="">
-                </div>
-                <div class="post_text">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="post_s_item">
-                <div class="post_img">
-                    <img src="img/post-slider/post-s-3.jpg" alt="">
-                </div>
-                <div class="post_text">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="post_s_item">
-                <div class="post_img">
-                    <img src="img/post-slider/post-s-4.jpg" alt="">
-                </div>
-                <div class="post_text">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke + CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+            @*}*@
+        }
     </div>
 </section>
 <!--================End Post Slider Area =================-->
@@ -86,312 +49,96 @@
             <div class="col-lg-8">
                 <div class="blog_left_sidebar">
 
-                    @foreach (var article in Model.ArticleList)
+                    @foreach (var (article, index) in Model.ArticleList.Select((v, i) => (v, i)))
                     {
-                        <article class="blog_style1">
-                            <div class="blog_img">
-                                <img class="img-fluid" src="~/img/articles/@article.Image" alt="">
-                            </div>
-                            <div class="blog_text">
-                                <div class="blog_text_inner">
-                                    <a class="cat" href="#">Gadgets</a>
-                                    <a href="single-blog.html"><h4>@article.Title</h4></a>
-                                    <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                                    <div class="date">
-                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate.ToShortDateString()</a>
-                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
+                        @if ((index == 0 || index == 1) && article.HomeView == 1)
+                        {
+                            <article class="blog_style1">
+                                <div class="blog_img">
+                                    <img class="img-fluid" src="~/img/articles/@article.Image" alt="">
+                                </div>
+                                <div class="blog_text">
+                                    <div class="blog_text_inner">
+                                        <a class="cat" href="#">
+                                            @foreach (var category in Model.CategoryList.Where(cat => cat.CategoryId == article.CategoryId))
+                                            {
+                                                @category.CategoryName
+                                            }
+                                        </a>
+                                        <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
+                                        <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
+                                        <div class="date">
+                                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate.ToShortDateString()</a>
+                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        }
                     }
 
-                    @*@foreach (var (article, index) in Model.ArticleList.Select((v, i) => (v, i)))
-        {
+                    <div class="row">
 
-            @switch (index)
-            {
-                case 1:
-                    <text>
-                        <article class="blog_style1">
-                            <div class="blog_img">
-                                <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image" style="object-fit: cover;">
-                            </div>
-                            <div class="blog_text">
-                                <div class="blog_text_inner">
-                                    <a class="cat" href="#">Gadgets</a>
-                                    <a href="single-blog.html"><h4>@article.Title</h4></a>
-                                    <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                                    <div class="date">
-                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate.ToShortDateString()</a>
-                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                                    </div>
+                        @foreach (var (article, index) in Model.ArticleList.Select((v, i) => (v, i)))
+                        {
+                            @if ((index == 2 || index == 3) && article.HomeView == 1)
+                            {
+                                <div class="col-md-6">
+                                    <article class="blog_style1 small">
+                                        <div class="blog_img">
+                                            <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image">
+                                        </div>
+                                        <div class="blog_text">
+                                            <div class="blog_text_inner">
+                                                <a class="cat" href="#">
+                                                    @foreach (var category in Model.CategoryList.Where(cat => cat.CategoryId == article.CategoryId))
+                                                    {
+                                                        @category.CategoryName
+                                                    }
+                                                </a>
+                                                <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
+                                                <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
+                                                <div class="date">
+                                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
+                                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </article>
                                 </div>
-                            </div>
-                        </article>
+                            }
+                        }
 
-                        <div class="row">
-                    </text>
-                    break;
+                    </div>
 
-                case 2:
-                    <text>
-                        <div class="col-md-6">
-                            <article class="blog_style1 small">
+                    @foreach (var (article, index) in Model.ArticleList.Select((v, i) => (v, i)))
+                    {
+                        @if ((index >= 4) && article.HomeView == 1)
+                        {
+                            <article class="blog_style1">
                                 <div class="blog_img">
-                                    <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image">
+                                    <img class="img-fluid" src="~/img/articles/@article.Image" alt="">
                                 </div>
                                 <div class="blog_text">
                                     <div class="blog_text_inner">
-                                        <a class="cat" href="#">Gadgets</a>
-                                        <a href="single-blog.html"><h4>@article.Title</h4></a>
+                                        <a class="cat" href="#">
+                                            @foreach (var category in Model.CategoryList.Where(cat => cat.CategoryId == article.CategoryId))
+                                            {
+                                                @category.CategoryName
+                                            }
+                                        </a>
+                                        <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
                                         <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
                                         <div class="date">
-                                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
+                                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate.ToShortDateString()</a>
                                             <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
                                         </div>
                                     </div>
                                 </div>
                             </article>
-                        </div>
-                    </text>
-                    break;
+                        }
+                    }
 
-                case 3:
-                    <text>
-                        <div class="col-md-6">
-                            <article class="blog_style1 small">
-                                <div class="blog_img">
-                                    <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image">
-                                </div>
-                                <div class="blog_text">
-                                    <div class="blog_text_inner">
-                                        <a class="cat" href="#">Gadgets</a>
-                                        <a href="single-blog.html"><h4>@article.Title</h4></a>
-                                        <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                                        <div class="date">
-                                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
-                                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                    </text>
-                    break;
-
-                default:
-                    <text>
-                        <article class="blog_style1">
-                            <div class="blog_img">
-                                <img class="img-fluid" src="~/img/articles/@article.Image" alt="">
-                            </div>
-                            <div class="blog_text">
-                                <div class="blog_text_inner">
-                                    <a class="cat" href="#">Gadgets</a>
-                                    <a href="single-blog.html"><h4>@article.Title</h4></a>
-                                    <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                                    <div class="date">
-                                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
-                                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </text>
-                    break;
-            }*@
-
-                    @*@if (index == 1)
-        {
-            <article class="blog_style1">
-                <div class="blog_img">
-                    <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image" style="object-fit: cover;">
-                </div>
-                <div class="blog_text">
-                    <div class="blog_text_inner">
-                        <a class="cat" href="#">Gadgets</a>
-                        <a href="single-blog.html"><h4>@article.Title</h4></a>
-                        <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                        <div class="date">
-                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate.ToShortDateString()</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-
-            <div class="row">
-                }
-
-                else if (index == 2)
-                {
-                <div class="col-md-6">
-                    <article class="blog_style1 small">
-                        <div class="blog_img">
-                            <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image">
-                        </div>
-                        <div class="blog_text">
-                            <div class="blog_text_inner">
-                                <a class="cat" href="#">Gadgets</a>
-                                <a href="single-blog.html"><h4>@article.Title</h4></a>
-                                <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                                <div class="date">
-                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-                }
-
-                else if (index == 3)
-                {
-                <div class="col-md-6">
-                    <article class="blog_style1 small">
-                        <div class="blog_img">
-                            <img class="img-fluid" src="~/img/articles/@article.Image" alt="@article.Image">
-                        </div>
-                        <div class="blog_text">
-                            <div class="blog_text_inner">
-                                <a class="cat" href="#">Gadgets</a>
-                                <a href="single-blog.html"><h4>@article.Title</h4></a>
-                                <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                                <div class="date">
-                                    <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        }
-
-        else
-        {
-            <article class="blog_style1">
-                <div class="blog_img">
-                    <img class="img-fluid" src="~/img/articles/@article.Image" alt="">
-                </div>
-                <div class="blog_text">
-                    <div class="blog_text_inner">
-                        <a class="cat" href="#">Gadgets</a>
-                        <a href="single-blog.html"><h4>@article.Title</h4></a>
-                        <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
-                        <div class="date">
-                            <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> @article.PublishedDate</a>
-                            <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> @article.CommentCount</a>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        }*@
-
-                    @*<article class="blog_style1">
-            <div class="blog_img">
-                <img class="img-fluid" src="img/home-blog/blog-1.jpg" alt="">
-            </div>
-            <div class="blog_text">
-                <div class="blog_text_inner">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="blog_style1">
-            <div class="blog_img">
-                <img class="img-fluid" src="img/home-blog/blog-2.jpg" alt="">
-            </div>
-            <div class="blog_text">
-                <div class="blog_text_inner">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <div class="row">
-            <div class="col-md-6">
-                <article class="blog_style1 small">
-                    <div class="blog_img">
-                        <img class="img-fluid" src="img/home-blog/blog-small-1.jpg" alt="">
-                    </div>
-                    <div class="blog_text">
-                        <div class="blog_text_inner">
-                            <a class="cat" href="#">Gadgets</a>
-                            <a href="single-blog.html"><h4>2nd Gen Smoke Co Bomb Alarm integration</h4></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                            <div class="date">
-                                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-md-6">
-                <article class="blog_style1 small">
-                    <div class="blog_img">
-                        <img class="img-fluid" src="img/home-blog/blog-small-2.jpg" alt="">
-                    </div>
-                    <div class="blog_text">
-                        <div class="blog_text_inner">
-                            <a class="cat" href="#">Gadgets</a>
-                            <a href="single-blog.html"><h4>2nd Gen Smoke Co Bomb Alarm integration</h4></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                            <div class="date">
-                                <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-        <article class="blog_style1">
-            <div class="blog_img">
-                <img class="img-fluid" src="img/home-blog/blog-3.jpg" alt="">
-            </div>
-            <div class="blog_text">
-                <div class="blog_text_inner">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </article>
-        <article class="blog_style1">
-            <div class="blog_img">
-                <img class="img-fluid" src="img/home-blog/blog-4.jpg" alt="">
-            </div>
-            <div class="blog_text">
-                <div class="blog_text_inner">
-                    <a class="cat" href="#">Gadgets</a>
-                    <a href="single-blog.html"><h4>Nest Protect: 2nd Gen Smoke CO Alarm</h4></a>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
-                    <div class="date">
-                        <a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> March 14, 2018</a>
-                        <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 05</a>
-                    </div>
-                </div>
-            </div>
-        </article>*@
                     <nav class="blog-pagination justify-content-center d-flex">
                         <ul class="pagination">
                             <li class="page-item">
