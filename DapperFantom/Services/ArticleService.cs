@@ -48,6 +48,24 @@ namespace DapperFantom.Services
             return articleLst;
         }
 
+        public List<Article> GetArticlesByCategoryId(int categoryId)
+        {
+            List<Article> articleLst = new List<Article>();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@CategoryId", categoryId);
+                articleLst = this._dapperConnection.Query<Article>($@"select * from [Articles] where [Status] = 1 and [CategoryId] = @CategoryId", par).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return articleLst;
+        }
+
         public List<Article> GetHomeArticles()
         {
             List<Article> articleLst = new List<Article>();

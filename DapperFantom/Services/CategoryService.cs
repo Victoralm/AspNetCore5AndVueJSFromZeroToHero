@@ -24,6 +24,24 @@ namespace DapperFantom.Services
             this._dapperConnection = this._connectionService.ForDapper();
         }
 
+        public Category GetCategoryBySlug(string slug)
+        {
+            Category categ = new Category();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@Slug", slug);
+                categ = this._dapperConnection.Query<Category>("select * from [Categorys] where[Slug] = @Slug", par).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return categ;
+        }
+
         //public List<Category> GetAllCategAdoNet()
         //{
         //    List<Category> categories = new List<Category>();
