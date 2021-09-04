@@ -48,6 +48,22 @@ namespace DapperFantom.Services
             return articleLst;
         }
 
+        public List<Article> GetHomeArticles()
+        {
+            List<Article> articleLst = new List<Article>();
+
+            try
+            {
+                articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Status] = 1 and [HomeView] = 1").ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return articleLst;
+        }
+
         public List<Article> GetAllArticlesAlt()
         {
             List<Article> articleLst = new List<Article>();
