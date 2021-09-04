@@ -20,38 +20,38 @@ namespace DapperFantom.Services
         public CategoryService(IConfiguration config)
         {
             this._connectionService = new ConnectionService(config);
-            this._adoNetConnection = this._connectionService.DbConnection();
+            //this._adoNetConnection = this._connectionService.DbConnection();
             this._dapperConnection = this._connectionService.ForDapper();
         }
 
-        public List<Category> GetAllCategAdoNet()
-        {
-            List<Category> categories = new List<Category>();
+        //public List<Category> GetAllCategAdoNet()
+        //{
+        //    List<Category> categories = new List<Category>();
 
-            // SQL query
-            SqlCommand command = new SqlCommand("select * from [Categorys]", this._adoNetConnection);
-            // Defines the command type
-            command.CommandType = CommandType.Text;
+        //    // SQL query
+        //    SqlCommand command = new SqlCommand("select * from [Categorys]", this._adoNetConnection);
+        //    // Defines the command type
+        //    command.CommandType = CommandType.Text;
 
-            // Getting the data and closing the connection
-            IDataReader dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
+        //    // Getting the data and closing the connection
+        //    IDataReader dataReader = command.ExecuteReader(CommandBehavior.CloseConnection);
 
-            // Storing the data
-            while (dataReader.Read())
-            {
-                Category categ = new Category();
+        //    // Storing the data
+        //    while (dataReader.Read())
+        //    {
+        //        Category categ = new Category();
 
-                categ.CategoryId = dataReader["CategoryId"] is DBNull ? 0 : int.Parse(dataReader["CategoryId"].ToString());
-                categ.CategoryName = dataReader["CategoryName"] is DBNull ? "" : dataReader["CategoryName"].ToString();
-                categ.Slug = dataReader["Slug"] is DBNull ? "" : dataReader["Slug"].ToString();
-                //categ.OrderBy = (byte)(dataReader["OrderBy"] is DBNull ? 0 : Convert.ToByte(dataReader["OrderBy"].ToString()));
-                categ.OrderBy = (byte)(dataReader["OrderBy"] is DBNull ? 0 : byte.Parse(dataReader["OrderBy"].ToString()));
+        //        categ.CategoryId = dataReader["CategoryId"] is DBNull ? 0 : int.Parse(dataReader["CategoryId"].ToString());
+        //        categ.CategoryName = dataReader["CategoryName"] is DBNull ? "" : dataReader["CategoryName"].ToString();
+        //        categ.Slug = dataReader["Slug"] is DBNull ? "" : dataReader["Slug"].ToString();
+        //        //categ.OrderBy = (byte)(dataReader["OrderBy"] is DBNull ? 0 : Convert.ToByte(dataReader["OrderBy"].ToString()));
+        //        categ.OrderBy = (byte)(dataReader["OrderBy"] is DBNull ? 0 : byte.Parse(dataReader["OrderBy"].ToString()));
 
-                categories.Add(categ);
-            }
+        //        categories.Add(categ);
+        //    }
 
-            return categories;
-        }
+        //    return categories;
+        //}
 
         public Category GetCategoryById(int id)
         {
