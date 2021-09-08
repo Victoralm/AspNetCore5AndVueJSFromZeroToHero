@@ -34,6 +34,19 @@ namespace DapperFantom.Helpers
             List<Article> articleLst = this._articleService.GetArticlesByCategoryId(category.CategoryId);
             paginationModel.ArticleList = articleLst;
 
+            string pageHtml = "";
+            if (pageCount > 1)
+            {
+                for (int i = 1; i < pageCount+1; i++)
+                {
+                    pageHtml += $"<li class=\"page-item\"><a href=\"/Category/{category.Slug}/{i}\" class=\"page-link\">{i}</a></li>";
+                }
+                string html = "<nav class=\"blog-pagination justify-content-center d-flex\">" +
+                                "<ul class=\"pagination\">" +
+                                pageHtml +
+                                "</ul></nav>";
+            }
+
             return paginationModel;
         }
     }

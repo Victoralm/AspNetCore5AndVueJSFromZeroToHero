@@ -32,7 +32,7 @@ namespace DapperFantom.Controllers
             {
                 Category categ = this._categoryService.GetCategoryBySlug(slug);
                 List<Category> categLst = this._categoryService.GetAllCategAlt();
-                PaginationHelper paginationHelper = new PaginationHelper(this._serviceProvider);
+                PaginationHelper paginationHelper = new PaginationHelper(_serviceProvider);
                 PaginationModel paginationModel = paginationHelper.CategoryPagination(categ, page);
                 if (categ != null)
                 {
