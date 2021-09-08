@@ -16,6 +16,7 @@ namespace DapperFantom.Models
         public List<Article> ArticleList { get; set; }
         public Article PrevArticle { get; set; }
         public Article NextArticle { get; set; }
+        public PaginationModel PaginationModel { get; set; }
 
         public GeneralViewModel()
         {
@@ -27,6 +28,7 @@ namespace DapperFantom.Models
             ArticleList = new List<Article>();
             PrevArticle = new Article();
             NextArticle = new Article();
+            PaginationModel = new PaginationModel();
         }
     }
 }

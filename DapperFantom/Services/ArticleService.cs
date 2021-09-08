@@ -58,15 +58,23 @@ namespace DapperFantom.Services
             return articleLst;
         }
 
-        public List<Article> GetArticlesByCategoryId(int categoryId)
+        public List<Article> GetArticlesByCategoryId(int categoryId, int page = 1)
         {
             List<Article> articleLst = new List<Article>();
 
             try
             {
+                int articlesPerPage = 3;
+                int offset = (page - 1) * articlesPerPage;
                 var par = new DynamicParameters();
                 par.Add("@CategoryId", categoryId);
-                articleLst = this._dapperConnection.Query<Article>($@"select * from [Articles] where [Status] = 1 and [CategoryId] = @CategoryId", par).ToList();
+                par.Add("@articlesPerPage", articlesPerPage);
+                par.Add("@offset", offset);
+                articleLst = this._dapperConnection.Query<Article>($@"select * from [Articles] where [Status] = 1 
+                                and [CategoryId] = @CategoryId
+                                order by [PublishedDate] desc
+                                offset @offset rows
+                                fetch next @articlesPerPage rows only", par).ToList();
             }
             catch (Exception ex)
             {

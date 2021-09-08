@@ -1,4 +1,5 @@
 ﻿using DapperFantom.Entities;
+using DapperFantom.Helpers;
 using DapperFantom.Models;
 using DapperFantom.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace DapperFantom.Controllers
     {
         private CategoryService _categoryService;
         private ArticleService _articleService;
+        private IServiceProvider _serviceProvider;
 
         public CategoryController(IServiceProvider serviceProvider)
         {
@@ -24,19 +26,22 @@ namespace DapperFantom.Controllers
         }
 
         [Route("/Category/{slug}/{page?}")]
-        public IActionResult Index(string slug)
+        public IActionResult Index(string slug, int page = 1)
         {
             if (!string.IsNullOrEmpty(slug))
             {
                 Category categ = this._categoryService.GetCategoryBySlug(slug);
                 List<Category> categLst = this._categoryService.GetAllCategAlt();
+                PaginationHelper paginationHelper = new PaginationHelper(this._serviceProvider);
+                PaginationModel paginationModel = paginationHelper.CategoryPagination(categ, page);
                 if (categ != null)
                 {
-                    List<Article> articleLst = this._articleService.GetArticlesByCategoryId(categ.CategoryId);
+                    //List<Article> articleLst = this._articleService.GetArticlesByCategoryId(categ.CategoryId);
 
                     GeneralViewModel model = new GeneralViewModel
                     {
-                        ArticleList = articleLst,
+                        //ArticleList = articleLst,
+                        PaginationModel = paginationModel,
                         CategoryList = categLst,
                     };
 
