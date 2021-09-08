@@ -33,6 +33,16 @@ namespace DapperFantom.Services
             return 0;
         }
 
+        internal int GetTotalArticleCountByCategory(int categoryId)
+        {
+            //List<Article> articleLst = new List<Article>();
+            //articleLst = GetArticlesByCategoryId(categoryId);
+            //return articleLst.Count();
+
+            var sql = $@"select count(CategoryId) from [Articles] where [CategoryId] = {categoryId}";
+            return Convert.ToInt32(this._dapperConnection.ExecuteScalar(sql).ToString());
+        }
+
         public List<Article> GetAllArticles()
         {
             List<Article> articleLst = new List<Article>();
