@@ -26,6 +26,14 @@ namespace DapperFantom.Helpers
             int totalCount = this._articleService.GetTotalArticleCountByCategory(category.CategoryId);
             paginationModel.TotalCount = totalCount;
 
+            int articlesPerPage = 3;
+            decimal pageSize = Math.Ceiling(decimal.Parse(totalCount.ToString()) / articlesPerPage);
+            int pageCount = (int)Math.Round(pageSize);
+            paginationModel.PageCount = pageCount;
+
+            List<Article> articleLst = this._articleService.GetArticlesByCategoryId(category.CategoryId);
+            paginationModel.ArticleList = articleLst;
+
             return paginationModel;
         }
     }
