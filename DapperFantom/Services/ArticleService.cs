@@ -149,6 +149,48 @@ namespace DapperFantom.Services
             return article;
         }
 
+        public Article GetPrevArticleById(int id)
+        {
+            Article prevArticle = new Article();
+            var par = new DynamicParameters();
+
+            try
+            {
+                par.Add("@ArticleId", id);
+                string sql = @"select [ArticleId], [Guid], [Title], [Image] from [Articles] 
+                            where [ArticleId]<@ArticleId order by [ArticleId] desc
+                            offset 0 rows
+                            fetch next 1 rows only";
+                prevArticle = this._dapperConnection.Query<Article>(sql, par).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return prevArticle;
+        }
+
+        public Article GetNextArticleById(int id)
+        {
+            Article nextArticle = new Article();
+            var par = new DynamicParameters();
+
+            try
+            {
+                par.Add("@ArticleId", id);
+                string sql = @"select top 1 [ArticleId], [Guid], [Title], [Image] from [Articles] 
+                            where [ArticleId]>@ArticleId order by [ArticleId] asc";
+                nextArticle = this._dapperConnection.Query<Article>(sql, par).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return nextArticle;
+        }
+
         public bool UpdateArticle(Article article)
         {
             // https://localhost:44377/Admin/Article

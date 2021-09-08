@@ -14,6 +14,8 @@ namespace DapperFantom.Models
         public List<City> CityList { get; set; }
         public Article Article { get; set; }
         public List<Article> ArticleList { get; set; }
+        public Article PrevArticle { get; set; }
+        public Article NextArticle { get; set; }
 
         public GeneralViewModel()
         {
@@ -23,6 +25,8 @@ namespace DapperFantom.Models
             CityList = new List<City>();
             Article = new Article();
             ArticleList = new List<Article>();
+            PrevArticle = new Article();
+            NextArticle = new Article();
         }
     }
 }

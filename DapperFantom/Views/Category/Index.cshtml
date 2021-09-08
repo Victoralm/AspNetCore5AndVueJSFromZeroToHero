@@ -5,22 +5,20 @@
             <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
             <div class="container">
                 <div class="banner_content text-center">
-                    <h2>Blog Post Details</h2>
+                    @{
+                        string catName = "";
+                        string catSlug = "";
+                        var article1 = Model.ArticleList[0];
+                        @foreach (var category in Model.CategoryList.Where(cat => cat.CategoryId == article1.CategoryId))
+                        {
+                            catName = category.CategoryName;
+                            catSlug = category.Slug;
+                        }
+                    }
+                    <h2>@catName Posts</h2>
                     <div class="page_link">
                         <a href="/">Home</a>
-
-                        @{
-                            string catName = "";
-                            string catSlug = "";
-                            var article1 = Model.ArticleList[0];
-                            @foreach (var category in Model.CategoryList.Where(cat => cat.CategoryId == article1.CategoryId))
-                            {
-                                catName = category.CategoryName;
-                                catSlug = category.Slug;
-                            }
-                        }
-
-                        <a href="/Category/@catSlug">Category</a>
+                        <a href="/Category/@catSlug">@catName</a>
                     </div>
                 </div>
             </div>

@@ -103,12 +103,16 @@ namespace DapperFantom.Controllers
         {
             //Article article = this._articleService.GetArticleById(id);
             Article article = this._articleService.GetArticleByGuid(id);
-            List<Category> catLst = this._categoryService.GetAllCategAlt();
+            Article prevArticle = this._articleService.GetPrevArticleById(article.ArticleId);
+            Article nextArticle = this._articleService.GetNextArticleById(article.ArticleId);
+            List <Category> catLst = this._categoryService.GetAllCategAlt();
 
             GeneralViewModel model = new GeneralViewModel
             {
                 Article = article,
                 CategoryList = catLst,
+                PrevArticle = prevArticle,
+                NextArticle = nextArticle,
             };
 
             return View(model);
