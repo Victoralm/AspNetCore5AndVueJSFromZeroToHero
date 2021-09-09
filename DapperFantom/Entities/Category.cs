@@ -27,5 +27,7 @@ namespace DapperFantom.Entities
         public string Slug { get; set; }
 
         public byte OrderBy { get; set; }
+
+        public int ArticleCount { get; set; }
     }
 }

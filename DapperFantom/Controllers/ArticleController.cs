@@ -115,6 +115,11 @@ namespace DapperFantom.Controllers
                 NextArticle = nextArticle,
             };
 
+            foreach (var (category, index) in model.CategoryList.Select((v, i) => (v, i)))
+            {
+                model.CategoryList[index].ArticleCount = this._articleService.GetTotalArticleCountByCategory(category.CategoryId);
+            }
+
             return View(model);
         }
     }

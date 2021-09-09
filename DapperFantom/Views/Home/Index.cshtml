@@ -27,7 +27,7 @@
                         <img src="~/img/articles/@article.Image" alt="@article.Image">
                     </div>
                     <div class="post_text">
-                        <a class="cat" href="/Category/@catSlug">@catName</a>
+                        <a class="cat" href="/Category/@catSlug/1">@catName</a>
                         <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
                         <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
                         <div class="date">
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="blog_text">
                                     <div class="blog_text_inner">
-                                        <a class="cat" href="/Category/@catSlug">@catName</a>
+                                        <a class="cat" href="/Category/@catSlug/1">@catName</a>
                                         <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
                                         <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
                                         <div class="date">
@@ -99,7 +99,7 @@
                                         </div>
                                         <div class="blog_text">
                                             <div class="blog_text_inner">
-                                                <a class="cat" href="/Category/@catSlug">@catName</a>
+                                                <a class="cat" href="/Category/@catSlug/1">@catName</a>
                                                 <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
                                                 <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
                                                 <div class="date">
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="blog_text">
                                         <div class="blog_text_inner">
-                                            <a class="cat" href="/Category/@catSlug">@catName</a>
+                                            <a class="cat" href="/Category/@catSlug/1">@catName</a>
                                             <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h4>@article.Title</h4></a>
                                             <p>@(article.Content.Length > 150 ? $"{article.Content.Substring(0, 150)} ..." : article.Content)</p>
                                             <div class="date">
@@ -236,9 +236,9 @@
                                 @foreach (var categ in Model.CategoryList)
                                 {
                                     <li>
-                                        <a href="/Category/@categ.Slug" class="d-flex justify-content-between">
+                                        <a href="/Category/@categ.Slug/1" class="d-flex justify-content-between">
                                             <p>@categ.CategoryName</p>
-                                            <p>37</p>
+                                            <p>@categ.ArticleCount</p>
                                         </a>
                                     </li>
                                 }

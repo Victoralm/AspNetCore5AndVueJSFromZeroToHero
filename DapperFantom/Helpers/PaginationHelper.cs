@@ -39,13 +39,26 @@ namespace DapperFantom.Helpers
             {
                 for (int i = 1; i < pageCount+1; i++)
                 {
-                    pageHtml += $"<li class=\"page-item\"><a href=\"/Category/{category.Slug}/{i}\" class=\"page-link\">{i}</a></li>";
+                    string active = i == page ? "active" : "";
+                    pageHtml += $"<li class=\"page-item {active}\"><a href=\"/Category/{category.Slug}/{i}\" class=\"page-link\">{i}</a></li>";
                 }
-                string html = "<nav class=\"blog-pagination justify-content-center d-flex\">" +
-                                "<ul class=\"pagination\">" +
-                                pageHtml +
-                                "</ul></nav>";
             }
+
+            string html = "<nav class=\"blog-pagination justify-content-center d-flex\">" +
+                                "<ul class=\"pagination\">" +
+                                "<li class=\"page-item\">" +
+                                "<a href=\"#\" class=\"page-link\" aria-label=\"Previous\">" +
+                                "<span aria-hidden=\"true\">" +
+                                "<span class=\"lnr lnr-chevron-left\">" +
+                                "</span></span></a></li>" +
+                                pageHtml +
+                                "<li class=\"page-item\">" + 
+                                "<a href=\"#\" class=\"page-link\" aria-label=\"Next\">" + 
+                                "<span aria-hidden=\"true\">" + "<span class=\"lnr lnr-chevron - right\">" + 
+                                "</span></span></a></li>" +
+                                "</ul></nav>";
+
+            paginationModel.Html = html;
 
             return paginationModel;
         }

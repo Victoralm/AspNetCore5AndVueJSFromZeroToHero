@@ -15,7 +15,7 @@ namespace DapperFantom.Controllers
     {
         private CategoryService _categoryService;
         private ArticleService _articleService;
-        private IServiceProvider _serviceProvider;
+        private IServiceProvider _serviceProv;
 
         public CategoryController(IServiceProvider serviceProvider)
         {
@@ -23,16 +23,18 @@ namespace DapperFantom.Controllers
             // An alternative to injecting as a parameter on the constructor
             this._categoryService = serviceProvider.GetRequiredService<CategoryService>();
             this._articleService = serviceProvider.GetRequiredService<ArticleService>();
+            this._serviceProv = serviceProvider;
         }
 
         [Route("/Category/{slug}/{page?}")]
+        [HttpGet]
         public IActionResult Index(string slug, int page = 1)
         {
             if (!string.IsNullOrEmpty(slug))
             {
                 Category categ = this._categoryService.GetCategoryBySlug(slug);
                 List<Category> categLst = this._categoryService.GetAllCategAlt();
-                PaginationHelper paginationHelper = new PaginationHelper(_serviceProvider);
+                PaginationHelper paginationHelper = new PaginationHelper(this._serviceProv);
                 PaginationModel paginationModel = paginationHelper.CategoryPagination(categ, page);
                 if (categ != null)
                 {
@@ -41,9 +43,14 @@ namespace DapperFantom.Controllers
                     GeneralViewModel model = new GeneralViewModel
                     {
                         //ArticleList = articleLst,
-                        PaginationModel = paginationModel,
                         CategoryList = categLst,
+                        PaginationModel = paginationModel,
                     };
+
+                    foreach (var (category, index) in model.CategoryList.Select((v, i) => (v, i)))
+                    {
+                        model.CategoryList[index].ArticleCount = this._articleService.GetTotalArticleCountByCategory(category.CategoryId);
+                    }
 
                     return View(model);
                 }
