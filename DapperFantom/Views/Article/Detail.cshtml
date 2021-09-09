@@ -213,13 +213,13 @@
                                     <input type="email" class="form-control" id="email" placeholder="Enter email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'">
                                 </div>
                             </div>
-                            <div class="form-group">
+                            @*<div class="form-group">
                                 <input type="text" class="form-control" id="subject" placeholder="Subject" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Subject'">
-                            </div>
+                            </div>*@
                             <div class="form-group">
                                 <textarea class="form-control mb-10" rows="5" name="message" placeholder="Messege" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Messege'" required=""></textarea>
                             </div>
-                            <a href="#" class="primary-btn submit_btn">Post Comment</a>
+                            <a href="javascript:SaveComment();" class="primary-btn submit_btn">Post Comment</a>
                         </form>
                     </div>
                 </div>
@@ -322,3 +322,40 @@
     </section>
     <!--================Blog Area =================-->
 
+@section Scrpts {
+    <script type="text/javascript">
+        function SaveComment() {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var message = $('#message').val();
+
+            if (name == "" || email == "" || message == "") {
+                alert("Please fill all form areas");
+            } else {
+                $.ajax({
+                    url: "comment/Add/@(Model.Article.Guid)",
+                    method: post,
+                    data: {
+                        "name": name,
+                        "email": email,
+                        "message": message
+                    },
+                    dataType: "JSON",
+                    success: function (data) {
+                        if (data.success) {
+                            alert("Your comment has been posted.");
+                            $('#name').val('');
+                            $('#email').val('');
+                            $('#message').val('');
+                        } else {
+                            alert("Something went wrong, try it again...")
+                            $('#name').val(data["name"]);
+                            $('#email').val(data["email"]);
+                            $('#message').val(data["message"]);
+                        }
+                    },
+                });
+            }
+        }
+    </script>
+}
