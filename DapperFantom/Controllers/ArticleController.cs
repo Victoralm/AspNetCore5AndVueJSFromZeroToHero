@@ -19,6 +19,7 @@ namespace DapperFantom.Controllers
         private CityService _cityService;
         private ArticleService _articleService;
         private IWebHostEnvironment _hosting;
+        private CommentService _commentService;
 
         public object GeneralModel { get; private set; }
 
@@ -30,6 +31,7 @@ namespace DapperFantom.Controllers
             this._cityService = serviceProvider.GetRequiredService<CityService>();
             this._articleService = serviceProvider.GetRequiredService<ArticleService>();
             this._hosting = serviceProvider.GetRequiredService<IWebHostEnvironment>();
+            this._commentService = serviceProvider.GetRequiredService<CommentService>();
         }
         public IActionResult Index()
         {
@@ -107,12 +109,15 @@ namespace DapperFantom.Controllers
             Article nextArticle = this._articleService.GetNextArticleById(article.ArticleId);
             List <Category> catLst = this._categoryService.GetAllCategAlt();
 
+            List<Comment> commentLst = this._commentService.GetAllCommntsFromArticle(article.ArticleId);
+
             GeneralViewModel model = new GeneralViewModel
             {
                 Article = article,
                 CategoryList = catLst,
                 PrevArticle = prevArticle,
                 NextArticle = nextArticle,
+                CommentList = commentLst,
             };
 
             foreach (var (category, index) in model.CategoryList.Select((v, i) => (v, i)))

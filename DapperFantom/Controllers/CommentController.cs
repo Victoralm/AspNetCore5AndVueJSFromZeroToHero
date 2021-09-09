@@ -28,7 +28,6 @@ namespace DapperFantom.Controllers
             return View();
         }
 
-        [HttpPost]
         public IActionResult Add(string id, IFormCollection form)
         {
             Article article = new Article();
@@ -37,12 +36,13 @@ namespace DapperFantom.Controllers
             try
             {
                 article = this._articleService.GetArticleByGuid(id);
+
                 Comment comment = new Comment
                 {
                     ArticleId = article.ArticleId,
-                    Name = form["name"],
-                    Email = form["email"],
-                    CommentText = form["message"],
+                    Name = form["commentName"],
+                    Email = form["commentEmail"],
+                    CommentText = form["commentMessage"],
                     CreatedDate = DateTime.Now,
                     ModifiedDate = DateTime.Now,
                     Status = 1,

@@ -34,5 +34,23 @@ namespace DapperFantom.Services
                 return 0;
             }
         }
+
+        public List<Comment> GetAllCommntsFromArticle(int articleId)
+        {
+            List<Comment> commentLst = new List<Comment>();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@ArticleId", articleId);
+                commentLst = this._dapperConnection.Query<Comment>("select * from [Comments] where [ArticleId] = @ArticleId order by [CreatedDate] asc", par).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return commentLst;
+        }
     }
 }
