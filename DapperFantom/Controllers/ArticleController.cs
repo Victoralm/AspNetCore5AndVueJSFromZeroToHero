@@ -68,6 +68,7 @@ namespace DapperFantom.Controllers
                 if(file.Length > 0)
                 {
                     UploadHelper uploadHelper = new UploadHelper(this._hosting);
+                    //string filename = await uploadHelper.Upload(file);
                     string filename = await uploadHelper.Upload(file);
                     if (!string.IsNullOrEmpty(filename))
                     {

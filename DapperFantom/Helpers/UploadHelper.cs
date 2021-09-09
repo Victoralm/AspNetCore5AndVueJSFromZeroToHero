@@ -19,8 +19,10 @@ namespace DapperFantom.Helpers
             this._environment = hosting;
         }
 
-        public async Task<string> Upload(IFormFile file)
+        //public async Task<string> Upload(IFormFile file)
+        public Task<string> Upload(IFormFile file)
         {
+            
             string result = "";
             if(file.Length > 0)
             {
@@ -46,7 +48,9 @@ namespace DapperFantom.Helpers
                 }
             }
 
-            return result;
+            //return result;
+            return Task.FromResult(result);
+
         }
 
         public bool Delete(string filename)
