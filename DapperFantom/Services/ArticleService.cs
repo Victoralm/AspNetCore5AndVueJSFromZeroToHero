@@ -105,6 +105,45 @@ namespace DapperFantom.Services
             return articleLst;
         }
 
+        public List<Article> GetArticlesPerPage(int page = 1)
+        {
+            List<Article> articleLst = new List<Article>();
+
+            try
+            {
+                int articlesPerPage = 3;
+                int offset = (page - 1) * articlesPerPage;
+                var par = new DynamicParameters();
+                par.Add("@articlesPerPage", articlesPerPage);
+                par.Add("@offset", offset);
+
+                var sql = $@"select * from [Articles]
+                            inner join Categorys as cat on cat.[CategoryId] = [Articles].[CategoryId]
+                            where [Homeview] = 1 and [Status] = 1 or [Status] = 1
+                            order by [PublishedDate] desc
+                            offset @offset rows
+                            fetch next @articlesPerPage rows only";
+
+                articleLst = this._dapperConnection.Query<Article, Category, Article>(sql, (article, category) => {
+                    article.Category = category;
+                    return article;
+                }, 
+                par, splitOn: "CategoryId").ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return articleLst;
+        }
+
+        public int CountTotalArticles()
+        {
+            var sql = $@"select count(ArticleId) from [Articles] where [Status] = 1";
+            return Convert.ToInt32(this._dapperConnection.ExecuteScalar(sql).ToString());
+        }
+
         public List<Article> GetHomeArticles()
         {
             List<Article> articleLst = new List<Article>();

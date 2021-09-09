@@ -38,7 +38,8 @@
                     <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><img src="~/img/articles/@article.Image" alt="post" class="img-fluid"></a>
                     <div class="media-body" style="display: inline">
                         <a asp-controller="Article" asp-action="Detail" asp-route-id="@article.Guid"><h3>@article.Title</h3></a>
-                        <p>02 Hours ago</p>
+                        @*<p>02 Hours ago</p>*@
+                        <p>@article.PublishedDate.ToShortDateString()</p>
                     </div>
                 </div>
                 @*</div>*@
