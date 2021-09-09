@@ -90,9 +90,12 @@ namespace DapperFantom.Services
 
             try
             {
-                var par = new DynamicParameters();
-                par.Add("@term", searchQuery);
-                articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Status] = 1 or [Slider] = 1 and [HomeView] = 1 and [Title] like @term or [Content] like @term order by [ArticleId] desc", par).ToList();
+                // Using Take() to only return 5 articles (I don't like it, but...)
+                articleLst = this._dapperConnection.Query<Article>($@"select * from [Articles] where [Articles].[Status] = 1 
+                                and [Articles].[Title] like @searchQuery
+                                or [Articles].[Content] like @searchQuery
+                                order by [Articles].[ArticleId] desc", new { searchQuery = "%" + searchQuery + "%" }).Take(5).ToList();
+                //articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Status] = 1 and CONTAINS([Title], '@term') or CONTAINS([Content], '@term') order by [ArticleId] desc", par).ToList();
             }
             catch (Exception ex)
             {
