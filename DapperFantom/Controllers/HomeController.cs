@@ -59,5 +59,26 @@ namespace DapperFantom.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public IActionResult Search()
+        {
+            string searchQuery = Request.Query["q"];
+
+            List<Article> articleLst = this._articleService.GetArticlesBySerchTerm(searchQuery);
+            List<Category> categList = this._categoryService.GetAllCategDapper();
+
+            GeneralViewModel model = new GeneralViewModel
+            {
+                ArticleList = articleLst,
+                CategoryList = categList,
+            };
+
+            foreach (var (category, index) in model.CategoryList.Select((v, i) => (v, i)))
+            {
+                model.CategoryList[index].ArticleCount = this._articleService.GetTotalArticleCountByCategory(category.CategoryId);
+            }
+
+            return View(model);
+        }
     }
 }

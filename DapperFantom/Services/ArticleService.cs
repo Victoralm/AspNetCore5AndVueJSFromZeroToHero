@@ -84,6 +84,24 @@ namespace DapperFantom.Services
             return articleLst;
         }
 
+        public List<Article> GetArticlesBySerchTerm(string searchQuery)
+        {
+            List<Article> articleLst = new List<Article>();
+
+            try
+            {
+                var par = new DynamicParameters();
+                par.Add("@term", searchQuery);
+                articleLst = this._dapperConnection.Query<Article>(@"select * from [Articles] where [Status] = 1 or [Slider] = 1 and [HomeView] = 1 and [Title] like @term or [Content] like @term order by [ArticleId] desc", par).ToList();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return articleLst;
+        }
+
         public List<Article> GetHomeArticles()
         {
             List<Article> articleLst = new List<Article>();
