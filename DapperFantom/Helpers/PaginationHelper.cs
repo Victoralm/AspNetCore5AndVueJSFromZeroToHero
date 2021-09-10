@@ -54,7 +54,7 @@ namespace DapperFantom.Helpers
                                 pageHtml +
                                 "<li class=\"page-item\">" + 
                                 "<a href=\"#\" class=\"page-link\" aria-label=\"Next\">" + 
-                                "<span aria-hidden=\"true\">" + "<span class=\"lnr lnr-chevron - right\">" + 
+                                "<span aria-hidden=\"true\">" + "<span class=\"lnr lnr-chevron-right\">" + 
                                 "</span></span></a></li>" +
                                 "</ul></nav>";
 
@@ -83,7 +83,7 @@ namespace DapperFantom.Helpers
                 for (int i = 1; i < pageCount + 1; i++)
                 {
                     string active = i == page ? "active" : "";
-                    pageHtml += $"<li class=\"page-item {active}\"><a href=\"/?page=/{i}\" class=\"page-link\">{i}</a></li>";
+                    pageHtml += $"<li class=\"page-item {active}\"><a href=\"/?page={i}\" class=\"page-link\">{i}</a></li>";
                 }
             }
 
@@ -97,7 +97,7 @@ namespace DapperFantom.Helpers
                                 pageHtml +
                                 "<li class=\"page-item\">" +
                                 "<a href=\"#\" class=\"page-link\" aria-label=\"Next\">" +
-                                "<span aria-hidden=\"true\">" + "<span class=\"lnr lnr-chevron - right\">" +
+                                "<span aria-hidden=\"true\">" + "<span class=\"lnr lnr-chevron-right\">" +
                                 "</span></span></a></li>" +
                                 "</ul></nav>";
 

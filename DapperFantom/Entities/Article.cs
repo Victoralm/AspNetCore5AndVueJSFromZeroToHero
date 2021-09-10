@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper.Contrib.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -44,6 +45,8 @@ namespace DapperFantom.Entities
         public int Hit { get; set; }
         public int CommentCount { get; set; }
         public byte Slider { get; set; }
+
+        [Computed] // Unmap a property, so Dapper doesn't try to save it to a colunm of a Db table
         public Category Category { get; set; }
     }
 }

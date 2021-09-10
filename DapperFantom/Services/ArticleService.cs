@@ -118,7 +118,7 @@ namespace DapperFantom.Services
                 par.Add("@offset", offset);
 
                 var sql = $@"select * from [Articles]
-                            inner join Categorys as cat on cat.[CategoryId] = [Articles].[CategoryId]
+                            inner join [Categorys] as cat on cat.[CategoryId] = [Articles].[CategoryId]
                             where [Homeview] = 1 and [Status] = 1 or [Status] = 1
                             order by [PublishedDate] desc
                             offset @offset rows
@@ -136,6 +136,21 @@ namespace DapperFantom.Services
             }
 
             return articleLst;
+        }
+
+        public Article IncreaseHit(int id)
+        {
+            var sql = $@"update [Articles] set [Hit] = [Hit] + 1 where [ArticleId] = {id}";
+            try
+            {
+                return this._dapperConnection.Query<Article>(sql).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+           
         }
 
         public int CountTotalArticles()
