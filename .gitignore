@@ -1,2 +1,5 @@
 /Resources
 /.vscode
+/ShoppySolution/Entities/obj
+/ShoppySolution/DAL/obj
+/ShoppySolution/DAL/bin
