@@ -2,7 +2,6 @@ H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\bin\Deb
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\bin\Debug\net5.0\DAL.dll
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\bin\Debug\net5.0\ref\DAL.dll
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\bin\Debug\net5.0\DAL.pdb
-H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.csproj.AssemblyReference.cache
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.AssemblyInfoInputs.cache
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.AssemblyInfo.cs

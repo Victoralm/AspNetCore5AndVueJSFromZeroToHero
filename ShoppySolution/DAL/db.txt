@@ -1,0 +1,3 @@
+﻿Run the following code on the NuGet console of the DAL project (change "User ID" and "Password" values if necessary) to automagically generate the POCO classes for the Db tables:
+
+Scaffold-DbContext -Connection "Server=localhost,3306;Initial Catalog=shoppy;User ID=sa;Password=bIAd4zNz!dRv+Ex.;Convert Zero Datetime=true;" -Provider Pomelo.EntityFrameworkCore.MySql -O MySqlDbContext -context MySqlDbContext -verbose -Force
