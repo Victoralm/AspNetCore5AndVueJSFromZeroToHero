@@ -9,4 +9,4 @@ Course Material
 -   [Adonet-Blog](Adonet-Blog): Simple blog posts reader with .Net Core MVC
 -   [VueJs Examples](VueJs_Examples): Examples of VueJs usage
 -   [DapperFantom](DapperFantom): Blog manager with Dapper ORM
--   [Shoppy](Shoppy): E-Commerce Web Site with MySQL & Entity Framework
+-   [Shoppy](ShoppySolution): E-Commerce Web Site with MySQL & Entity Framework
