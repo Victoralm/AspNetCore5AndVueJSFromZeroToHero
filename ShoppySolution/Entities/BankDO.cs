@@ -13,7 +13,7 @@ namespace Entities
         /// </summary>
         public BankDO()
         {
-            BankInstallments = new HashSet<BankInstallmentDO>();
+            BankInstallments = new List<BankInstallmentDO>();
         }
 
         public int Id { get; set; }
@@ -26,6 +26,6 @@ namespace Entities
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        public virtual ICollection<BankInstallmentDO> BankInstallments { get; set; }
+        public virtual List<BankInstallmentDO> BankInstallments { get; set; }
     }
 }

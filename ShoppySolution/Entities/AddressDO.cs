@@ -13,8 +13,8 @@ namespace Entities
         /// </summary>
         public AddressDO()
         {
-            OrderDeliveryAddresses = new HashSet<OrderDO>();
-            OrderInvoiceAddresses = new HashSet<OrderDO>();
+            OrderDeliveryAddresses = new List<OrderDO>();
+            OrderInvoiceAddresses = new List<OrderDO>();
         }
 
         public int Id { get; set; }
