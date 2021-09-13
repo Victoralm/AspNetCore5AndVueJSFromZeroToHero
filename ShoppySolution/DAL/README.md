@@ -1,7 +1,7 @@
 # Data Access Layer
 
-Also know as Persistant layer, is used to persist the data passed from the Domain
-([Entities](../Entities)) layer.
+Also know as Persistant layer, is used to persist the data passed from the Application
+([Services](../Services/)) layer.
 
 ## Important
 
