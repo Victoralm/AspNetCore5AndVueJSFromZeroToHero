@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Services
 {
-    public interface IAddressServices
+    public interface IAddressService
     {
         public Address Add(Address entity);
 

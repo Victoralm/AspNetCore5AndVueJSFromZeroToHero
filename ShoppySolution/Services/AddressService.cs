@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class AddressService : IAddressServices
+    public class AddressService : IAddressService
     {
 
         public Address Add(Address entity)

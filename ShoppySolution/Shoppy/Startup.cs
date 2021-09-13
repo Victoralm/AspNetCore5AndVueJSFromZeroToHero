@@ -1,4 +1,8 @@
+using AutoMapper;
+using BL;
 using DAL.MySqlDbContext;
+using Interfaces.BL;
+using Interfaces.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -6,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +30,24 @@ namespace Shoppy
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<DatabaseContext>(
                 context => context.UseMySql(Configuration.GetConnectionString("Default"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
             );
+
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IAddressService, AddressService>();
+
+            var mappingConfig = new MapperConfiguration(mc => 
+            {
+                mc.AddProfile(new MapperBL());
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
+            services.AddScoped<IAdminBL, AdminBL>();
+            services.AddScoped<IAddressBL, AddressBL>();
+
             services.AddControllersWithViews();
         }
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class AdminService : IAdminService
+    public class AdminService : IAdminService
     {
 
         public Admin Add(Admin entity)
