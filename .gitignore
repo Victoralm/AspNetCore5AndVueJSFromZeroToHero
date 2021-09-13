@@ -3,3 +3,5 @@
 /ShoppySolution/Entities/obj
 /ShoppySolution/DAL/obj
 /ShoppySolution/DAL/bin
+/ShoppySolution/Interfaces/bin
+/ShoppySolution/Services/bin

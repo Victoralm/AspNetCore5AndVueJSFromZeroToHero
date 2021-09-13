@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class AdminBL : IAdminBL
+    public class AdminBL : IAdminBL
     {
         public AdminDO Add(AdminDO model)
         {
