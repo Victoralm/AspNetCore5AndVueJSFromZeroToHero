@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankService
+    class SettingService
     {
 
-        public Bank Add(Bank entity)
+        public Setting Add(Setting entity)
         {
-            Bank bank = null;
+            Setting setting = null;
             using (var context = new DatabaseContext())
             {
-                var addBank = context.Entry(entity);
-                addBank.State = EntityState.Added;
+                var addSetting = context.Entry(entity);
+                addSetting.State = EntityState.Added;
                 context.SaveChanges();
-                bank = entity;
+                setting = entity;
             }
 
-            return bank;
+            return setting;
         }
 
-        public bool Delete(Bank entity)
+        public bool Delete(Setting entity)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Services
         }
 
 
-        public void Update(Bank entity)
+        public void Update(Setting entity)
         {
             using (var context = new DatabaseContext())
             {
-                var updateBank = context.Entry(entity);
-                updateBank.State = EntityState.Modified;
+                var updateSetting = context.Entry(entity);
+                updateSetting.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -62,14 +62,12 @@ namespace Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Bank GetById(int id)
+        public Setting GetById(int id)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Setting>()
                     .Where(x => x.Id == id)
-                    // Dealing with the relationship of the table
-                    .Include(i => i.BankInstallments)
                     .FirstOrDefault();
             }
         }
@@ -79,26 +77,26 @@ namespace Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public Bank Get(Expression<Func<Bank, bool>> predicate = null)
+        public Setting Get(Expression<Func<Setting, bool>> predicate = null)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Setting>()
                     // If return null, throw an exception
                     .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
             }
         }
 
-        public List<Bank> GetList(Expression<Func<Bank, bool>> filter = null)
+        public List<Setting> GetList(Expression<Func<Setting, bool>> filter = null)
         {
             using (var context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
-                    // return a list of all Bank records
-                    ? context.Set<Bank>().ToList()
-                    // else, return a list of Bank records based on the filter
-                    : context.Set<Bank>().Where(filter).ToList();
+                    // return a list of all Setting records
+                    ? context.Set<Setting>().ToList()
+                    // else, return a list of Setting records based on the filter
+                    : context.Set<Setting>().Where(filter).ToList();
             }
         }
     }

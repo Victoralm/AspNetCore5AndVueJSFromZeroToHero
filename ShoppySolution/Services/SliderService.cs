@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankService
+    class SliderService
     {
 
-        public Bank Add(Bank entity)
+        public Slider Add(Slider entity)
         {
-            Bank bank = null;
+            Slider slider = null;
             using (var context = new DatabaseContext())
             {
-                var addBank = context.Entry(entity);
-                addBank.State = EntityState.Added;
+                var addSlider = context.Entry(entity);
+                addSlider.State = EntityState.Added;
                 context.SaveChanges();
-                bank = entity;
+                slider = entity;
             }
 
-            return bank;
+            return slider;
         }
 
-        public bool Delete(Bank entity)
+        public bool Delete(Slider entity)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Services
         }
 
 
-        public void Update(Bank entity)
+        public void Update(Slider entity)
         {
             using (var context = new DatabaseContext())
             {
-                var updateBank = context.Entry(entity);
-                updateBank.State = EntityState.Modified;
+                var updateSlider = context.Entry(entity);
+                updateSlider.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -62,14 +62,12 @@ namespace Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Bank GetById(int id)
+        public Slider GetById(int id)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Slider>()
                     .Where(x => x.Id == id)
-                    // Dealing with the relationship of the table
-                    .Include(i => i.BankInstallments)
                     .FirstOrDefault();
             }
         }
@@ -79,26 +77,26 @@ namespace Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public Bank Get(Expression<Func<Bank, bool>> predicate = null)
+        public Slider Get(Expression<Func<Slider, bool>> predicate = null)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Slider>()
                     // If return null, throw an exception
                     .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
             }
         }
 
-        public List<Bank> GetList(Expression<Func<Bank, bool>> filter = null)
+        public List<Slider> GetList(Expression<Func<Slider, bool>> filter = null)
         {
             using (var context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
-                    // return a list of all Bank records
-                    ? context.Set<Bank>().ToList()
-                    // else, return a list of Bank records based on the filter
-                    : context.Set<Bank>().Where(filter).ToList();
+                    // return a list of all Slider records
+                    ? context.Set<Slider>().ToList()
+                    // else, return a list of Slider records based on the filter
+                    : context.Set<Slider>().Where(filter).ToList();
             }
         }
     }

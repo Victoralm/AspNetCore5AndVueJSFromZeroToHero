@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankService
+    class PaymentService
     {
 
-        public Bank Add(Bank entity)
+        public Payment Add(Payment entity)
         {
-            Bank bank = null;
+            Payment payment = null;
             using (var context = new DatabaseContext())
             {
-                var addBank = context.Entry(entity);
-                addBank.State = EntityState.Added;
+                var addPayment = context.Entry(entity);
+                addPayment.State = EntityState.Added;
                 context.SaveChanges();
-                bank = entity;
+                payment = entity;
             }
 
-            return bank;
+            return payment;
         }
 
-        public bool Delete(Bank entity)
+        public bool Delete(Payment entity)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Services
         }
 
 
-        public void Update(Bank entity)
+        public void Update(Payment entity)
         {
             using (var context = new DatabaseContext())
             {
-                var updateBank = context.Entry(entity);
-                updateBank.State = EntityState.Modified;
+                var updatePayment = context.Entry(entity);
+                updatePayment.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -62,14 +62,16 @@ namespace Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Bank GetById(int id)
+        public Payment GetById(int id)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Payment>()
                     .Where(x => x.Id == id)
                     // Dealing with the relationship of the table
-                    .Include(i => i.BankInstallments)
+                    .Include(i => i.Shipping)
+                    .Include(i => i.User)
+                    .Include(i => i.Orders)
                     .FirstOrDefault();
             }
         }
@@ -79,26 +81,26 @@ namespace Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public Bank Get(Expression<Func<Bank, bool>> predicate = null)
+        public Payment Get(Expression<Func<Payment, bool>> predicate = null)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Payment>()
                     // If return null, throw an exception
                     .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
             }
         }
 
-        public List<Bank> GetList(Expression<Func<Bank, bool>> filter = null)
+        public List<Payment> GetList(Expression<Func<Payment, bool>> filter = null)
         {
             using (var context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
-                    // return a list of all Bank records
-                    ? context.Set<Bank>().ToList()
-                    // else, return a list of Bank records based on the filter
-                    : context.Set<Bank>().Where(filter).ToList();
+                    // return a list of all Payment records
+                    ? context.Set<Payment>().ToList()
+                    // else, return a list of Payment records based on the filter
+                    : context.Set<Payment>().Where(filter).ToList();
             }
         }
     }

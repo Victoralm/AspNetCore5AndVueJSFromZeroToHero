@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
+    /// <summary>
+    /// Domain object class AddressDO
+    /// </summary>
     public class AddressDO
     {
-        /// <summary>
-        /// Domain object class AddressDO
-        /// </summary>
+        
         public AddressDO()
         {
             OrderDeliveryAddresses = new List<OrderDO>();

@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankService
+    class WishlistService
     {
 
-        public Bank Add(Bank entity)
+        public Wishlist Add(Wishlist entity)
         {
-            Bank bank = null;
+            Wishlist wishlist = null;
             using (var context = new DatabaseContext())
             {
-                var addBank = context.Entry(entity);
-                addBank.State = EntityState.Added;
+                var addWishlist = context.Entry(entity);
+                addWishlist.State = EntityState.Added;
                 context.SaveChanges();
-                bank = entity;
+                wishlist = entity;
             }
 
-            return bank;
+            return wishlist;
         }
 
-        public bool Delete(Bank entity)
+        public bool Delete(Wishlist entity)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Services
         }
 
 
-        public void Update(Bank entity)
+        public void Update(Wishlist entity)
         {
             using (var context = new DatabaseContext())
             {
-                var updateBank = context.Entry(entity);
-                updateBank.State = EntityState.Modified;
+                var updateWishlist = context.Entry(entity);
+                updateWishlist.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -62,14 +62,15 @@ namespace Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Bank GetById(int id)
+        public Wishlist GetById(int id)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Wishlist>()
                     .Where(x => x.Id == id)
                     // Dealing with the relationship of the table
-                    .Include(i => i.BankInstallments)
+                    .Include(i => i.Product)
+                    .Include(i => i.User)
                     .FirstOrDefault();
             }
         }
@@ -79,26 +80,26 @@ namespace Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public Bank Get(Expression<Func<Bank, bool>> predicate = null)
+        public Wishlist Get(Expression<Func<Wishlist, bool>> predicate = null)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Wishlist>()
                     // If return null, throw an exception
                     .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
             }
         }
 
-        public List<Bank> GetList(Expression<Func<Bank, bool>> filter = null)
+        public List<Wishlist> GetList(Expression<Func<Wishlist, bool>> filter = null)
         {
             using (var context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
-                    // return a list of all Bank records
-                    ? context.Set<Bank>().ToList()
-                    // else, return a list of Bank records based on the filter
-                    : context.Set<Bank>().Where(filter).ToList();
+                    // return a list of all Wishlist records
+                    ? context.Set<Wishlist>().ToList()
+                    // else, return a list of Wishlist records based on the filter
+                    : context.Set<Wishlist>().Where(filter).ToList();
             }
         }
     }

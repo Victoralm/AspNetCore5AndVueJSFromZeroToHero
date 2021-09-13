@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankService
+    class OrderitemService
     {
 
-        public Bank Add(Bank entity)
+        public Orderitem Add(Orderitem entity)
         {
-            Bank bank = null;
+            Orderitem orderitem = null;
             using (var context = new DatabaseContext())
             {
-                var addBank = context.Entry(entity);
-                addBank.State = EntityState.Added;
+                var addOrderitem = context.Entry(entity);
+                addOrderitem.State = EntityState.Added;
                 context.SaveChanges();
-                bank = entity;
+                orderitem = entity;
             }
 
-            return bank;
+            return orderitem;
         }
 
-        public bool Delete(Bank entity)
+        public bool Delete(Orderitem entity)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Services
         }
 
 
-        public void Update(Bank entity)
+        public void Update(Orderitem entity)
         {
             using (var context = new DatabaseContext())
             {
-                var updateBank = context.Entry(entity);
-                updateBank.State = EntityState.Modified;
+                var updateOrderitem = context.Entry(entity);
+                updateOrderitem.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -62,14 +62,16 @@ namespace Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Bank GetById(int id)
+        public Orderitem GetById(int id)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Orderitem>()
                     .Where(x => x.Id == id)
                     // Dealing with the relationship of the table
-                    .Include(i => i.BankInstallments)
+                    .Include(i => i.Order)
+                    .Include(i => i.Product)
+                    .Include(i => i.User)
                     .FirstOrDefault();
             }
         }
@@ -79,26 +81,26 @@ namespace Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public Bank Get(Expression<Func<Bank, bool>> predicate = null)
+        public Orderitem Get(Expression<Func<Orderitem, bool>> predicate = null)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Orderitem>()
                     // If return null, throw an exception
                     .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
             }
         }
 
-        public List<Bank> GetList(Expression<Func<Bank, bool>> filter = null)
+        public List<Orderitem> GetList(Expression<Func<Orderitem, bool>> filter = null)
         {
             using (var context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
-                    // return a list of all Bank records
-                    ? context.Set<Bank>().ToList()
-                    // else, return a list of Bank records based on the filter
-                    : context.Set<Bank>().Where(filter).ToList();
+                    // return a list of all Orderitem records
+                    ? context.Set<Orderitem>().ToList()
+                    // else, return a list of Orderitem records based on the filter
+                    : context.Set<Orderitem>().Where(filter).ToList();
             }
         }
     }

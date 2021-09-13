@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankService
+    class BasketService
     {
 
-        public Bank Add(Bank entity)
+        public Basket Add(Basket entity)
         {
-            Bank bank = null;
+            Basket basket = null;
             using (var context = new DatabaseContext())
             {
-                var addBank = context.Entry(entity);
-                addBank.State = EntityState.Added;
+                var addBasket = context.Entry(entity);
+                addBasket.State = EntityState.Added;
                 context.SaveChanges();
-                bank = entity;
+                basket = entity;
             }
 
-            return bank;
+            return basket;
         }
 
-        public bool Delete(Bank entity)
+        public bool Delete(Basket entity)
         {
             try
             {
@@ -47,12 +47,12 @@ namespace Services
         }
 
 
-        public void Update(Bank entity)
+        public void Update(Basket entity)
         {
             using (var context = new DatabaseContext())
             {
-                var updateBank = context.Entry(entity);
-                updateBank.State = EntityState.Modified;
+                var updateBasket = context.Entry(entity);
+                updateBasket.State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
@@ -62,14 +62,15 @@ namespace Services
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public Bank GetById(int id)
+        public Basket GetById(int id)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Basket>()
                     .Where(x => x.Id == id)
                     // Dealing with the relationship of the table
-                    .Include(i => i.BankInstallments)
+                    .Include(i => i.Product)
+                    .Include(i => i.User)
                     .FirstOrDefault();
             }
         }
@@ -79,26 +80,26 @@ namespace Services
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public Bank Get(Expression<Func<Bank, bool>> predicate = null)
+        public Basket Get(Expression<Func<Basket, bool>> predicate = null)
         {
             using (var context = new DatabaseContext())
             {
-                return context.Set<Bank>()
+                return context.Set<Basket>()
                     // If return null, throw an exception
                     .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
             }
         }
 
-        public List<Bank> GetList(Expression<Func<Bank, bool>> filter = null)
+        public List<Basket> GetList(Expression<Func<Basket, bool>> filter = null)
         {
             using (var context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
-                    // return a list of all Bank records
-                    ? context.Set<Bank>().ToList()
-                    // else, return a list of Bank records based on the filter
-                    : context.Set<Bank>().Where(filter).ToList();
+                    // return a list of all Basket records
+                    ? context.Set<Basket>().ToList()
+                    // else, return a list of Basket records based on the filter
+                    : context.Set<Basket>().Where(filter).ToList();
             }
         }
     }

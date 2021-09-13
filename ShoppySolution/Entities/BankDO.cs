@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Entities
 {
+    /// <summary>
+    /// Domain object class BankDO
+    /// </summary>
     public class BankDO
     {
-        /// <summary>
-        /// Domain object class BankDO
-        /// </summary>
+        
         public BankDO()
         {
             BankInstallments = new List<BankInstallmentDO>();
