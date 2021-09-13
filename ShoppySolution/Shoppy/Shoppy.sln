@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "..\DAL\DAL.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "..\Entities\Entities.csproj", "{4F4F5A12-12D0-4606-9641-73E5EBB6D52B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "..\Services\Services.csproj", "{5F80B85B-DFB7-42CF-BC0C-88819ACD24E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "..\Services\Services.csproj", "{5F80B85B-DFB7-42CF-BC0C-88819ACD24E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "..\Interfaces\Interfaces.csproj", "{DAC45B13-E029-46BC-A89F-9A1C1E63BE62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{5F80B85B-DFB7-42CF-BC0C-88819ACD24E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F80B85B-DFB7-42CF-BC0C-88819ACD24E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F80B85B-DFB7-42CF-BC0C-88819ACD24E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC45B13-E029-46BC-A89F-9A1C1E63BE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC45B13-E029-46BC-A89F-9A1C1E63BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC45B13-E029-46BC-A89F-9A1C1E63BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC45B13-E029-46BC-A89F-9A1C1E63BE62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
