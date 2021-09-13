@@ -9,4 +9,3 @@ H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Deb
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.dll
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\ref\DAL.dll
 H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.pdb
-H:\Documentos\Udemy\AspNetCore5AndVueJSFromZeroToHero\ShoppySolution\DAL\obj\Debug\net5.0\DAL.csproj.AssemblyReference.cache

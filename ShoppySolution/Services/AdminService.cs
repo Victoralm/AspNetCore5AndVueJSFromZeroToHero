@@ -1,4 +1,5 @@
 ﻿using DAL.MySqlDbContext;
+using Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class AdminService
+    class AdminService : IAdminService
     {
 
         public Admin Add(Admin entity)

@@ -1,4 +1,5 @@
 ﻿using DAL.MySqlDbContext;
+using Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class OrderService
+    class OrderService : IOrderService
     {
 
         public Order Add(Order entity)
