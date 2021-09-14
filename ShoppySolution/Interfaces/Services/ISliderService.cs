@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Slider entity);
 
-        public void Update(Slider entity);
+        public bool Update(Slider entity);
 
         public Slider GetById(int id);
 

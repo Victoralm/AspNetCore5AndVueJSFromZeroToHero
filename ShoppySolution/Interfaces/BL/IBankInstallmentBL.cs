@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IBankInstallmentBL
     {
         BankInstallmentDO Add(BankInstallmentDO model);
-        BankInstallmentDO Update(BankInstallmentDO model);
+        bool Update(BankInstallmentDO model);
         bool Delete(BankInstallmentDO model);
         BankInstallmentDO GetById(int id);
-        BankInstallmentDO GetById(Expression<Func<BankInstallmentDO, bool>> predicate = null);
+        BankInstallmentDO Get(Expression<Func<BankInstallmentDO, bool>> predicate = null);
         List<BankInstallmentDO> GetList(Expression<Func<BankInstallmentDO, bool>> filter = null);
     }
 }

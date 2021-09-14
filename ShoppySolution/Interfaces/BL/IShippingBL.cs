@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IShippingBL
     {
         ShippingDO Add(ShippingDO model);
-        ShippingDO Update(ShippingDO model);
+        bool Update(ShippingDO model);
         bool Delete(ShippingDO model);
         ShippingDO GetById(int id);
-        ShippingDO GetById(Expression<Func<ShippingDO, bool>> predicate = null);
+        ShippingDO Get(Expression<Func<ShippingDO, bool>> predicate = null);
         List<ShippingDO> GetList(Expression<Func<ShippingDO, bool>> filter = null);
     }
 }

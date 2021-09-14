@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(Slider entity)
+        public bool Update(Slider entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateSlider = context.Entry(entity);
                 updateSlider.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

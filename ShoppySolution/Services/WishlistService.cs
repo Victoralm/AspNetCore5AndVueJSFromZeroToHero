@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(Wishlist entity)
+        public bool Update(Wishlist entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateWishlist = context.Entry(entity);
                 updateWishlist.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IBankBL
     {
         BankDO Add(BankDO model);
-        BankDO Update(BankDO model);
+        bool Update(BankDO model);
         bool Delete(BankDO model);
         BankDO GetById(int id);
-        BankDO GetById(Expression<Func<BankDO, bool>> predicate = null);
+        BankDO Get(Expression<Func<BankDO, bool>> predicate = null);
         List<BankDO> GetList(Expression<Func<BankDO, bool>> filter = null);
     }
 }

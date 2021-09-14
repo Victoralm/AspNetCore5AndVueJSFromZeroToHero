@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Brand entity);
 
-        public void Update(Brand entity);
+        public bool Update(Brand entity);
 
         public Brand GetById(int id);
 

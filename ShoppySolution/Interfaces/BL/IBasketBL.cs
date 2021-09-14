@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IBasketBL
     {
         BasketDO Add(BasketDO model);
-        BasketDO Update(BasketDO model);
+        bool Update(BasketDO model);
         bool Delete(BasketDO model);
         BasketDO GetById(int id);
-        BasketDO GetById(Expression<Func<BasketDO, bool>> predicate = null);
+        BasketDO Get(Expression<Func<BasketDO, bool>> predicate = null);
         List<BasketDO> GetList(Expression<Func<BasketDO, bool>> filter = null);
     }
 }

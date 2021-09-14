@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Category entity);
 
-        public void Update(Category entity);
+        public bool Update(Category entity);
 
         public Category GetById(int id);
 

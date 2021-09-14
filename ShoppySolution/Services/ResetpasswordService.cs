@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(Resetpassword entity)
+        public bool Update(Resetpassword entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateResetpassword = context.Entry(entity);
                 updateResetpassword.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

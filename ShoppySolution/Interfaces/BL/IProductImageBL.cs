@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IProductImageBL
     {
         ProductImageDO Add(ProductImageDO model);
-        ProductImageDO Update(ProductImageDO model);
+        bool Update(ProductImageDO model);
         bool Delete(ProductImageDO model);
         ProductImageDO GetById(int id);
-        ProductImageDO GetById(Expression<Func<ProductImageDO, bool>> predicate = null);
+        ProductImageDO Get(Expression<Func<ProductImageDO, bool>> predicate = null);
         List<ProductImageDO> GetList(Expression<Func<ProductImageDO, bool>> filter = null);
     }
 }

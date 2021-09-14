@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(BankInstallment entity);
 
-        public void Update(BankInstallment entity);
+        public bool Update(BankInstallment entity);
 
         public BankInstallment GetById(int id);
 

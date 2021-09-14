@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IPaymentBL
     {
         PaymentDO Add(PaymentDO model);
-        PaymentDO Update(PaymentDO model);
+        bool Update(PaymentDO model);
         bool Delete(PaymentDO model);
         PaymentDO GetById(int id);
-        PaymentDO GetById(Expression<Func<PaymentDO, bool>> predicate = null);
+        PaymentDO Get(Expression<Func<PaymentDO, bool>> predicate = null);
         List<PaymentDO> GetList(Expression<Func<PaymentDO, bool>> filter = null);
     }
 }

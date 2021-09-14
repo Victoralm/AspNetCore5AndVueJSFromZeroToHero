@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Wishlist entity);
 
-        public void Update(Wishlist entity);
+        public bool Update(Wishlist entity);
 
         public Wishlist GetById(int id);
 

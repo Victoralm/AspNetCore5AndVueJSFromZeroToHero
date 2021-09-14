@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Shipping entity);
 
-        public void Update(Shipping entity);
+        public bool Update(Shipping entity);
 
         public Shipping GetById(int id);
 

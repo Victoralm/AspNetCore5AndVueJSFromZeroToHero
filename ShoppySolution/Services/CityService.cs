@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(City entity)
+        public bool Update(City entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateCity = context.Entry(entity);
                 updateCity.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

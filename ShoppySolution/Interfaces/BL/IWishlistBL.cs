@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IWishlistBL
     {
         WishlistDO Add(WishlistDO model);
-        WishlistDO Update(WishlistDO model);
+        bool Update(WishlistDO model);
         bool Delete(WishlistDO model);
         WishlistDO GetById(int id);
-        WishlistDO GetById(Expression<Func<WishlistDO, bool>> predicate = null);
+        WishlistDO Get(Expression<Func<WishlistDO, bool>> predicate = null);
         List<WishlistDO> GetList(Expression<Func<WishlistDO, bool>> filter = null);
     }
 }

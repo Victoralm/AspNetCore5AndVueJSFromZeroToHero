@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Bank entity);
 
-        public void Update(Bank entity);
+        public bool Update(Bank entity);
 
         public Bank GetById(int id);
 

@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(City entity);
 
-        public void Update(City entity);
+        public bool Update(City entity);
 
         public City GetById(int id);
 

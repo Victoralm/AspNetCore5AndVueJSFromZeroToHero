@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Address entity);
 
-        public void Update(Address entity);
+        public bool Update(Address entity);
 
         public Address GetById(int id);
 

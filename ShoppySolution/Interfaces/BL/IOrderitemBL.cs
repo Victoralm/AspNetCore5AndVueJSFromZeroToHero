@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IOrderitemBL
     {
         OrderitemDO Add(OrderitemDO model);
-        OrderitemDO Update(OrderitemDO model);
+        bool Update(OrderitemDO model);
         bool Delete(OrderitemDO model);
         OrderitemDO GetById(int id);
-        OrderitemDO GetById(Expression<Func<OrderitemDO, bool>> predicate = null);
+        OrderitemDO Get(Expression<Func<OrderitemDO, bool>> predicate = null);
         List<OrderitemDO> GetList(Expression<Func<OrderitemDO, bool>> filter = null);
     }
 }

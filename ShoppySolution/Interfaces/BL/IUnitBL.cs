@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IUnitBL
     {
         UnitDO Add(UnitDO model);
-        UnitDO Update(UnitDO model);
+        bool Update(UnitDO model);
         bool Delete(UnitDO model);
         UnitDO GetById(int id);
-        UnitDO GetById(Expression<Func<UnitDO, bool>> predicate = null);
+        UnitDO Get(Expression<Func<UnitDO, bool>> predicate = null);
         List<UnitDO> GetList(Expression<Func<UnitDO, bool>> filter = null);
     }
 }

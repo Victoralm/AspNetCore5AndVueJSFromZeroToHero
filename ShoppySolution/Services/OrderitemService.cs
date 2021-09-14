@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(Orderitem entity)
+        public bool Update(Orderitem entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateOrderitem = context.Entry(entity);
                 updateOrderitem.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

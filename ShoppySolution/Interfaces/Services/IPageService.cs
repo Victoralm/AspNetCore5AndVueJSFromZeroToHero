@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Page entity);
 
-        public void Update(Page entity);
+        public bool Update(Page entity);
 
         public Page GetById(int id);
 

@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Resetpassword entity);
 
-        public void Update(Resetpassword entity);
+        public bool Update(Resetpassword entity);
 
         public Resetpassword GetById(int id);
 

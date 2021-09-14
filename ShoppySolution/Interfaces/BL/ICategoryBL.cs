@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface ICategoryBL
     {
         CategoryDO Add(CategoryDO model);
-        CategoryDO Update(CategoryDO model);
+        bool Update(CategoryDO model);
         bool Delete(CategoryDO model);
         CategoryDO GetById(int id);
-        CategoryDO GetById(Expression<Func<CategoryDO, bool>> predicate = null);
+        CategoryDO Get(Expression<Func<CategoryDO, bool>> predicate = null);
         List<CategoryDO> GetList(Expression<Func<CategoryDO, bool>> filter = null);
     }
 }

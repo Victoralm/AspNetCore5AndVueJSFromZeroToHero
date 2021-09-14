@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(Basket entity)
+        public bool Update(Basket entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateBasket = context.Entry(entity);
                 updateBasket.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Setting entity);
 
-        public void Update(Setting entity);
+        public bool Update(Setting entity);
 
         public Setting GetById(int id);
 

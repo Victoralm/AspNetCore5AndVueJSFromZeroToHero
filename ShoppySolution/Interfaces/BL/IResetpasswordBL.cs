@@ -14,7 +14,7 @@ namespace Interfaces.BL
         ResetpasswordDO Update(ResetpasswordDO model);
         bool Delete(ResetpasswordDO model);
         ResetpasswordDO GetById(int id);
-        ResetpasswordDO GetById(Expression<Func<ResetpasswordDO, bool>> predicate = null);
+        ResetpasswordDO Get(Expression<Func<ResetpasswordDO, bool>> predicate = null);
         List<ResetpasswordDO> GetList(Expression<Func<ResetpasswordDO, bool>> filter = null);
     }
 }

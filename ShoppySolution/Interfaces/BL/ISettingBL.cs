@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface ISettingBL
     {
         SettingDO Add(SettingDO model);
-        SettingDO Update(SettingDO model);
+        bool Update(SettingDO model);
         bool Delete(SettingDO model);
         SettingDO GetById(int id);
-        SettingDO GetById(Expression<Func<SettingDO, bool>> predicate = null);
+        SettingDO Get(Expression<Func<SettingDO, bool>> predicate = null);
         List<SettingDO> GetList(Expression<Func<SettingDO, bool>> filter = null);
     }
 }

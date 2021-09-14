@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(ProductImage entity);
 
-        public void Update(ProductImage entity);
+        public bool Update(ProductImage entity);
 
         public ProductImage GetById(int id);
 

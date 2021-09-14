@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Orderitem entity);
 
-        public void Update(Orderitem entity);
+        public bool Update(Orderitem entity);
 
         public Orderitem GetById(int id);
 

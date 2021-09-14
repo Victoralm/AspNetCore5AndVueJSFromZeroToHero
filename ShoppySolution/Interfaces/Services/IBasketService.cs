@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Basket entity);
 
-        public void Update(Basket entity);
+        public bool Update(Basket entity);
 
         public Basket GetById(int id);
 

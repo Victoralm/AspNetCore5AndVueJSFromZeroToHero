@@ -48,13 +48,13 @@ namespace Services
         }
 
 
-        public void Update(ProductImage entity)
+        public bool Update(ProductImage entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateProductImage = context.Entry(entity);
                 updateProductImage.State = EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

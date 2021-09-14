@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Payment entity);
 
-        public void Update(Payment entity);
+        public bool Update(Payment entity);
 
         public Payment GetById(int id);
 

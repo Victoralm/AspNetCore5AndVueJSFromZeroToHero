@@ -14,7 +14,7 @@ namespace Interfaces.Services
 
         public bool Delete(Province entity);
 
-        public void Update(Province entity);
+        public bool Update(Province entity);
 
         public Province GetById(int id);
 

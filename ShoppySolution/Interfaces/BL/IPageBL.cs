@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IPageBL
     {
         PageDO Add(PageDO model);
-        PageDO Update(PageDO model);
+        bool Update(PageDO model);
         bool Delete(PageDO model);
         PageDO GetById(int id);
-        PageDO GetById(Expression<Func<PageDO, bool>> predicate = null);
+        PageDO Get(Expression<Func<PageDO, bool>> predicate = null);
         List<PageDO> GetList(Expression<Func<PageDO, bool>> filter = null);
     }
 }

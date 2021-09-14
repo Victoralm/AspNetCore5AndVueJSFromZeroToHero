@@ -11,10 +11,10 @@ namespace Interfaces.BL
     public interface IProvinceBL
     {
         ProvinceDO Add(ProvinceDO model);
-        ProvinceDO Update(ProvinceDO model);
+        bool Update(ProvinceDO model);
         bool Delete(ProvinceDO model);
         ProvinceDO GetById(int id);
-        ProvinceDO GetById(Expression<Func<ProvinceDO, bool>> predicate = null);
+        ProvinceDO Get(Expression<Func<ProvinceDO, bool>> predicate = null);
         List<ProvinceDO> GetList(Expression<Func<ProvinceDO, bool>> filter = null);
     }
 }
