@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ProductImageService : IProductImageService
+    public class ProductImageService : IProductImageService
     {
 
         public ProductImage Add(ProductImage entity)

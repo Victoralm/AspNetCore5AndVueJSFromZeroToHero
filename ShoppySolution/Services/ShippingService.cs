@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ShippingService : IShippingService
+    public class ShippingService : IShippingService
     {
 
         public Shipping Add(Shipping entity)

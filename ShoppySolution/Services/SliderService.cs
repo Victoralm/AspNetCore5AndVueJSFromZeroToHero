@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class SliderService : ISliderService
+    public class SliderService : ISliderService
     {
 
         public Slider Add(Slider entity)

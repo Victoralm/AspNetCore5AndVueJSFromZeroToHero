@@ -35,18 +35,59 @@ namespace Shoppy
                 context => context.UseMySql(Configuration.GetConnectionString("Default"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
             );
 
-            services.AddScoped<IAdminService, AdminService>();
             services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IAdminService, AdminService>();
+            services.AddScoped<IBankService, BankService>();
+            services.AddScoped<IBankInstallmentService, BankInstallmentService>();
+            services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IBrandService, BrandService>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IOrderitemService, OrderitemService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPageService, PageService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IProductImageService, ProductImageService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProvinceService, ProvinceService>();
+            services.AddScoped<IResetpasswordService, ResetpasswordService>();
+            services.AddScoped<ISettingService, SettingService>();
+            services.AddScoped<IShippingService, ShippingService>();
+            services.AddScoped<ISliderService, SliderService>();
+            services.AddScoped<IUnitService, UnitService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IWishlistService, WishlistService>();
 
-            var mappingConfig = new MapperConfiguration(mc => 
+            var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MapperBL());
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            services.AddScoped<IAdminBL, AdminBL>();
             services.AddScoped<IAddressBL, AddressBL>();
+            services.AddScoped<IAdminBL, AdminBL>();
+            services.AddScoped<IBankBL, BankBL>();
+            services.AddScoped<IBankInstallmentBL, BankInstallmentBL>();
+            services.AddScoped<IBasketBL, BasketBL>();
+            services.AddScoped<IBrandBL, BrandBL>();
+            services.AddScoped<ICategoryBL, CategoryBL>();
+            services.AddScoped<ICityBL, CityBL>();
+            services.AddScoped<IOrderitemBL, OrderitemBL>();
+            services.AddScoped<IOrderBL, OrderBL>();
+            services.AddScoped<IPageBL, PageBL>();
+            services.AddScoped<IPaymentBL, PaymentBL>();
+            services.AddScoped<IProductImageBL, ProductImageBL>();
+            services.AddScoped<IProductBL, ProductBL>();
+            services.AddScoped<IProvinceBL, ProvinceBL>();
+            services.AddScoped<IResetpasswordBL, ResetpasswordBL>();
+            services.AddScoped<ISettingBL, SettingBL>();
+            services.AddScoped<IShippingBL, ShippingBL>();
+            services.AddScoped<ISliderBL, SliderBL>();
+            services.AddScoped<IUnitBL, UnitBL>();
+            services.AddScoped<IUserBL, UserBL>();
+            services.AddScoped<IWishlistBL, WishlistBL>();
+
 
             services.AddControllersWithViews();
         }

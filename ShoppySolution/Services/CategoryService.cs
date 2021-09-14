@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class CategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
 
         public Category Add(Category entity)

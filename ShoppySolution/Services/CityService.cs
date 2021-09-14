@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class CityService : ICityService
+    public class CityService : ICityService
     {
 
         public City Add(City entity)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class PageService : IPageService
+    public class PageService : IPageService
     {
 
         public Page Add(Page entity)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BankInstallmentService : IBankInstallmentService
+    public class BankInstallmentService : IBankInstallmentService
     {
 
         public BankInstallment Add(BankInstallment entity)

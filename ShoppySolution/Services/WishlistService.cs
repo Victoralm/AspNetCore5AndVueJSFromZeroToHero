@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class WishlistService : IWishlistService
+    public class WishlistService : IWishlistService
     {
 
         public Wishlist Add(Wishlist entity)

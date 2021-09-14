@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ProvinceService : IProvinceService
+    public class ProvinceService : IProvinceService
     {
 
         public Province Add(Province entity)

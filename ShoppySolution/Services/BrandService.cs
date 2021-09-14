@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BrandService : IBrandService
+    public class BrandService : IBrandService
     {
 
         public Brand Add(Brand entity)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ProductService : IProductService
+    public class ProductService : IProductService
     {
 
         public Product Add(Product entity)

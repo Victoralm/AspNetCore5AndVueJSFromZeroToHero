@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class ResetpasswordService : IResetpasswordService
+    public class ResetpasswordService : IResetpasswordService
     {
 
         public Resetpassword Add(Resetpassword entity)

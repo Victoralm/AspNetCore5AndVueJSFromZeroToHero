@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class BasketService : IBasketService
+    public class BasketService : IBasketService
     {
 
         public Basket Add(Basket entity)

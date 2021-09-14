@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class OrderService : IOrderService
+    public class OrderService : IOrderService
     {
 
         public Order Add(Order entity)

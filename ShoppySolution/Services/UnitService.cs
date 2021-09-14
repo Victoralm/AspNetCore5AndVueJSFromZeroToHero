@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class UnitService : IUnitService
+    public class UnitService : IUnitService
     {
 
         public Unit Add(Unit entity)

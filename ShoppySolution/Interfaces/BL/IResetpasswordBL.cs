@@ -11,7 +11,7 @@ namespace Interfaces.BL
     public interface IResetpasswordBL
     {
         ResetpasswordDO Add(ResetpasswordDO model);
-        ResetpasswordDO Update(ResetpasswordDO model);
+        bool Update(ResetpasswordDO model);
         bool Delete(ResetpasswordDO model);
         ResetpasswordDO GetById(int id);
         ResetpasswordDO Get(Expression<Func<ResetpasswordDO, bool>> predicate = null);

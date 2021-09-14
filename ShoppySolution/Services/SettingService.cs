@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class SettingService : ISettingService
+    public class SettingService : ISettingService
     {
 
         public Setting Add(Setting entity)

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
 
         public User Add(User entity)

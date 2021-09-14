@@ -72,7 +72,7 @@ namespace BL
             try
             {
                 // Using the WishlistService to return a single record from the Db table by Id
-                Wishlist Wishlist = this._wishlistService.GetById(id);
+                Wishlist wishlist = this._wishlistService.GetById(id);
                 // Mapping the POCO class to the Domain Object
                 result = this._mapper.Map<Wishlist, WishlistDO>(wishlist);
             }
