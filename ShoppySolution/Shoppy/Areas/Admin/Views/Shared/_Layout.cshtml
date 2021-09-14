@@ -22,6 +22,7 @@
         <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    @RenderSection("Head", required: false)
 </head>
 
 <body class="fix-header fix-sidebar">
@@ -404,6 +405,7 @@
             <!-- Container fluid  -->
             <div class="container-fluid">
                 <!-- Start Page Content -->
+                @RenderBody()
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -415,7 +417,7 @@
             </div>
             <!-- End Container fluid  -->
             <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
+            <footer class="footer"> © @DateTime.Now.Year All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
             <!-- End footer -->
         </div>
         <!-- End Page wrapper  -->
@@ -434,7 +436,7 @@
     <script src="~/admin/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="~/admin/js/custom.min.js"></script>
-
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 
 </html>
