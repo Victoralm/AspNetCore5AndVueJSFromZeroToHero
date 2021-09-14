@@ -51,6 +51,7 @@ namespace Shoppy.Areas.Admin.Models
                     }
                     catch (Exception ex)
                     {
+                        Console.WriteLine(ex.Message);
                         context.HttpContext.Response.Redirect("/Admin/Login");
                     }
                 }
