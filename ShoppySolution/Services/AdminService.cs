@@ -47,13 +47,13 @@ namespace Services
         }
 
 
-        public void Update(Admin entity)
+        public bool Update(Admin entity)
         {
             using (var context = new DatabaseContext())
             {
                 var updateAdmin = context.Entry(entity);
                 updateAdmin.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                context.SaveChanges();
+                return context.SaveChanges() >= 1 ? true : false;
             }
         }
 

@@ -11,11 +11,11 @@ namespace Interfaces.BL
     public interface IAdminBL
     {
         AdminDO Add(AdminDO model);
-        AdminDO Update(AdminDO model);
+        bool Update(AdminDO model);
         bool Delete(AdminDO model);
         AdminDO GetById(int id);
-        AdminDO GetById(Expression<Func<AdminDO, bool>> predicate = null);
+        AdminDO Get(Expression<Func<AdminDO, bool>> predicate = null);
         List<AdminDO> GetList(Expression<Func<AdminDO, bool>> filter = null);
-        AddressDO Login(AddressDO model);
+        AdminDO Login(AdminDO model);
     }
 }

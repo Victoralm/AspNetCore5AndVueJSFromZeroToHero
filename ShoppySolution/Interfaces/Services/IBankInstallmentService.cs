@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 
 namespace Interfaces.Services
 {
-    public interface IAdminService
+    public interface IBankInstallmentService
     {
-        public Admin Add(Admin entity);
+        public BankInstallment Add(BankInstallment entity);
 
-        public bool Delete(Admin entity);
+        public bool Delete(BankInstallment entity);
 
-        public void Update(Admin entity);
+        public void Update(BankInstallment entity);
 
-        public Admin GetById(int id);
+        public BankInstallment GetById(int id);
 
-        public Admin Get(Expression<Func<Admin, bool>> predicate = null);
+        public BankInstallment Get(Expression<Func<BankInstallment, bool>> predicate = null);
 
-        public List<Admin> GetList(Expression<Func<Admin, bool>> filter = null);
+        public List<BankInstallment> GetList(Expression<Func<BankInstallment, bool>> filter = null);
     }
 }
