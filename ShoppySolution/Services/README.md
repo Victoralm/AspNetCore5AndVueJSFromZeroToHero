@@ -5,4 +5,4 @@ and the Persistence ([DAL](../DAL/)) layers
 
 ## Dev Notes
 
-- All Service classes are working with the [Startup](../Shoppy/Startup.cs) class [AddDbContext](AddDbContext) injection, that is using the [appsettings.json](../Shoppy/appsettings.json) ConnectionStrings. No Db info exposed on the [DatabaseContext](../Shoppy/DatabaseContext.cs) OnConfiguring method.
+- All Service classes are working with the [Startup](../Shoppy/Startup.cs) class [AddDbContext](AddDbContext) injection, that is using the [appsettings.json](../Shoppy/appsettings.json) ConnectionStrings. No Db info exposed on the [DatabaseContext](../DAL/MySqlDbContext/DatabaseContext.cs) OnConfiguring method.
