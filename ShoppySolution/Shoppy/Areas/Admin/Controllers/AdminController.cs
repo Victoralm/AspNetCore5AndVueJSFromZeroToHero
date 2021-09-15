@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entities;
+using Interfaces.BL;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Shoppy.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +14,18 @@ namespace Shoppy.Areas.Admin.Controllers
     [AdminAuth]
     public class AdminController : Controller
     {
+        private IAdminBL _adminBl;
+
+        public AdminController(IServiceProvider serviceProvider)
+        {
+            this._adminBl = serviceProvider.GetRequiredService<IAdminBL>();
+        }
+
         public IActionResult Index()
         {
-            return View();
+            List<AdminDO> adminList = this._adminBl.GetList();
+
+            return View(adminList);
         }
     }
 }
