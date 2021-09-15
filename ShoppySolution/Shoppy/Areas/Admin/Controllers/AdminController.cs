@@ -27,5 +27,13 @@ namespace Shoppy.Areas.Admin.Controllers
 
             return View(adminList);
         }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            AdminDO admin = new AdminDO();
+
+            return View(admin);
+        }
     }
 }
