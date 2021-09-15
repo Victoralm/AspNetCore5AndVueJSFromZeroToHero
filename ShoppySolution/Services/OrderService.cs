@@ -12,11 +12,17 @@ namespace Services
 {
     public class OrderService : IOrderService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public OrderService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Order Add(Order entity)
         {
             Order order = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addOrder = context.Entry(entity);
                 addOrder.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Order entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateOrder = context.Entry(entity);
                 updateOrder.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Order GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Order>()
                     .Where(x => x.Id == id)
@@ -86,7 +92,7 @@ namespace Services
         /// <returns></returns>
         public Order Get(Expression<Func<Order, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Order>()
                     // If return null, throw an exception
@@ -96,7 +102,7 @@ namespace Services
 
         public List<Order> GetList(Expression<Func<Order, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

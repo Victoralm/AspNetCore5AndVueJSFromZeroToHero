@@ -12,11 +12,17 @@ namespace Services
 {
     public class AddressService : IAddressService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public AddressService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Address Add(Address entity)
         {
             Address address = null;
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 var addAddress = context.Entry(entity);
                 addAddress.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Address entity)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 var updateAddress = context.Entry(entity);
                 updateAddress.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Address GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 return context.Set<Address>()
                     .Where(x => x.Id == id)
@@ -85,7 +91,7 @@ namespace Services
         /// <returns></returns>
         public Address Get(Expression<Func<Address, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 return context.Set<Address>()
                     // If return null, throw an exception
@@ -95,7 +101,7 @@ namespace Services
 
         public List<Address> GetList(Expression<Func<Address, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

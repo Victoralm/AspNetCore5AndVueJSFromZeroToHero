@@ -12,11 +12,17 @@ namespace Services
 {
     public class OrderitemService : IOrderitemService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public OrderitemService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Orderitem Add(Orderitem entity)
         {
             Orderitem orderitem = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addOrderitem = context.Entry(entity);
                 addOrderitem.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Orderitem entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateOrderitem = context.Entry(entity);
                 updateOrderitem.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Orderitem GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Orderitem>()
                     .Where(x => x.Id == id)
@@ -84,7 +90,7 @@ namespace Services
         /// <returns></returns>
         public Orderitem Get(Expression<Func<Orderitem, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Orderitem>()
                     // If return null, throw an exception
@@ -94,7 +100,7 @@ namespace Services
 
         public List<Orderitem> GetList(Expression<Func<Orderitem, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

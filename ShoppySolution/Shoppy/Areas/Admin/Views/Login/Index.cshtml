@@ -44,6 +44,14 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-4">
                         <div class="login-content card">
+
+                            @if (ViewBag.Error != null)
+                            {
+                                <div class="alert">
+                                    <div class="alert-danger">@ViewBag.Error</div>
+                                </div>
+                            }
+
                             <div class="login-form">
                                 <h4>Login</h4>
                                 <form method="post">

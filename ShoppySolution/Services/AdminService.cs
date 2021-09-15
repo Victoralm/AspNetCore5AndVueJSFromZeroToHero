@@ -11,11 +11,17 @@ namespace Services
 {
     public class AdminService : IAdminService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public AdminService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Admin Add(Admin entity)
         {
             Admin admin = null;
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 var addAdmin = context.Entry(entity);
                 addAdmin.State = Microsoft.EntityFrameworkCore.EntityState.Added;
@@ -49,7 +55,7 @@ namespace Services
 
         public bool Update(Admin entity)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 var updateAdmin = context.Entry(entity);
                 updateAdmin.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
@@ -64,7 +70,7 @@ namespace Services
         /// <returns></returns>
         public Admin GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 return context.Set<Admin>().Where(x => x.Id == id).FirstOrDefault();
             }
@@ -77,17 +83,25 @@ namespace Services
         /// <returns></returns>
         public Admin Get(Expression<Func<Admin, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            try
             {
-                return context.Set<Admin>()
-                    // If return null, throw an exception
-                    .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
+                using (var context = this._databaseContext)
+                {
+                    return context.Set<Admin>()
+                        // If return null, throw an exception
+                        .FirstOrDefault(predicate ?? throw new ArgumentException(nameof(predicate)));
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
             }
         }
 
         public List<Admin> GetList(Expression<Func<Admin, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (var context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

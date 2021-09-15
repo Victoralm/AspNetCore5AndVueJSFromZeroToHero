@@ -12,11 +12,17 @@ namespace Services
 {
     public class SliderService : ISliderService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public SliderService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Slider Add(Slider entity)
         {
             Slider slider = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addSlider = context.Entry(entity);
                 addSlider.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Slider entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateSlider = context.Entry(entity);
                 updateSlider.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Slider GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Slider>()
                     .Where(x => x.Id == id)
@@ -80,7 +86,7 @@ namespace Services
         /// <returns></returns>
         public Slider Get(Expression<Func<Slider, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Slider>()
                     // If return null, throw an exception
@@ -90,7 +96,7 @@ namespace Services
 
         public List<Slider> GetList(Expression<Func<Slider, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

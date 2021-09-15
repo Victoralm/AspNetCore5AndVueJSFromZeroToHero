@@ -12,11 +12,17 @@ namespace Services
 {
     public class ProductImageService : IProductImageService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public ProductImageService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public ProductImage Add(ProductImage entity)
         {
             ProductImage productImage = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addProductImage = context.Entry(entity);
                 addProductImage.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(ProductImage entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateProductImage = context.Entry(entity);
                 updateProductImage.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public ProductImage GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<ProductImage>()
                     .Where(x => x.Id == id)
@@ -82,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public ProductImage Get(Expression<Func<ProductImage, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<ProductImage>()
                     // If return null, throw an exception
@@ -92,7 +98,7 @@ namespace Services
 
         public List<ProductImage> GetList(Expression<Func<ProductImage, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

@@ -12,11 +12,17 @@ namespace Services
 {
     public class BankInstallmentService : IBankInstallmentService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public BankInstallmentService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public BankInstallment Add(BankInstallment entity)
         {
             BankInstallment bankInstallment = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addBankInstallment = context.Entry(entity);
                 addBankInstallment.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(BankInstallment entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateBankInstallment = context.Entry(entity);
                 updateBankInstallment.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public BankInstallment GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<BankInstallment>()
                     .Where(x => x.Id == id)
@@ -82,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public BankInstallment Get(Expression<Func<BankInstallment, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<BankInstallment>()
                     // If return null, throw an exception
@@ -92,7 +98,7 @@ namespace Services
 
         public List<BankInstallment> GetList(Expression<Func<BankInstallment, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

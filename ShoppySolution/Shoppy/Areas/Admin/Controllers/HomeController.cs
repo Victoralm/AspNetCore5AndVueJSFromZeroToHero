@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Shoppy.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[AdminAuth]
+    [AdminAuth]
     public class HomeController : Controller
     {
         public IActionResult Index()

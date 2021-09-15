@@ -12,11 +12,17 @@ namespace Services
 {
     public class UnitService : IUnitService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public UnitService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Unit Add(Unit entity)
         {
             Unit unit = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addUnit = context.Entry(entity);
                 addUnit.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Unit entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateUnit = context.Entry(entity);
                 updateUnit.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Unit GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Unit>()
                     .Where(x => x.Id == id)
@@ -82,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public Unit Get(Expression<Func<Unit, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Unit>()
                     // If return null, throw an exception
@@ -92,7 +98,7 @@ namespace Services
 
         public List<Unit> GetList(Expression<Func<Unit, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

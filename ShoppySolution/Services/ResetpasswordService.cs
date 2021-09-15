@@ -12,11 +12,17 @@ namespace Services
 {
     public class ResetpasswordService : IResetpasswordService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public ResetpasswordService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Resetpassword Add(Resetpassword entity)
         {
             Resetpassword resetpassword = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addResetpassword = context.Entry(entity);
                 addResetpassword.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Resetpassword entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateResetpassword = context.Entry(entity);
                 updateResetpassword.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Resetpassword GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Resetpassword>()
                     .Where(x => x.Id == id)
@@ -82,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public Resetpassword Get(Expression<Func<Resetpassword, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Resetpassword>()
                     // If return null, throw an exception
@@ -92,7 +98,7 @@ namespace Services
 
         public List<Resetpassword> GetList(Expression<Func<Resetpassword, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

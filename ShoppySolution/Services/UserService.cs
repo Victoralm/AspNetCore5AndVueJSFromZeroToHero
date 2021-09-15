@@ -12,11 +12,17 @@ namespace Services
 {
     public class UserService : IUserService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public UserService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public User Add(User entity)
         {
             User user = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addUser = context.Entry(entity);
                 addUser.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(User entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateUser = context.Entry(entity);
                 updateUser.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public User GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<User>()
                     .Where(x => x.Id == id)
@@ -89,7 +95,7 @@ namespace Services
         /// <returns></returns>
         public User Get(Expression<Func<User, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<User>()
                     // If return null, throw an exception
@@ -99,7 +105,7 @@ namespace Services
 
         public List<User> GetList(Expression<Func<User, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

@@ -32,8 +32,16 @@ namespace Shoppy
         {
 
             services.AddDbContext<DatabaseContext>(
-                context => context.UseMySql(Configuration.GetConnectionString("Default"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
+                context => context.UseMySql(Configuration.GetConnectionString("Default").ToString(), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
             );
+
+            //services.AddDbContext<DatabaseContext>(
+            //    context => context.UseMySql(Configuration["ConnectionStrings:Default"], Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
+            //);
+
+            //services.AddDbContext<DatabaseContext>(
+            //    context => context.UseMySql("Server=localhost:3306;Database=shoppy;Uid=sa;Pwd=bIAd4zNz!dRv+Ex.;ConvertZeroDateTime=true", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
+            //);
 
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAdminService, AdminService>();
@@ -88,6 +96,7 @@ namespace Shoppy
             services.AddScoped<IUserBL, UserBL>();
             services.AddScoped<IWishlistBL, WishlistBL>();
 
+            services.AddCors();
 
             services.AddControllersWithViews();
         }

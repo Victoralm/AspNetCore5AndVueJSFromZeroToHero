@@ -12,11 +12,17 @@ namespace Services
 {
     public class CityService : ICityService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public CityService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public City Add(City entity)
         {
             City City = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addCity = context.Entry(entity);
                 addCity.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(City entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateCity = context.Entry(entity);
                 updateCity.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public City GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<City>()
                     .Where(x => x.Id == id)
@@ -84,7 +90,7 @@ namespace Services
         /// <returns></returns>
         public City Get(Expression<Func<City, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<City>()
                     // If return null, throw an exception
@@ -94,7 +100,7 @@ namespace Services
 
         public List<City> GetList(Expression<Func<City, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

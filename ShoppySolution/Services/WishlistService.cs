@@ -12,11 +12,17 @@ namespace Services
 {
     public class WishlistService : IWishlistService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public WishlistService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Wishlist Add(Wishlist entity)
         {
             Wishlist wishlist = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addWishlist = context.Entry(entity);
                 addWishlist.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Wishlist entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateWishlist = context.Entry(entity);
                 updateWishlist.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Wishlist GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Wishlist>()
                     .Where(x => x.Id == id)
@@ -83,7 +89,7 @@ namespace Services
         /// <returns></returns>
         public Wishlist Get(Expression<Func<Wishlist, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Wishlist>()
                     // If return null, throw an exception
@@ -93,7 +99,7 @@ namespace Services
 
         public List<Wishlist> GetList(Expression<Func<Wishlist, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

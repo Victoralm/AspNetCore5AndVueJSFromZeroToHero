@@ -12,11 +12,17 @@ namespace Services
 {
     public class BrandService : IBrandService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public BrandService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Brand Add(Brand entity)
         {
             Brand brand = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addBrand = context.Entry(entity);
                 addBrand.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Brand entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updateBrand = context.Entry(entity);
                 updateBrand.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Brand GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Brand>()
                     .Where(x => x.Id == id)
@@ -82,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public Brand Get(Expression<Func<Brand, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Brand>()
                     // If return null, throw an exception
@@ -92,7 +98,7 @@ namespace Services
 
         public List<Brand> GetList(Expression<Func<Brand, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null

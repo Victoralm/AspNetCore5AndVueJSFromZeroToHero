@@ -12,11 +12,17 @@ namespace Services
 {
     public class PaymentService : IPaymentService
     {
+        private readonly DatabaseContext _databaseContext;
+
+        public PaymentService(DatabaseContext databaseContext)
+        {
+            this._databaseContext = databaseContext;
+        }
 
         public Payment Add(Payment entity)
         {
             Payment payment = null;
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var addPayment = context.Entry(entity);
                 addPayment.State = EntityState.Added;
@@ -50,7 +56,7 @@ namespace Services
 
         public bool Update(Payment entity)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 var updatePayment = context.Entry(entity);
                 updatePayment.State = EntityState.Modified;
@@ -65,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Payment GetById(int id)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Payment>()
                     .Where(x => x.Id == id)
@@ -84,7 +90,7 @@ namespace Services
         /// <returns></returns>
         public Payment Get(Expression<Func<Payment, bool>> predicate = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 return context.Set<Payment>()
                     // If return null, throw an exception
@@ -94,7 +100,7 @@ namespace Services
 
         public List<Payment> GetList(Expression<Func<Payment, bool>> filter = null)
         {
-            using (var context = new DatabaseContext())
+            using (DatabaseContext context = new DatabaseContext())
             {
                 // If filter is null
                 return filter == null
