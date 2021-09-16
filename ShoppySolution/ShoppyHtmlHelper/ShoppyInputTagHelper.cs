@@ -55,6 +55,22 @@ namespace ShoppyHtmlHelper
                 output.TagName = "";
                 output.PostElement.AppendHtml(tagInput);
             }
+            else
+            {
+                if (type == null)
+                {
+                    type = For.Metadata.DataTypeName != null ? For.Metadata.DataTypeName : "text";
+                }
+
+                tagInput.AddCssClass(addClass == null ? "form-control" : $"form-control {addClass}");
+                tagInput.Attributes.Add("place-holder", For.Metadata.DisplayName);
+                tagInput.TagRenderMode = TagRenderMode.SelfClosing;
+
+                if (For.Metadata.IsRequired)
+                {
+
+                }
+            }
 
             base.Process(context, output);
         }
