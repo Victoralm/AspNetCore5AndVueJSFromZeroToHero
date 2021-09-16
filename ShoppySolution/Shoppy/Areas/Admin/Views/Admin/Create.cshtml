@@ -21,12 +21,13 @@
                         @*<h4 class="card-title">Sample Form with the Icons</h4>
                         <h6 class="card-subtitle">made with bootstrap elements</h6>*@
                         <form class="form p-t-20" method="post">
+                            <input type="hidden" asp-for="@Model.Id" />
                             <div class="form-group">
                                 <label asp-for="@Model.Username"></label>
                                 @*<div class="input-group">
-                                    <div class="input-group-addon mt-2"><i class="ti-user"></i></div>
-                                    <input type="text" class="form-control ml-3" asp-for="@Model.Username" placeholder="Username" />
-                                </div>*@
+                <div class="input-group-addon mt-2"><i class="ti-user"></i></div>
+                <input type="text" class="form-control ml-3" asp-for="@Model.Username" placeholder="Username" />
+            </div>*@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
@@ -40,9 +41,9 @@
                             <div class="form-group">
                                 <label asp-for="@Model.Name"></label>
                                 @*<div class="input-group">
-                                    <div class="input-group-addon mt-2"><i class="ti-user"></i></div>
-                                    <input type="text" class="form-control ml-3" asp-for="@Model.Name" placeholder="Name" />
-                                </div>*@
+                <div class="input-group-addon mt-2"><i class="ti-user"></i></div>
+                <input type="text" class="form-control ml-3" asp-for="@Model.Name" placeholder="Name" />
+            </div>*@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon2"><i class="ti-user"></i></span>
@@ -56,9 +57,9 @@
                             <div class="form-group">
                                 <label asp-for="@Model.Surname"></label>
                                 @*<div class="input-group">
-                                    <div class="input-group-addon mt-2"><i class="ti-user"></i></div>
-                                    <input type="text" class="form-control ml-3" asp-for="@Model.Surname" placeholder="Surname" />
-                                </div>*@
+                <div class="input-group-addon mt-2"><i class="ti-user"></i></div>
+                <input type="text" class="form-control ml-3" asp-for="@Model.Surname" placeholder="Surname" />
+            </div>*@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon3"><i class="ti-user"></i></span>
@@ -72,9 +73,9 @@
                             <div class="form-group">
                                 <label asp-for="@Model.Email"></label>
                                 @*<div class="input-group">
-                                    <div class="input-group-addon mt-2"><i class="ti-email"></i></div>
-                                    <input type="email" class="form-control ml-3" asp-for="@Model.Email" placeholder="Enter email" />
-                                </div>*@
+                <div class="input-group-addon mt-2"><i class="ti-email"></i></div>
+                <input type="email" class="form-control ml-3" asp-for="@Model.Email" placeholder="Enter email" />
+            </div>*@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon4"><i class="ti-email"></i></span>
@@ -88,9 +89,9 @@
                             <div class="form-group">
                                 <label asp-for="@Model.Password"></label>
                                 @*<div class="input-group">
-                                    <div class="input-group-addon mt-2"><i class="ti-lock"></i></div>
-                                    <input type="password" class="form-control ml-3" asp-for="@Model.Password" placeholder="Enter email" />
-                                </div>*@
+                <div class="input-group-addon mt-2"><i class="ti-lock"></i></div>
+                <input type="password" class="form-control ml-3" asp-for="@Model.Password" placeholder="Enter email" />
+            </div>*@
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="basic-addon5"><i class="ti-lock"></i></span>
@@ -106,7 +107,7 @@
                                 <div class="checkbox checkbox-success">
                                     @*@Html.CheckBox("Confirmation", false, Model.Confirmation)*@
                                     @*<input type="checkbox" asp-for="@Model.Confirmation" aria-label="Checkbox for following text input" asp-va />
-                                    @Html.EditorFor(x => x.Confirmation)*@
+                @Html.EditorFor(x => x.Confirmation)*@
                                     <input type="radio" asp-for="@Model.Confirmation" checked value="1" />
                                     <label asp-for="@Model.Confirmation">Active</label>
                                 </div>
@@ -116,7 +117,8 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Create</button>
-                            <button type="submit" class="btn btn-warning waves-effect waves-light">Cancel</button>
+                            @*<button type="button" class="btn btn-warning waves-effect waves-light" asp-controller="Admin" asp-action="Index">Cancel</button>*@
+                            <a class="btn btn-warning waves-effect waves-light" asp-controller="Admin" asp-action="Index">Cancel</a>
                         </form>
                     </div>
                 </div>

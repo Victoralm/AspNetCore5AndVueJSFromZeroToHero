@@ -73,5 +73,20 @@ namespace Shoppy.Areas.Admin.Controllers
                 return View(adminDO);
             }
         }
+
+        public IActionResult Edit(int id)
+        {
+            try
+            {
+                AdminDO result = this._adminBl.GetById(id);
+                ViewBag.Pass = Encryption.Decrypt(result.Password);
+                return View(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return RedirectToAction("Index");
+            }
+        }
     }
 }
