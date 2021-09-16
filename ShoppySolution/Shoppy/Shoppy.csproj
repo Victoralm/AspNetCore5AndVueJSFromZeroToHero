@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
+    <ProjectReference Include="..\ShoppyHtmlHelper\ShoppyHtmlHelper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

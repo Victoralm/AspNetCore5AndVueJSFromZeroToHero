@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "..\Services\Ser
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interfaces", "..\Interfaces\Interfaces.csproj", "{DAC45B13-E029-46BC-A89F-9A1C1E63BE62}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "..\BL\BL.csproj", "{064D6CDB-1048-4AC9-8EA6-69F6560CF806}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "..\BL\BL.csproj", "{064D6CDB-1048-4AC9-8EA6-69F6560CF806}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppyHtmlHelper", "..\ShoppyHtmlHelper\ShoppyHtmlHelper.csproj", "{533059B9-6CE1-4835-9134-0AD92B602278}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{064D6CDB-1048-4AC9-8EA6-69F6560CF806}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{064D6CDB-1048-4AC9-8EA6-69F6560CF806}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{064D6CDB-1048-4AC9-8EA6-69F6560CF806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{533059B9-6CE1-4835-9134-0AD92B602278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{533059B9-6CE1-4835-9134-0AD92B602278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{533059B9-6CE1-4835-9134-0AD92B602278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{533059B9-6CE1-4835-9134-0AD92B602278}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
