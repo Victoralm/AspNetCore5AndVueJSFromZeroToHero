@@ -32,3 +32,7 @@ Also know as Persistant layer, is used to persist the data passed from the Appli
 Class files that implement the [BL Interfaces](Interfaces/) and does the
 auto-mapping between the [Domain Objects](Entities/) and the [POCO
 classes](DAL/MySqlDbContext/).
+
+## Shoppy Html Helper
+
+
