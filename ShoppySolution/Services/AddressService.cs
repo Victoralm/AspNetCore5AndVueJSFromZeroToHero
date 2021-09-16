@@ -37,7 +37,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;

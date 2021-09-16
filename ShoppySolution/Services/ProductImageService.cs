@@ -22,7 +22,7 @@ namespace Services
         public ProductImage Add(ProductImage entity)
         {
             ProductImage productImage = null;
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var addProductImage = context.Entry(entity);
                 addProductImage.State = EntityState.Added;
@@ -37,7 +37,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;
@@ -56,7 +56,7 @@ namespace Services
 
         public bool Update(ProductImage entity)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var updateProductImage = context.Entry(entity);
                 updateProductImage.State = EntityState.Modified;
@@ -71,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public ProductImage GetById(int id)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<ProductImage>()
                     .Where(x => x.Id == id)
@@ -88,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public ProductImage Get(Expression<Func<ProductImage, bool>> predicate = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<ProductImage>()
                     // If return null, throw an exception
@@ -98,7 +98,7 @@ namespace Services
 
         public List<ProductImage> GetList(Expression<Func<ProductImage, bool>> filter = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

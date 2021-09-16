@@ -22,7 +22,7 @@ namespace Services
         public Orderitem Add(Orderitem entity)
         {
             Orderitem orderitem = null;
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var addOrderitem = context.Entry(entity);
                 addOrderitem.State = EntityState.Added;
@@ -37,7 +37,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;
@@ -56,7 +56,7 @@ namespace Services
 
         public bool Update(Orderitem entity)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var updateOrderitem = context.Entry(entity);
                 updateOrderitem.State = EntityState.Modified;
@@ -71,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Orderitem GetById(int id)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<Orderitem>()
                     .Where(x => x.Id == id)
@@ -90,7 +90,7 @@ namespace Services
         /// <returns></returns>
         public Orderitem Get(Expression<Func<Orderitem, bool>> predicate = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<Orderitem>()
                     // If return null, throw an exception
@@ -100,7 +100,7 @@ namespace Services
 
         public List<Orderitem> GetList(Expression<Func<Orderitem, bool>> filter = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

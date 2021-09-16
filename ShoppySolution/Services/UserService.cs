@@ -22,7 +22,7 @@ namespace Services
         public User Add(User entity)
         {
             User user = null;
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var addUser = context.Entry(entity);
                 addUser.State = EntityState.Added;
@@ -37,7 +37,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;
@@ -56,7 +56,7 @@ namespace Services
 
         public bool Update(User entity)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var updateUser = context.Entry(entity);
                 updateUser.State = EntityState.Modified;
@@ -71,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public User GetById(int id)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<User>()
                     .Where(x => x.Id == id)
@@ -95,7 +95,7 @@ namespace Services
         /// <returns></returns>
         public User Get(Expression<Func<User, bool>> predicate = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<User>()
                     // If return null, throw an exception
@@ -105,7 +105,7 @@ namespace Services
 
         public List<User> GetList(Expression<Func<User, bool>> filter = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

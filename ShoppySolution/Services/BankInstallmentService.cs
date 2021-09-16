@@ -22,7 +22,7 @@ namespace Services
         public BankInstallment Add(BankInstallment entity)
         {
             BankInstallment bankInstallment = null;
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var addBankInstallment = context.Entry(entity);
                 addBankInstallment.State = EntityState.Added;
@@ -37,7 +37,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;
@@ -56,7 +56,7 @@ namespace Services
 
         public bool Update(BankInstallment entity)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var updateBankInstallment = context.Entry(entity);
                 updateBankInstallment.State = EntityState.Modified;
@@ -71,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public BankInstallment GetById(int id)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<BankInstallment>()
                     .Where(x => x.Id == id)
@@ -88,7 +88,7 @@ namespace Services
         /// <returns></returns>
         public BankInstallment Get(Expression<Func<BankInstallment, bool>> predicate = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<BankInstallment>()
                     // If return null, throw an exception
@@ -98,7 +98,7 @@ namespace Services
 
         public List<BankInstallment> GetList(Expression<Func<BankInstallment, bool>> filter = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

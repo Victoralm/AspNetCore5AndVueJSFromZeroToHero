@@ -1,5 +1,7 @@
 ﻿using DAL.MySqlDbContext;
 using Interfaces.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,22 +13,34 @@ namespace Services
 {
     public class AdminService : IAdminService
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
-        public AdminService(DatabaseContext databaseContext)
+        public AdminService(IServiceProvider serviceProvider)
         {
-            this._databaseContext = databaseContext;
+            this._databaseContext = serviceProvider.GetRequiredService<DatabaseContext>();
         }
 
         public Admin Add(Admin entity)
         {
             Admin admin = null;
-            using (var context = this._databaseContext)
+            try
             {
-                var addAdmin = context.Entry(entity);
-                addAdmin.State = Microsoft.EntityFrameworkCore.EntityState.Added;
-                context.SaveChanges();
-                admin = entity;
+                using (var context = new DatabaseContext())
+                {
+                    //var addAdmin = context.AddAsync(entity);
+                    var addAdmin = context.Entry(entity);
+                    addAdmin.State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                    var savedRes = context.SaveChanges();
+                    admin = entity;
+                }
+                //var addAdmin = this._databaseContext.Entry(entity);
+                //addAdmin.State = Microsoft.EntityFrameworkCore.EntityState.Added;
+                //var savedRes = this._databaseContext.SaveChanges();
+                //admin = entity;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
 
             return admin;
@@ -36,7 +50,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = Microsoft.EntityFrameworkCore.EntityState.Deleted;

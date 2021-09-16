@@ -19,7 +19,7 @@ namespace Entities
         [MinLength(4, ErrorMessage = "Minimum of 4 characters for username")]
         [Display(Name = "Admin username")]
         [DataType(DataType.Text)]
-        public string Name { get; set; }
+        public string Username { get; set; }
 
         [Required(ErrorMessage = "Please enter a password")]
         [MaxLength(15, ErrorMessage = "Maximum of 15 characters for password")]

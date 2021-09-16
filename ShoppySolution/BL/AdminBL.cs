@@ -86,7 +86,24 @@ namespace BL
 
         public AdminDO Get(Expression<Func<AdminDO, bool>> predicate = null)
         {
-            throw new NotImplementedException();
+            AdminDO result = null;
+            List<AdminDO> adminDOLst = null;
+
+            try
+            {
+                // Using the AdminService to return a list of records from the Db table
+                List<Admin> admins = this._adminService.GetList();
+                // Mapping the POCO class to the Domain Object
+                adminDOLst = this._mapper.Map<List<Admin>, List<AdminDO>>(admins);
+                if (predicate != null)
+                    result = adminDOLst.AsQueryable().Where(predicate).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return result;
         }
 
         public List<AdminDO> GetList(Expression<Func<AdminDO, bool>> filter = null)

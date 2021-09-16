@@ -22,7 +22,8 @@ namespace Services
         public City Add(City entity)
         {
             City City = null;
-            using (DatabaseContext context = new DatabaseContext())
+
+            using (DatabaseContext context = this._databaseContext)
             {
                 var addCity = context.Entry(entity);
                 addCity.State = EntityState.Added;
@@ -37,7 +38,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;
@@ -56,7 +57,7 @@ namespace Services
 
         public bool Update(City entity)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var updateCity = context.Entry(entity);
                 updateCity.State = EntityState.Modified;
@@ -71,7 +72,7 @@ namespace Services
         /// <returns></returns>
         public City GetById(int id)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<City>()
                     .Where(x => x.Id == id)
@@ -90,7 +91,7 @@ namespace Services
         /// <returns></returns>
         public City Get(Expression<Func<City, bool>> predicate = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<City>()
                     // If return null, throw an exception
@@ -100,7 +101,7 @@ namespace Services
 
         public List<City> GetList(Expression<Func<City, bool>> filter = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

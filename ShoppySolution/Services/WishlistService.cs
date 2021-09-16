@@ -22,7 +22,7 @@ namespace Services
         public Wishlist Add(Wishlist entity)
         {
             Wishlist wishlist = null;
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var addWishlist = context.Entry(entity);
                 addWishlist.State = EntityState.Added;
@@ -37,7 +37,7 @@ namespace Services
         {
             try
             {
-                using (DatabaseContext context = new DatabaseContext())
+                using (DatabaseContext context = this._databaseContext)
                 {
                     var deleteEntity = context.Entry(entity);
                     deleteEntity.State = EntityState.Deleted;
@@ -56,7 +56,7 @@ namespace Services
 
         public bool Update(Wishlist entity)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 var updateWishlist = context.Entry(entity);
                 updateWishlist.State = EntityState.Modified;
@@ -71,7 +71,7 @@ namespace Services
         /// <returns></returns>
         public Wishlist GetById(int id)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<Wishlist>()
                     .Where(x => x.Id == id)
@@ -89,7 +89,7 @@ namespace Services
         /// <returns></returns>
         public Wishlist Get(Expression<Func<Wishlist, bool>> predicate = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 return context.Set<Wishlist>()
                     // If return null, throw an exception
@@ -99,7 +99,7 @@ namespace Services
 
         public List<Wishlist> GetList(Expression<Func<Wishlist, bool>> filter = null)
         {
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext context = this._databaseContext)
             {
                 // If filter is null
                 return filter == null

@@ -32,7 +32,7 @@ namespace Shoppy
         {
 
             services.AddDbContext<DatabaseContext>(
-                context => context.UseMySql(Configuration.GetConnectionString("Default").ToString(), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
+                context => context.UseMySql(Configuration.GetConnectionString("Atempt2"), Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.26-mysql"))
             );
 
             services.AddScoped<IAddressService, AddressService>();
