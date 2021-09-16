@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ViewFeatures;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,19 @@ namespace ShoppyHtmlHelper
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
+            output.TagMode = TagMode.StartTagOnly;
+            TagBuilder tagInput = new TagBuilder("input");
+            tagInput.Attributes.Add("id", For.Name.Replace(".", "_"));
+            tagInput.Attributes.Add("name", For.Name);
+            tagInput.Attributes.Add("type", type);
+
+            if (type == "hidden")
+            {
+                tagInput.AddCssClass(addClass == null ? "" : addClass);
+                output.TagName = "";
+                output.PostElement.AppendHtml(tagInput);
+            }
+
             base.Process(context, output);
         }
 
