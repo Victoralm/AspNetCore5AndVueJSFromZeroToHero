@@ -88,5 +88,33 @@ namespace Shoppy.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpPost, AutoValidateAntiforgeryToken]
+        public IActionResult Edit(int id, AdminDO adminDO)
+        {
+            try
+            {
+                adminDO.UpdatedAt = DateTime.Now;
+                adminDO.Password = Encryption.Encrypt(adminDO.Password);
+
+                bool result = this._adminBl.Update(adminDO);
+
+                if (result)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Error = "Something went wrong, please try again...";
+                    return View(adminDO);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                ViewBag.Error = "Something went wrong, please try again...";
+                return View(adminDO);
+            }
+        }
     }
 }
