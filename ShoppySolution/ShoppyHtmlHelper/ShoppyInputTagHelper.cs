@@ -108,9 +108,36 @@ namespace ShoppyHtmlHelper
                     }
                     else
                     {
-
+                        tagInput.Attributes.Add("data-val-required", $"{For.Metadata.DisplayName} is required");
                     }
                 }
+
+                var tagSpan = new TagBuilder("span");
+                tagSpan.Attributes.Add("class", "text-danger filed-validation-valid");
+                tagSpan.Attributes.Add("data-valmsg-for", For.Name);
+                tagSpan.Attributes.Add("data-valmsg-replace", "true");
+
+                output.PreElement.AppendHtml(@$"
+                    <div class='form-group'>
+                        <label for='{For.Name.Replace(".", "_")}'></label>
+                        <div class='{firstclass}'>
+                            <div class='{secondClass}'>
+                                <span class='{thrirdClass}' id='basic-addon1'><i class='ti-user'></i></span>
+                            </div>
+                    ");
+
+                output.TagName = "";
+                output.PostContent.AppendHtml(tagInput);
+                output.PostContent.AppendHtml(@$"
+                        <div class='{fifthClass}'>
+                    ");
+                output.PostContent.AppendHtml(tagSpan);
+                output.PostContent.AppendHtml($@"
+                            </div>
+                        </div>
+                    </div>
+                    ");
+
             }
 
             base.Process(context, output);
