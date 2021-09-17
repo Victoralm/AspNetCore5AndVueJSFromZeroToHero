@@ -36,20 +36,20 @@
                             </div>
                         </div>*@
 
-                        <shoppy-input asp-for="@Model.Username" inputIcon="user"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Name" inputIcon="user"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Surname" inputIcon="user"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Email" inputIcon="email"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Password" inputIcon="lock" type="password" asp-value="@ViewBag.Pass"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Username" inputIcon="user" spanIconId="basic-addon1"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Name" inputIcon="user" spanIconId="basic-addon2"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Surname" inputIcon="user" spanIconId="basic-addon3"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Email" inputIcon="email" type="email" spanIconId="basic-addon4"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Password" inputIcon="lock" type="password" asp-value="@ViewBag.Pass" spanIconId="basic-addon5"></shoppy-input>
 
                         <div class="form-group">
                             <label class="control-label" asp-for="@Model.Confirmation"></label>
                             <div class="checkbox checkbox-success">
-                                <input type="radio" asp-for="@Model.Confirmation" checked value="1" />
+                                <input type="radio" asp-for="@Model.Confirmation" id="Confirmation1" value="1" />
                                 <label asp-for="@Model.Confirmation">Active</label>
                             </div>
                             <div class="checkbox checkbox-success">
-                                <input type="radio" asp-for="@Model.Confirmation" checked value="0" />
+                                <input type="radio" asp-for="@Model.Confirmation" id="Confirmation0" value="0" />
                                 <label asp-for="@Model.Confirmation">Deactive</label>
                             </div>
                         </div>

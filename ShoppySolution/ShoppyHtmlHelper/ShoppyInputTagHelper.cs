@@ -45,14 +45,20 @@ namespace ShoppyHtmlHelper
 
         [HtmlAttributeName("inputIcon")]
         public string inputIcon { get; set; }
+        
+        [HtmlAttributeName("spanIconId")]
+        public string spanIconId { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagMode = TagMode.StartTagOnly;
+            value = value == null && For.Model != null ? For.Model.ToString() : value;
             TagBuilder tagInput = new TagBuilder("input");
             tagInput.Attributes.Add("id", For.Name.Replace(".", "_"));
             tagInput.Attributes.Add("name", For.Name);
             tagInput.Attributes.Add("type", type);
+            tagInput.Attributes.Add("value", value);
+            tagInput.Attributes.Add("aria-describedby", spanIconId);
 
             if (type == "hidden")
             {
@@ -124,7 +130,7 @@ namespace ShoppyHtmlHelper
                 var iconStr = "";
                 if (inputIcon != null)
                 {
-                    iconStr = $"<span class='{thrirdClass}' id='basic-addon1'><i class='ti-{inputIcon}'></i></span>";
+                    iconStr = $"<span class='{thrirdClass}' id='{spanIconId}'><i class='ti-{inputIcon}'></i></span>";
                 }
 
                 output.PreElement.AppendHtml(@$"
