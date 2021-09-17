@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShoppyHtmlHelper
 {
+    [HtmlTargetElement("shoppy-input")]
     public class ShoppyInputTagHelper : TagHelper
     {
         [HtmlAttributeName("asp-for")]
@@ -42,6 +43,9 @@ namespace ShoppyHtmlHelper
         [HtmlAttributeName("sixthClass")]
         public string sixthClass { get; set; } = "text-danger";
 
+        [HtmlAttributeName("inputIcon")]
+        public string inputIcon { get; set; }
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagMode = TagMode.StartTagOnly;
@@ -64,7 +68,7 @@ namespace ShoppyHtmlHelper
                 }
 
                 tagInput.AddCssClass(addClass == null ? "form-control" : $"form-control {addClass}");
-                tagInput.Attributes.Add("place-holder", For.Metadata.DisplayName);
+                tagInput.Attributes.Add("placeholder", For.Metadata.DisplayName);
                 tagInput.TagRenderMode = TagRenderMode.SelfClosing;
 
                 if (For.Metadata.IsRequired)
@@ -117,12 +121,18 @@ namespace ShoppyHtmlHelper
                 tagSpan.Attributes.Add("data-valmsg-for", For.Name);
                 tagSpan.Attributes.Add("data-valmsg-replace", "true");
 
+                var iconStr = "";
+                if (inputIcon != null)
+                {
+                    iconStr = $"<span class='{thrirdClass}' id='basic-addon1'><i class='ti-{inputIcon}'></i></span>";
+                }
+
                 output.PreElement.AppendHtml(@$"
                     <div class='form-group'>
-                        <label for='{For.Name.Replace(".", "_")}'></label>
+                        <label for='{For.Name.Replace(".", "_")}'>{For.Metadata.DisplayName}</label>
                         <div class='{firstclass}'>
                             <div class='{secondClass}'>
-                                <span class='{thrirdClass}' id='basic-addon1'><i class='ti-user'></i></span>
+                                {iconStr}
                             </div>
                     ");
 
