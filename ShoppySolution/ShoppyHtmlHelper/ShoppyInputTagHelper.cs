@@ -48,17 +48,26 @@ namespace ShoppyHtmlHelper
         
         [HtmlAttributeName("spanIconId")]
         public string spanIconId { get; set; }
+        
+        [HtmlAttributeName("inputPlaceholder")]
+        public string inputPlaceholder { get; set; }
+        
+        [HtmlAttributeName("inputAriaLabel")]
+        public string inputAriaLabel { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagMode = TagMode.StartTagOnly;
             value = value == null && For.Model != null ? For.Model.ToString() : value;
+            inputAriaLabel = inputAriaLabel == null ? $"{For.Metadata.DisplayName}" : $"{inputAriaLabel}";
+            var ariaDescribedBy = $"{spanIconId} {inputAriaLabel}-error";
             TagBuilder tagInput = new TagBuilder("input");
             tagInput.Attributes.Add("id", For.Name.Replace(".", "_"));
             tagInput.Attributes.Add("name", For.Name);
             tagInput.Attributes.Add("type", type);
             tagInput.Attributes.Add("value", value);
-            tagInput.Attributes.Add("aria-describedby", spanIconId);
+            tagInput.Attributes.Add("aria-describedby", ariaDescribedBy);
+            tagInput.Attributes.Add("aria-label", inputAriaLabel);
 
             if (type == "hidden")
             {
@@ -74,12 +83,13 @@ namespace ShoppyHtmlHelper
                 }
 
                 tagInput.AddCssClass(addClass == null ? "form-control" : $"form-control {addClass}");
-                tagInput.Attributes.Add("placeholder", For.Metadata.DisplayName);
+                //tagInput.Attributes.Add("placeholder", For.Metadata.DisplayName);
+                tagInput.Attributes.Add("placeholder", inputAriaLabel);
                 tagInput.TagRenderMode = TagRenderMode.SelfClosing;
 
                 if (For.Metadata.IsRequired)
                 {
-                    tagInput.Attributes.Add("required", "required");
+                    //tagInput.Attributes.Add("required", "required"); // Commented so the validation messages works
                     tagInput.Attributes.Add("data-val", For.Metadata.ShowForDisplay.ToString().ToLower());
 
                     var validatorMetadata = For.Metadata.ValidatorMetadata;

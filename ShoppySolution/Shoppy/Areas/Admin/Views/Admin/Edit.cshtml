@@ -36,11 +36,12 @@
                             </div>
                         </div>*@
 
-                        <shoppy-input asp-for="@Model.Username" inputIcon="user" spanIconId="basic-addon1"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Name" inputIcon="user" spanIconId="basic-addon2"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Surname" inputIcon="user" spanIconId="basic-addon3"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Email" inputIcon="email" type="email" spanIconId="basic-addon4"></shoppy-input>
-                        <shoppy-input asp-for="@Model.Password" inputIcon="lock" type="password" asp-value="@ViewBag.Pass" spanIconId="basic-addon5"></shoppy-input>
+                        @*Explicit defining the input type, so the validation messages works*@
+                        <shoppy-input asp-for="@Model.Username" inputIcon="user" type="text" spanIconId="basic-addon1" inputAriaLabel="Username"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Name" inputIcon="user" type="text" spanIconId="basic-addon2" inputAriaLabel="Name"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Surname" inputIcon="user" type="text" spanIconId="basic-addon3" inputAriaLabel="Surname"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Email" inputIcon="email" type="email" spanIconId="basic-addon4" inputAriaLabel="Email"></shoppy-input>
+                        <shoppy-input asp-for="@Model.Password" inputIcon="lock" type="password" asp-value="@ViewBag.Pass" spanIconId="basic-addon5" inputAriaLabel="Password"></shoppy-input>
 
                         <div class="form-group">
                             <label class="control-label" asp-for="@Model.Confirmation"></label>
