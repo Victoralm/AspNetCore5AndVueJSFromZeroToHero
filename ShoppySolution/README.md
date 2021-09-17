@@ -35,4 +35,4 @@ classes](DAL/MySqlDbContext/).
 
 ## Shoppy Html Helper
 
-Helper classes designed to create custom asp tags
+Helper classes designed to create custom asp tags for the View pages
