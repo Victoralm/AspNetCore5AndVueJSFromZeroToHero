@@ -1,3 +1,3 @@
 # Shoppy Html Helper
 
-Helper classes designed to create custom asp tags tags for the View pages
+Helper classes designed to create custom asp tags for the View pages
