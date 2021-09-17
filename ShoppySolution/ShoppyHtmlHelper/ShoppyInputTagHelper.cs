@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -68,7 +69,47 @@ namespace ShoppyHtmlHelper
 
                 if (For.Metadata.IsRequired)
                 {
+                    tagInput.Attributes.Add("required", "required");
+                    tagInput.Attributes.Add("data-val", For.Metadata.ShowForDisplay.ToString().ToLower());
 
+                    var validatorMetadata = For.Metadata.ValidatorMetadata;
+                    if (validatorMetadata != null && validatorMetadata.Count > 0)
+                    {
+                        var metadata = For.Metadata;
+                        var prop = metadata.ContainerType.GetProperty(metadata.PropertyName);
+                        var attrs = prop.GetCustomAttributes(false);
+                        var required = attrs.OfType<RequiredAttribute>().FirstOrDefault();
+
+                        if(required != null)
+                        {
+                            tagInput.Attributes.Add("data-val-required", required.ErrorMessage);
+                        }
+
+                        var minLength = attrs.OfType<MinLengthAttribute>().FirstOrDefault();
+                        if (minLength != null)
+                        {
+                            tagInput.Attributes.Add("data-val-minlength-min", minLength.Length.ToString());
+                            tagInput.Attributes.Add("data-val-minlength", minLength.ErrorMessage);
+                        }
+
+                        var maxLength = attrs.OfType<MaxLengthAttribute>().FirstOrDefault();
+                        if (maxLength != null)
+                        {
+                            tagInput.Attributes.Add("data-val-maxlength-max", maxLength.Length.ToString());
+                            tagInput.Attributes.Add("data-val-maxlength", maxLength.ErrorMessage);
+                            tagInput.Attributes.Add("maxLength", maxLength.Length.ToString());
+                        }
+
+                        var dataType = attrs.OfType<DataTypeAttribute>().FirstOrDefault();
+                        if (dataType != null && type == null)
+                        {
+                            tagInput.Attributes.Add("type", dataType.DataType.ToString());
+                        }
+                    }
+                    else
+                    {
+
+                    }
                 }
             }
 
